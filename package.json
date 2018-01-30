@@ -1,0 +1,19 @@
+{
+  "name": "@ma_tkuchne/front-abstract",
+  "version": "0.1.0",
+  "description": "Warstwa abstrakcyjna aplikacji FE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/media-ambassador/front-abstract.git"
+  },
+  "author": "Media Ambassador <tomasz.kuchne@mediaambassador.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/media-ambassador/front-abstract/issues"
+  },
+  "homepage": "https://github.com/media-ambassador/front-abstract#readme"
+}
