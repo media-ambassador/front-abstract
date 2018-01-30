@@ -1,0 +1,49 @@
+// Breakpoints
+
+@import '../vars';
+
+// Usage:
+/// @include phone {
+///   font-size: 18px;
+/// }
+@mixin desktop {
+  @media (max-width: #{$desktop-devices}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-width: #{$laptop-devices}) {
+    @content;
+  }
+}
+
+@mixin laptop-small {
+  @media (max-width: #{$laptop-small-device}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$tablet-devices}) {
+    @content;
+  }
+}
+
+@mixin tablet-small {
+  @media (max-width: #{$tablet-small-devices}) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media (max-width: #{$phone-devices}) {
+    @content;
+  }
+}
+
+@mixin phone-small {
+  @media (max-width: #{$phone-small-devices}) {
+    @content;
+  }
+}

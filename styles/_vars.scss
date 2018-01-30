@@ -1,0 +1,59 @@
+$base-font-size: 16px;
+$base-font-family: sans-serif;
+
+$font-weight: (
+  'light': 300,
+  regular: 400,
+  bold: 700,
+  black: 900
+);
+
+$colors-stack: (
+	black:  (#000000),
+  white:  (#ffffff)
+);
+$txt-colors-stack: (black, white);
+
+$notification-colors-stack: (
+	succes:   (#099e09),
+  info:     (#000cff),
+  warning:  (#ff8c00),
+  error:    (#ff0000)
+);
+$txt-notification-colors-stack: (succes, info, warning, error);
+
+$typography-stack: (
+  //name: (size, weight, color, letterspacing, line-height)
+  h1: (7rem, black, blue, 30, 1),
+  h2: (5rem, black, blue, 30, 1.05),
+  h3: (3.3rem, black, blue, 60, 1),
+  h4: (3.3rem, light, blue, 60, 1.1),
+  h5: (2rem, black, blue, 30, 1),
+  h6: (1.6rem, light, blue, 120, 1),
+  paragraph: (1rem, regular, blue, 30, 1.4),
+  text-small: (.8rem, regular, blue, 30, 1.4)
+);
+
+$txt-typography-stack: (h1, h1, h2, h3, h4, h5, h6, paragraph, text-small);
+
+// Times
+$time-fastest : 0.3s;
+$time-fast : 0.5s;
+$time-slow : 1.0s;
+$time-slowest : 2.0s;
+
+// Devices dimentions
+$desktop-devices: 1540px;
+$laptop-devices: 1366px;
+$laptop-small-devices: 1200px;
+$tablet-devices: 1024px;
+$tablet-small-devices: 768px;
+$phone-devices: 500px;
+$phone-small-devices: 320px;
+
+// z-index
+$z-index-area-stack: (
+  //name: (size, weight, color, letterspacing, line-height)
+  header: 99,
+  modal: 999
+);

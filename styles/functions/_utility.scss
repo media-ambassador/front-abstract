@@ -1,0 +1,41 @@
+@function color($color-id, $color-tone: 1, $opacity: 1) {
+	$tones-map: map-get($colors-stack, $color-id);
+
+	@if $tones-map == null {
+		@error "Color `#{$color-id}` doesn't exist in $colors-stack.";
+	}
+
+	@return if($opacity == 1, nth($tones-map, $color-tone), rgba(nth($tones-map, $color-tone), $opacity));
+}
+
+@function font-weight($weight) {
+  $weight-map: map-get($font-weight, $weight);
+
+	@if $weight-map == null {
+		@error "Color `#{$color-id}` doesn't exist in $colors-stack.";
+  }
+  
+  @return $weight-map;
+}
+
+@function letter-spacing($photoshop-value, $font-size) {
+  // calculate photoshop letter spacing to css value
+  @return calc((#{$photoshop-value} * #{$font-size}) / 1000);
+}
+
+// Z-index
+/// Usage:
+/// .site-header {
+///   z-index: z('site-header');
+/// }
+@function z($name) {
+  @if index($z-indexes, $name) {
+    @return (length($z-indexes) - index($z-indexes, $name)) + 1;
+  }
+  @else {
+    @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+    @return null;
+  }
+}
+$z-indexes: ("outdated-browser", "modal", "site-header", "page-wrapper", "site-footer");
+

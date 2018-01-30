@@ -1,0 +1,28 @@
+@mixin custom-font($size, $font-weight, $color, $letter-spacing, $line-height) {
+  font-size: $size;
+  font-weight: $font-weight;
+  color: color($color);
+  letter-spacing: letter-spacing($letter-spacing, $size);
+  line-height: $line-height;
+};
+
+@mixin font($name) {
+  $font: map-get($typography-stack, $name);
+  @include custom-font(nth($font, 1), nth($font, 2), nth($font, 3), nth($font, 4), nth($font, 5));
+};
+
+@mixin arrow ($size, $color, $rotate) {
+  width: 0;
+  height: 0;
+  border-top: $size solid $color;
+  border-left: $size solid transparent;
+  border-right: $size solid transparent;
+  transform: rotate($rotate);
+}
+
+@mixin dot ($size, $radius, $color) {
+  width: $size;
+  height: $size;
+  border-radius: $radius;
+  background-color: $color;
+}
