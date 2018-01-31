@@ -1,3 +1,14 @@
+@function strip-unit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+@function getPixelValue($rem) {
+  $rem-size: strip-unit($rem);
+  $root-size: strip-unit($root-font-size);
+
+  @return $root-size * $rem-size;
+}
+
 @function color($color-id, $color-tone: 1, $opacity: 1) {
 	$tones-map: map-get($colors-stack, $color-id);
 
@@ -12,15 +23,21 @@
   $weight-map: map-get($font-weight, $weight);
 
 	@if $weight-map == null {
-		@error "Color `#{$color-id}` doesn't exist in $colors-stack.";
+		@error "Weight `#{$color-id}` doesn't exist";
   }
   
   @return $weight-map;
 }
 
+@function line-height($line-height, $font-size) { 
+  $rem-size: strip-unit($font-size);
+  $root-size: strip-unit($root-font-size);
+
+  @return $line-height / getPixelValue($font-size) + em;
+}
+
 @function letter-spacing($photoshop-value, $font-size) {
-  // calculate photoshop letter spacing to css value
-  @return calc((#{$photoshop-value} * #{$font-size}) / 1000);
+  @return ($photoshop-value * getPixelValue($font-size)) / 1000 + px;
 }
 
 // Z-index

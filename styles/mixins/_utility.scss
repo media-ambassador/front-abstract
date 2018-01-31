@@ -1,5 +1,3 @@
-// Utility
-
 @mixin size($width, $height: -1) {
 	width: #{$width};
 	height: if($height == -1, #{$width}, #{$height});

@@ -1,15 +1,37 @@
 @mixin custom-font($size, $font-weight, $color, $letter-spacing, $line-height) {
   font-size: $size;
-  font-weight: $font-weight;
+  font-weight: font-weight($font-weight);
   color: color($color);
   letter-spacing: letter-spacing($letter-spacing, $size);
-  line-height: $line-height;
+  line-height: line-height($line-height, $size);
 };
 
-@mixin font($name) {
-  $font: map-get($typography-stack, $name);
-  @include custom-font(nth($font, 1), nth($font, 2), nth($font, 3), nth($font, 4), nth($font, 5));
+@mixin font($name, $stack: $typography-default-stack) {
+  $font: map-get($stack, $name);
+
+  @if length($font) >= 5 {
+    @include custom-font(nth($font, 1), nth($font, 2), nth($font, 3), nth($font, 4), nth($font, 5));
+  } @else {
+    @error "Font name `#{$name}` does not exist in the stack";
+  }
 };
+
+@mixin rwd-font-size($font-type, $font-breakpoints: $rwd-typography) {
+  @each $breakpoint, $font-stack in $font-breakpoints {
+    @if $breakpoint == default {
+      @include font($font-type, $font-stack)
+    }
+    @else {
+      @if map-has-key($breakpoints, $breakpoint) {
+        $breakpoint: map-get($breakpoints, $breakpoint);
+      }
+
+      @media screen and (max-width: $breakpoint) {
+        @include font($font-type, $font-stack)
+      }
+    }
+  }
+}
 
 @mixin arrow ($size, $color, $rotate) {
   width: 0;

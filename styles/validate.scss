@@ -1,0 +1,36 @@
+
+@if $root-font-size == null {
+  @error "$root-font-size does not exist";
+}
+
+@if $root-font-family == null {
+  @error "$root-font-family does not exist";
+}
+
+@if $font-weight == null {
+  @error "$font-weight does not exist";
+}
+
+@if $colors-stack == null {
+  @error "$colors-stack does not exist";
+} @else if type-of($colors-stack) != "map" {
+  @error "$colors-stack should be a map";
+}
+
+@if $typography-default-stack == null {
+  @error "$typography-default-stack does not exist";
+} @else if type-of($typography-default-stack) != "map" {
+  @error "$typography-default-stack should be a map";
+}
+
+@if $breakpoints == null {
+  @error "$breakpoints does not exist";
+} @else if type-of($breakpoints) != "map" {
+  @error "$breakpoints should be a map";
+}
+
+@if $rwd-typography == null {
+  @error "$rwd-typography does not exist";
+} @else if type-of($rwd-typography) != "map" {
+  @error "$rwd-typography should be a map";
+}
