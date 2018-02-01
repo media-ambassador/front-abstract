@@ -1,20 +1,64 @@
-@mixin size($width, $height: -1) {
-	width: #{$width};
-	height: if($height == -1, #{$width}, #{$height});
+/// Ustawienie wielkości elementu
+///
+/// @group mixin utility
+///
+/// @param {Length} $width - Element's width
+/// @param {Length} $height [$width] - Element's height
+///
+/// @example scss - Sizing `.foo`
+///   .foo {
+///     @include size(30px, 50px);
+///   }
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
 }
 
+/// Nadanie koloru elementowi SVG
+///
+/// @group mixin utility
+///
+/// @param {Name} $color - nazwa
+/// @param {Number} $color-tone [1] - odcień koloru
+///
+/// @example scss - Color `svg` element
+///   svg {
+///     @include svg-fill(red, 2);
+///   }
 @mixin svg-fill($color, $color-tone: 1) {
 	path {
 		fill: color($color, $color-tone);
 	}
 }
 
+/// Ostylowanie elementu SVG (wielkośc i kolor)
+///
+/// @group mixin utility
+///
+/// @param {Length} $width - Element's width
+/// @param {Length} $height [$width] - Element's height
+/// @param {Name} $color - nazwa
+/// @param {Number} $color-tone [1] - odcień koloru
+///
+/// @example scss - Style `svg` element
+///   svg {
+///     @include svg(20px, 30px, red, 2);
+///   }
 @mixin svg($wight, $height, $color, $tone: 1) {
   @include size($wight, $height);
   @include svg-fill($color, $tone);
 }
 
-// Margin left/right = auto
+/// Wyśrodkowanie elementu
+///
+/// @group mixin utility
+///
+///
+/// @example Center `div`
+///   div {
+///     @include margin-center();
+///   }
 @mixin margin-center {
   margin: {
     left: auto;
@@ -22,21 +66,35 @@
   }
 }
 
-// Pseudo element
-@mixin pseudo($display: block, $pos: absolute, $content: '') {
+/// Domyślne style dla pseudoelementu
+///
+/// @group mixin utility
+///
+/// @param {Value} $display [block]
+/// @param {Value} $display [static]
+/// @param {String} $display ['']
+///
+/// @example Center `div`
+///   div::before {
+///     @include pseudo();
+///   }
+@mixin pseudo($display: block, $pos: static, $content: '') {
   content: $content;
   display: $display;
   position: $pos;
 }
 
-// Placeholders
-// ::-webkit-input-placeholder ...
-/// Usage:
-/// input, textarea {
-/// @include input-placeholder {
-///     color: $grey;
+/// Ostylowanie input placeholder
+///
+/// @group mixin utility
+///
+/// @example Style `::placeholder`
+///   input {
+///     @include input-placeholder() {
+///       color: white;
+///       font-size: 15px;
+///     };
 ///   }
-/// }
 @mixin input-placeholder {
   &.placeholder { @content; }
   &:-moz-placeholder { @content; }
@@ -45,76 +103,75 @@
   &::-webkit-input-placeholder { @content; }
 }
 
-// Border Radius properties
-/// Usage:
-/// @include border-right-radius(3px);
+/// Nadanie border-radius na górze elementu
+///
+/// @group mixin utility
+///
+/// @param {Value} $radii - wartość w px
 @mixin border-top-radius($radii) {
   border-top-left-radius: $radii;
   border-top-right-radius: $radii;
 }
 
+/// Nadanie border-radius po prawej stronie elementu
+///
+/// @group mixin utility
+///
+/// @param {Value} $radii - wartość w px
 @mixin border-right-radius($radii) {
   border-bottom-right-radius: $radii;
   border-top-right-radius: $radii;
 }
 
+/// Nadanie border-radius na dole elementu
+///
+/// @group mixin utility
+///
+/// @param {Value} $radii - wartość w px
 @mixin border-bottom-radius($radii) {
   border-bottom-left-radius: $radii;
   border-bottom-right-radius: $radii;
 }
 
+/// Nadanie border-radius po lewej stronie elementu
+///
+/// @group mixin utility
+///
+/// @param {Value} $radii - wartość w px
 @mixin border-left-radius($radii) {
   border-bottom-left-radius: $radii;
   border-top-left-radius: $radii;
 }
 
-// Clearfix
-@mixin clearfix {
-  *zoom: 1;
-
-  &:before,
-  &:after {
-    content: " ";
-    display: table;
-  }
-
-  &:after {
-    clear: both;
-  }
-}
-
-@mixin clearfix2 {
-  &::after {
-    clear: both;
-    content: "";
-    display: block;
-  }
-}
-
-// Hidden element
+/// Ukrycie elementu
+///
+/// @group mixin utility
+///
 @mixin hidden {
   display: none !important;
   visibility: hidden !important;
 }
 
+///  Wspólne style dla pseudoklas hover, actice, focus
+///
+/// @group mixin utility
+///
+/// @example Style `::placeholder`
+///   a {
+///     @include hover-active-focus() {
+///       outline: none;
+///       text-decoration: undeline;
+///     };
+///   }
 @mixin hover-active-focus {
   &:hover, &:active, &:focus {
     @content;
   }
 }
 
-// Sharp image
-@mixin sharp-image{
-  image-rendering: auto;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;         /* Firefox */
-  image-rendering:   -o-crisp-edges;         /* Opera */
-  image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
-  -ms-interpolation-mode: nearest-neighbor;  /* IE (non-standard property) */
-}
-
 /// Generates a triangle pointing in a specified direction.
+///
+/// @group mixin utility
 ///
 /// @argument {string} $direction
 ///   The direction the triangle should point. Accepts `up`, `up-right`,

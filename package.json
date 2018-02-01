@@ -1,6 +1,6 @@
 {
   "name": "@ma_tkuchne/front-abstract",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Warstwa abstrakcyjna aplikacji FE",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/media-ambassador/front-abstract/issues"
   },
-  "homepage": "https://github.com/media-ambassador/front-abstract#readme"
+  "homepage": "https://github.com/media-ambassador/front-abstract#readme",
+  "devDependencies": {
+    "sassdoc": "^2.5.0"
+  }
 }

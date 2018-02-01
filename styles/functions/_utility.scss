@@ -1,7 +1,27 @@
+/// Usunięcie jednostki z wartości
+///
+/// @group fn utility
+///
+/// @param {Unit} $value - Jednostka px, em, rem, %
+///
+/// @example scss - Usunięcie jednostki rem
+///   strip-unit(5rem); 
+///
+/// @return {Number} - sama wartość, dla przykładu będzie to 5
 @function strip-unit($value) {
   @return ($value / ($value * 0 + 1));
 }
 
+/// Przeliczenie na wartość rem w stosunku do głównej jednostki
+///
+/// @group fn utility
+///
+/// @param {Unit} $size - Wartość w px
+///
+/// @example scss - Usunięcie jednostki rem
+///   make-rem(100px); 
+///
+/// @return {Unit} - np 5.43rem
 @function make-rem($size) {
   $root: strip-unit($root-font-size);
   $size: strip-unit($size);
@@ -9,6 +29,13 @@
   @return $size / $root + rem;
 }
 
+/// Zwraca odpowiednią wartość koloru z tablicy $color-stact, jej odcień, oraz stopień krycia
+///
+/// @group fn utility
+///
+/// @param {Unit} $color-id - nazwa koloru
+/// @param {Unit} $color-tone - numer odcienia
+/// @param {Unit} $opacity [1] - stopień krycia (0:1)
 @function color($color-id, $color-tone: 1, $opacity: 1) {
 	$tones-map: map-get($colors-stack, $color-id);
 
@@ -19,6 +46,11 @@
 	@return if($opacity == 1, nth($tones-map, $color-tone), rgba(nth($tones-map, $color-tone), $opacity));
 }
 
+/// Zwraca grubość fonta z zalezności od zdeklarowanych wartości w $font-weight
+///
+/// @group fn utility
+///
+/// @param {Unit} $weight - nazwa: thin, light, regular, normal, medium, bold, black
 @function font-weight($weight) {
   $weight-map: map-get($font-weight, $weight);
 
@@ -29,6 +61,12 @@
   @return $weight-map;
 }
 
+/// Przelicza wartość line-height w em względem wielkości czcionki
+///
+/// @group fn utility
+///
+/// @param {Unit} $line-height - wielkość line-height z Style Guide
+/// @param {Unit} $font-size- wielkość font-size z Style Guide
 @function line-height($line-height, $font-size) { 
   $font-size: strip-unit($font-size);
   $root-size: strip-unit($root-font-size);
@@ -36,23 +74,13 @@
   @return $line-height / $font-size + em;
 }
 
+/// Przelicza letter-spacing na wartość px względem wielkości czcionki
+///
+/// @group fn utility
+///
+/// @param {Unit} $photoshop-value - wielkość letter spacing z Style Guide
+/// @param {Unit} $font-size- wielkość font-size z Style Guide
 @function letter-spacing($photoshop-value, $font-size) {
   @return ($photoshop-value * $font-size) / 1000 + px;
 }
-
-// Z-index
-/// Usage:
-/// .site-header {
-///   z-index: z('site-header');
-/// }
-@function z($name) {
-  @if index($z-indexes, $name) {
-    @return (length($z-indexes) - index($z-indexes, $name)) + 1;
-  }
-  @else {
-    @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
-    @return null;
-  }
-}
-$z-indexes: ("outdated-browser", "modal", "site-header", "page-wrapper", "site-footer");
 
