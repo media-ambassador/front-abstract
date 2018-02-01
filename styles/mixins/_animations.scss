@@ -1,3 +1,7 @@
+///  Deklaracja keygen dla animacji
+///
+/// @group Animations
+///
 @mixin keyframe ($animation-name) {
   @-webkit-keyframes #{$animation-name} {
       @content;
@@ -13,6 +17,10 @@
   }
 }
 
+///  Deklaracja własnej animacji
+///
+/// @group Animations
+///
 @mixin animation ($delay, $duration, $animation, $count, $timing: linear, $fillmode: forwards, $direction: normal) {
   -webkit-animation-delay: $delay;
   -webkit-animation-duration: $duration;

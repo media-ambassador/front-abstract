@@ -1,3 +1,15 @@
+/// Nadanie konkretnego stylu dla fonta
+///
+/// @group typography
+///
+/// @param {Unit} $size - Wartość w px
+/// @param {Name} $font-weight - nazwa grubości fonta
+/// @param {Number} $line-height - wartość interlini z SG
+/// @param {Name} $color - nazwa koloru
+/// @param {Number} $tone [1] - odcień numer
+/// @param {Number} $letter-spacing [0] - letter spacing z SG
+/// @param {Value} $text-transform [none] - sposób transformacji tekstu
+///
 @mixin custom-font($size, $font-weight, $line-height, $color, $tone: 1, $letter-spacing: 0, $text-transform: none) {
   font-size: make-rem($size);
   font-weight: font-weight($font-weight);
@@ -7,6 +19,13 @@
   text-transform: $text-transform;
 };
 
+/// Pobranie stylu fonta względem zdeklarowanej tablicy i nazwy
+///
+/// @group typography
+///
+/// @param {Unit} $name - Nazwa typografii
+/// @param {Map} $stack - Lista (mapa) w której zawartości są wszystkie wartości zdefiniowane dla konkretnej typografii
+///
 @mixin font($name, $stack: $typography-default-stack) {
   $font: map-get($stack, $name);
 
@@ -17,6 +36,13 @@
   }
 };
 
+/// Nadanie styli RWD dla zdeklarowanych typografii
+///
+/// @group typography
+///
+/// @param {Unit} $font-type - Nazwa typografii, np h1
+/// @param {Map} $stack - Lista (mapa) w której określona jest lista breakpointów i przypisanych do nich typografii
+///
 @mixin rwd-font-size($font-type, $font-breakpoints: $rwd-typography) {
   @each $breakpoint, $font-stack in $font-breakpoints {
     @if $breakpoint == default {
@@ -32,20 +58,4 @@
       }
     }
   }
-}
-
-@mixin arrow ($size, $color, $rotate) {
-  width: 0;
-  height: 0;
-  border-top: $size solid $color;
-  border-left: $size solid transparent;
-  border-right: $size solid transparent;
-  transform: rotate($rotate);
-}
-
-@mixin dot ($size, $radius, $color) {
-  width: $size;
-  height: $size;
-  border-radius: $radius;
-  background-color: $color;
 }
