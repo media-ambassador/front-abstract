@@ -1,16 +1,17 @@
-@mixin custom-font($size, $font-weight, $color, $letter-spacing, $line-height) {
-  font-size: $size;
+@mixin custom-font($size, $font-weight, $line-height, $color, $tone: 1, $letter-spacing: 0, $text-transform: none) {
+  font-size: make-rem($size);
   font-weight: font-weight($font-weight);
   color: color($color);
   letter-spacing: letter-spacing($letter-spacing, $size);
   line-height: line-height($line-height, $size);
+  text-transform: $text-transform;
 };
 
 @mixin font($name, $stack: $typography-default-stack) {
   $font: map-get($stack, $name);
 
   @if length($font) >= 5 {
-    @include custom-font(nth($font, 1), nth($font, 2), nth($font, 3), nth($font, 4), nth($font, 5));
+    @include custom-font(nth($font, 1), nth($font, 2), nth($font, 3), nth($font, 4), nth($font, 5), nth($font, 6) , nth($font, 7));
   } @else {
     @error "Font name `#{$name}` does not exist in the stack";
   }
