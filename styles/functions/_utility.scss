@@ -2,11 +2,11 @@
   @return ($value / ($value * 0 + 1));
 }
 
-@function getPixelValue($rem) {
-  $rem-size: strip-unit($rem);
-  $root-size: strip-unit($root-font-size);
+@function make-rem($size) {
+  $root: strip-unit($root-font-size);
+  $size: strip-unit($size);
 
-  @return $root-size * $rem-size;
+  @return $size / $root + rem;
 }
 
 @function color($color-id, $color-tone: 1, $opacity: 1) {
@@ -30,14 +30,14 @@
 }
 
 @function line-height($line-height, $font-size) { 
-  $rem-size: strip-unit($font-size);
+  $font-size: strip-unit($font-size);
   $root-size: strip-unit($root-font-size);
 
-  @return $line-height / getPixelValue($font-size) + em;
+  @return $line-height / $font-size + em;
 }
 
 @function letter-spacing($photoshop-value, $font-size) {
-  @return ($photoshop-value * getPixelValue($font-size)) / 1000 + px;
+  @return ($photoshop-value * $font-size) / 1000 + px;
 }
 
 // Z-index
