@@ -26,10 +26,25 @@
 ///   svg {
 ///     @include svg-fill(red, 2);
 ///   }
-@mixin svg-fill($color, $color-tone: 1) {
-	path {
-		fill: color($color, $color-tone);
+@mixin svg-fill($color, $color-tone: 1, $shape: path) {
+	#{$shape} {
+		fill: color($color, $color-tone) !important;
 	}
+}
+
+/// Nadanie koloru elementowi SVG z ng-deep
+///
+/// @group mixin utility
+///
+/// @param {Name} $color - nazwa
+/// @param {Number} $color-tone [1] - odcień koloru
+///
+/// @example scss - Color `svg` element
+///   svg {
+///     @include svg-fill(red, 2);
+///   }
+@mixin svg-fill-deep($color, $color-tone: 1, $shape: path) {
+  &::ng-deep { @include svg-fill($color, $color-tone, $shape) }
 }
 
 /// Ostylowanie elementu SVG (wielkośc i kolor)
@@ -45,9 +60,26 @@
 ///   svg {
 ///     @include svg(20px, 30px, red, 2);
 ///   }
-@mixin svg($wight, $height, $color, $tone: 1) {
+@mixin svg($wight, $height, $color, $tone: 1, $shape: path) {
   @include size($wight, $height);
-  @include svg-fill($color, $tone);
+  @include svg-fill($color, $tone, $shape);
+}
+
+/// Ostylowanie elementu SVG osadzone w ng-deep (wielkośc i kolor)
+///
+/// @group mixin utility
+///
+/// @param {Length} $width - Element's width
+/// @param {Length} $height [$width] - Element's height
+/// @param {Name} $color - nazwa
+/// @param {Number} $color-tone [1] - odcień koloru
+///
+/// @example scss - Style `svg` element
+///   svg {
+///     @include svg(20px, 30px, red, 2);
+///   }
+@mixin svg-deep($wight, $height, $color, $tone: 1, $shape: path) {
+  &::ng-deep { @include svg($wight, $height, $color, $tone, $shape) }
 }
 
 /// Wyśrodkowanie elementu

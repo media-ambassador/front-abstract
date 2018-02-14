@@ -37,6 +37,10 @@
 /// @param {Unit} $color-tone - numer odcienia
 /// @param {Unit} $opacity [1] - stopień krycia (0:1)
 @function color($color-id, $color-tone: 1, $opacity: 1) {
+  @if $color-id == inherit {
+    @return inherit;
+  }
+
 	$tones-map: map-get($colors-stack, $color-id);
 
 	@if $tones-map == null {
@@ -82,5 +86,20 @@
 /// @param {Unit} $font-size- wielkość font-size z Style Guide
 @function letter-spacing($photoshop-value, $font-size) {
   @return ($photoshop-value * $font-size) / 1000 + px;
+}
+
+/// Pobiera wartość z-index z tablicy $z-index-areas
+///
+/// @group fn utility
+///
+/// @param {name} $area - nazwa obszaru
+@function z-index($area) {
+  $z-index: map-get($z-index-areas, $area);
+
+	@if $z-index == null {
+		@error "Area `#{$area}` doesn't exist";
+  }
+  
+  @return $z-index;
 }
 
