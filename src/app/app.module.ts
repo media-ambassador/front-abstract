@@ -2,20 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
-import { MaBreadcrumbsModule } from '../../lib/components/breadcrumbs';
-
-import { MaPreventOrphanPipe } from './pipes/prevent-orphan';
+import { MaBreadcrumbsModule } from './common/components/breadcrumbs';
+import { MaPreventOrphanPipe } from './common/pipes/prevent-orphan';
+import { MaSliderModule } from './common/components/slider';
+import { RotatorComponent } from './rotator/rotator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 
-    MaPreventOrphanPipe
+    MaPreventOrphanPipe,
+
+    RotatorComponent
   ],
   imports: [
     BrowserModule,
 
-    MaBreadcrumbsModule
+    MaBreadcrumbsModule,
+    MaSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
