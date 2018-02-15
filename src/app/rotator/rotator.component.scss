@@ -1,0 +1,13 @@
+:host {
+
+  ma-slider {
+    display: block;
+    height: 400px;
+    overflow: hidden;
+
+    figure {
+      overflow: hidden;
+      max-height: 100%;
+    }
+  }
+}

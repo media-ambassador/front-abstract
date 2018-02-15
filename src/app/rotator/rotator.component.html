@@ -1,0 +1,18 @@
+<section class="rotator-section">
+  <ma-slider #rotator [maOptions]="rotatorOptions">
+    <figure class="qb-rotator__item" maSliderItem *ngFor="let item of items">
+      <ng-container *ngTemplateOutlet="defaultRotatorItemTemplate; context: {$implicit: item}"></ng-container>
+    </figure>
+  </ma-slider>
+  <div [maSliderNavPrev]="rotator" class="rotator-prev">
+    PREVIOUS
+  </div>
+  <div [maSliderNavNext]="rotator" class="rotator-next">
+    NEXT
+  </div>
+</section>
+
+<ng-template #defaultRotatorItemTemplate
+  let-item>
+  <img *ngIf="item.image" [src]="item.image.src" [alt]="item.image?.alt" />
+</ng-template>
