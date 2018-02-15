@@ -1,0 +1,18 @@
+<ul class="ma-breadcrumbs">
+  <li class="ma-breadcrumbs__item" *ngFor="let item of maItems; let index=index; let first=first; let last=last; let even=even; let odd=odd">
+    <ng-container
+      *ngTemplateOutlet="
+        itemTemplate ? itemTemplate : defaultBreadcrumbsItemTemplate;
+        context: {item: item, index: index, first: first, last: last, odd: odd, even: even}">
+      </ng-container>
+  </li>
+</ul>
+<ng-template
+  #defaultBreadcrumbsItemTemplate
+  let-item="item"
+  let-last="last"
+  let-first="first">
+  <a *ngIf="!last"
+    [ngClass]="{'ma-breadcrumbs__item--first': first}" [routerLink]="[item.link]">{{item.name}}</a>
+  <span *ngIf="last" [ngClass]="{'ma-breadcrumbs__item--last': last}" href="javascript: return void">{{item.name}}</span>
+</ng-template>

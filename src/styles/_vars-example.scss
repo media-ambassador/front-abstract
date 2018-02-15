@@ -1,0 +1,90 @@
+/// Główna wielkości font'a dla całego dokumentu
+///
+/// @group variables
+///
+/// @name root-font-size
+$root-font-size: 16px;
+
+/// Główna rodzaj fonta używany w całej aplikacji
+///
+/// @group variables
+///
+/// @name root-font-family
+$root-font-family: 'neuzeit-grotesk', sans-serif;
+
+/// Deklaracja grubości fonta `nazwa: wartosc`
+///
+/// @group variables
+///
+/// @name font-weight
+$font-weight: (
+  light: 300,
+  regular: 400,
+  bold: 700,
+  black: 900
+);
+
+/// Deklaracja objektu kolorów
+/// Jako klucz podajemy nazwe koloru
+/// Jako wartość podajemy kolejne odcienienie (numerowane są one od 1)
+///
+/// @group variables
+///
+/// @name font-weight
+$colors-stack: (
+	black:  (#000000, #000000),
+  white:  (#ffffff, #ffffff),
+  red:    (#b31f1a, #e32720),
+  blue:   (#17222e, #2f363e),
+  gray:   (#eaeaea, #a7a8aa, #727272)
+);
+
+/// Deklaracja typografii
+/// Jako klucz podajemy fonta
+/// Jako wartość podajemy kolejne parametry: wielkość, grubość, interlinia, kolor, odległość między literami, transformacja tekstu
+///
+/// @group variables
+///
+/// @name typography-default-stack
+$typography-default-stack: (
+//name: (           size,   weight,   line-height,  color,  tone: 1,    letterspacing: 0, text-transform: none)
+  h1: (             105,    black,    105,          blue,   1,          30,               none),
+  h2: (             75,     black,    80,           blue,   1,          30,               none),
+  h3: (             50,     black,    60,           blue,   1,          60,               none),
+  h4: (             50,     light,    60,           blue,   1,          60,               none),
+  h5: (             30,     black,    60,           blue,   1,          30,               none),
+  h6: (             24,     light,    60,           blue,   1,          120,              none),
+  paragraph: (      15,     regular,  25,           blue,   1,          30,               none),
+  text-small: (     13,     regular,  16,           blue,   1,          30,               none),
+  text-very-small: (12,     regular,  16,           blue,   1,          30,               none)
+);
+
+/// Deklaracja breakpointów
+/// Jako klucz nazwa urządzenia
+/// Jako wartość podajemy wartość do którem media query ma obowiązywać
+///
+/// @group variables
+///
+/// @name breakpoints
+$breakpoints: (
+  desktop-devices: 1540px,
+  laptop-devices: 1366px,
+  laptop-small-devices: 1200px,
+  tablet-devices: 1024px,
+  tablet-small-devices: 768px,
+  phone-devices: 500px,
+  phone-small-devices: 320px
+);
+
+/// Mapowanie typografii względem RWD
+/// Dzięki tej tablicy możemy dla poszczególnych wielkości wskazać konkretną typografie
+/// Jako klucz nazwa urządzenia, która się pokrywa z $breakpoints, lub wartość w px (default jest wartością domyślną)
+/// Jako wartość podajemy zbiór z określoną typografią. Dla każdego przedziału dodajemy nową zmienną
+///
+/// @group variables
+///
+/// @name rwd-typography
+$rwd-typography: (
+  default: $typography-default-stack
+  phone-devices: $typography-phone-stack
+);
