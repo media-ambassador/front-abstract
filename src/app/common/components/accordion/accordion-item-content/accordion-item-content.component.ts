@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accordion-item-content.component.scss']
 })
 export class MaAccordionItemContentComponent implements OnInit {
+  private isOpen = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  show() {
+    this.isOpen = true;
+  }
+
+  hide() {
+    this.isOpen = false;
   }
 
 }

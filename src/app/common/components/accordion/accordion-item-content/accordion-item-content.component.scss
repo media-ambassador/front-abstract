@@ -1,0 +1,15 @@
+:host {
+
+  div {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+
+    &.open {
+      padding-top: 15px;
+      height: initial;
+      opacity: 1;
+    }
+  }
+}
