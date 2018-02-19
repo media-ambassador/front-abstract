@@ -14,7 +14,7 @@ export class MaAccordionComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this.items.toArray().forEach(
-      (item, index) => item.itemChange.subscribe(item => this.toogleItems(index))
+      (item, index) => item.itemChange.subscribe(() => this.toogleItems(index))
     );
   }
 
@@ -23,5 +23,13 @@ export class MaAccordionComponent implements AfterContentInit {
       if (index != id)
         item.closeItem();
     });
+  }
+
+  closeAll() {
+    this.items.toArray().forEach(item => item.closeItem());
+  }
+
+  showAll() {
+    this.items.toArray().forEach(item => item.openItem());
   }
 }

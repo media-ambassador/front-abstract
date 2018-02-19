@@ -1,4 +1,4 @@
-import { Component, OnInit, ContentChild, AfterContentInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ContentChild, AfterContentInit, Output, EventEmitter, Input } from '@angular/core';
 import { MaAccordionItemContentComponent } from '../accordion-item-content/accordion-item-content.component';
 import { MaAccordionItemHeaderComponent } from '../accordion-item-header/accordion-item-header.component';
 
@@ -9,6 +9,9 @@ import { MaAccordionItemHeaderComponent } from '../accordion-item-header/accordi
   styleUrls: ['./accordion-item.component.scss']
 })
 export class MaAccordionItemComponent implements AfterContentInit {
+  @Input() maLock: boolean;
+  @Input() maOpen: boolean;
+
   @Output() itemChange: EventEmitter<string> = new EventEmitter();
 
   @ContentChild(MaAccordionItemHeaderComponent) itemHeader: MaAccordionItemHeaderComponent;
@@ -18,16 +21,29 @@ export class MaAccordionItemComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this.itemHeader.headerClicked.subscribe(() => {
+      if (this.maLock)
+        return;
+
       this.openItem();
       this.itemChange.emit();
     });
+
+    if (this.maOpen) {
+      this.itemContent.show();
+    }
   }
 
   public openItem() {
+    if (this.maLock)
+      return;
+
     this.itemContent.show();
   }
 
   public closeItem() {
+    if (this.maLock)
+      return;
+
     this.itemContent.hide();
   }
 
