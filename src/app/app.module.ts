@@ -8,6 +8,7 @@ import { MaSliderModule } from './common/components/slider';
 import { RotatorComponent } from './rotator/rotator.component';
 import { MaAccordionModule } from './common/components/accordion/accordion.module';
 import { PanelAccordionComponent } from './panel-accordion/panel-accordion.component';
+import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-breakpoints.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { PanelAccordionComponent } from './panel-accordion/panel-accordion.compo
     MaSliderModule,
     MaAccordionModule
   ],
-  providers: [],
+  providers: [
+    MaRwdBreakpointsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

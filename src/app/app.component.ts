@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-breakpoints.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+   
+  constructor(private rwdBreakpointsService: MaRwdBreakpointsService) {
+    this.rwdBreakpointsService.getRwdBreakpoint('default').subscribe(isset => {
+      console.log(isset);
+    })
+  }
 }
