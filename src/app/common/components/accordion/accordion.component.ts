@@ -25,11 +25,19 @@ export class MaAccordionComponent implements AfterContentInit {
     });
   }
 
-  closeAll() {
-    this.items.toArray().forEach(item => item.closeItem());
+  closeItem(index:number, force = false) {
+    this.items.toArray()[index].closeItem(force);
   }
 
-  showAll() {
-    this.items.toArray().forEach(item => item.openItem());
+  closeAll(force = false) {
+    this.items.toArray().forEach(item => item.closeItem(force));
+  }
+
+  showItem(index:number, force = false) {
+    this.items.toArray()[index].openItem(force);
+  }
+
+  showAll(force = false) {
+    this.items.toArray().forEach(item => item.openItem(force));
   }
 }
