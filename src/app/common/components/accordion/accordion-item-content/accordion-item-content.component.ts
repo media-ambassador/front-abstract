@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./accordion-item-content.component.scss']
 })
 export class MaAccordionItemContentComponent {
-  private isOpen = false;
+  isOpen = false;
 
   constructor() { }
 

@@ -1,5 +1,5 @@
 export declare class MaAccordionItemContentComponent {
-    private isOpen;
+    isOpen: boolean;
     constructor();
     show(): void;
     hide(): void;
