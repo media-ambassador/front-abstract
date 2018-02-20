@@ -33,15 +33,15 @@ export class MaAccordionItemComponent implements AfterContentInit {
     }
   }
 
-  public openItem() {
-    if (this.maLock)
+  public openItem(force = false) {
+    if (this.maLock && !force)
       return;
 
     this.itemContent.show();
   }
 
-  public closeItem() {
-    if (this.maLock)
+  public closeItem(force = false) {
+    if (this.maLock && !force)
       return;
 
     this.itemContent.hide();

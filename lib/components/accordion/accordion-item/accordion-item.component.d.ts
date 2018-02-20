@@ -9,6 +9,6 @@ export declare class MaAccordionItemComponent implements AfterContentInit {
     itemContent: MaAccordionItemContentComponent;
     constructor();
     ngAfterContentInit(): void;
-    openItem(): void;
-    closeItem(): void;
+    openItem(force?: boolean): void;
+    closeItem(force?: boolean): void;
 }

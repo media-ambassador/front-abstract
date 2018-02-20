@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'app';
    
   constructor(private rwdBreakpointsService: MaRwdBreakpointsService) {
-    this.rwdBreakpointsService.getRwdBreakpoint('default').subscribe(isset => {
+    this.rwdBreakpointsService.getRwdBreakpoint('tabletDevices').subscribe(isset => {
       console.log(isset);
     })
   }

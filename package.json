@@ -1,6 +1,6 @@
 {
   "name": "@ma_tkuchne/front-abstract",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Warstwa abstrakcyjna aplikacji FE",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "./node_modules/.bin/ng test",
     "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",
-    "cleardown": "rimraf build lib",
+    "cleardown": "rm -r build lib || true",
     "inline-build-templates": "gulp inline-build-templates",
     "ngc-build": "ngc -p ./tsconfig.lib.json",
     "build-styles": "gulp copy-styles && sassdoc ./lib/styles/*",

@@ -5,6 +5,8 @@ export declare class MaAccordionComponent implements AfterContentInit {
     constructor();
     ngAfterContentInit(): void;
     toogleItems(id: number): void;
-    closeAll(): void;
-    showAll(): void;
+    closeItem(index: number, force?: boolean): void;
+    closeAll(force?: boolean): void;
+    showItem(index: number, force?: boolean): void;
+    showAll(force?: boolean): void;
 }
