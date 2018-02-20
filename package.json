@@ -1,6 +1,6 @@
 {
   "name": "@ma_tkuchne/front-abstract",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Warstwa abstrakcyjna aplikacji FE",
   "main": "index.js",
   "scripts": {
@@ -13,8 +13,8 @@
     "cleardown": "rimraf build lib",
     "inline-build-templates": "gulp inline-build-templates",
     "ngc-build": "ngc -p ./tsconfig.lib.json",
-    "copy-styles": "gulp copy-styles",
-    "prepublish": "npm run cleardown && npm run inline-build-templates && npm run ngc-build && npm run ngc-build && npm run copy-styles"
+    "build-styles": "gulp copy-styles && sassdoc ./lib/styles/*",
+    "prepublish": "npm run cleardown && npm run inline-build-templates && npm run ngc-build && npm run build-styles"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,8 @@
   "author": "Media Ambassador <tomasz.kuchne@mediaambassador.com>",
   "license": "MIT",
   "files": [
-    "lib"
+    "lib",
+    "sassdoc"
   ],
   "bugs": {
     "url": "https://github.com/media-ambassador/front-abstract/issues"

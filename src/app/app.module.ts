@@ -6,6 +6,9 @@ import { MaBreadcrumbsModule } from './common/components/breadcrumbs';
 import { MaPreventOrphanPipe } from './common/pipes/prevent-orphan';
 import { MaSliderModule } from './common/components/slider';
 import { RotatorComponent } from './rotator/rotator.component';
+import { MaAccordionModule } from './common/components/accordion/accordion.module';
+import { PanelAccordionComponent } from './panel-accordion/panel-accordion.component';
+import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-breakpoints.service';
 
 @NgModule({
   declarations: [
@@ -13,15 +16,20 @@ import { RotatorComponent } from './rotator/rotator.component';
 
     MaPreventOrphanPipe,
 
-    RotatorComponent
+    RotatorComponent,
+    PanelAccordionComponent,
+
   ],
   imports: [
     BrowserModule,
 
     MaBreadcrumbsModule,
-    MaSliderModule
+    MaSliderModule,
+    MaAccordionModule
   ],
-  providers: [],
+  providers: [
+    MaRwdBreakpointsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

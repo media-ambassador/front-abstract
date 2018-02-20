@@ -1,0 +1,11 @@
+:host div {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+:host div.open {
+      height: initial;
+      opacity: 1;
+}
