@@ -1,5 +1,5 @@
 <section class="rotator-section">
-  <ma-slider #rotator [maOptions]="rotatorOptions">
+  <ma-slider #rotator [maOptions]="rotatorOptions" (pagination$)="onPaginationChanged($event)">
     <figure class="qb-rotator__item" maSliderItem *ngFor="let item of items">
       <ng-container *ngTemplateOutlet="defaultRotatorItemTemplate; context: {$implicit: item}"></ng-container>
     </figure>
@@ -9,6 +9,11 @@
   </div>
   <div [maSliderNavNext]="rotator" class="rotator-next">
     NEXT
+  </div>
+  <div class="indicators" *ngIf="pagination">
+    <div class="item" *ngFor="let page of pagination" [class.active]="page.active" [maSliderNavTo]="rotator" [maIndex]="page.slideIndex" >
+      <button>{{ page.slideIndex }}</button>
+    </div>
   </div>
 </section>
 

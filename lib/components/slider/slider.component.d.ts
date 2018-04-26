@@ -1,9 +1,16 @@
 import { MaSliderItemDirective } from './slider-item.directive';
-import { ElementRef, AfterViewInit, QueryList, OnDestroy } from '@angular/core';
-import { MaSliderOptions, MaSliderState } from './slider.model';
+import { ElementRef, QueryList, AfterViewInit, OnDestroy, AfterContentInit } from '@angular/core';
+import { MaSliderOptions, MaSliderState, MaSliderPagination } from './slider.model';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/scan';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/publishReplay';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/observeOn';
+import 'rxjs/add/operator/throttleTime';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/observable/merge';
 export * from './slider.model';
 /**
  * {@link MaSliderItemDirective} - wskazuje element będący slajdem,<br>
@@ -27,19 +34,21 @@ export * from './slider.model';
  * <div [maSliderNavPrev]="mySlider" class="my-class-slider-prev">&lt;</div>
  * <div [maSliderNavNext]="mySlider" class="my-class-slider-next">&gt;</div>
  */
-export declare class MaSliderComponent implements OnDestroy, AfterViewInit {
-    __classMaSlider: boolean;
-    __classSwiperContainer: boolean;
+export declare class MaSliderComponent implements OnDestroy, AfterViewInit, AfterContentInit {
+    __cssClasses: boolean;
     /** Ustawienia slidera */
     maOptions: MaSliderOptions;
     /** Emituje bieżący stan slidera */
     state$: Observable<MaSliderState>;
+    /** Emituje listę elementów do paginacji */
+    pagination$: Observable<MaSliderPagination>;
     /** Lista slajdów */
     slides: QueryList<MaSliderItemDirective>;
     private slider;
     private swiperInstance;
     private updateSubject;
     private stateSubscription;
+    private eventsSubscription;
     private _state;
     private _options;
     constructor(element: ElementRef);
@@ -47,6 +56,7 @@ export declare class MaSliderComponent implements OnDestroy, AfterViewInit {
     slidePrev(time?: number): void;
     slideTo(index: number, time?: number): void;
     ngOnDestroy(): void;
+    ngAfterContentInit(): void;
     ngAfterViewInit(): void;
     private updateSlidersActiveCssIndicator();
 }

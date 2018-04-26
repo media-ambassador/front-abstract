@@ -9,9 +9,5 @@ import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-b
 export class AppComponent {
   title = 'app';
    
-  constructor(private rwdBreakpointsService: MaRwdBreakpointsService) {
-    this.rwdBreakpointsService.getRwdBreakpoint('tabletDevices').subscribe(isset => {
-      console.log(isset);
-    })
-  }
+  constructor() {}
 }
