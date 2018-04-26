@@ -20,11 +20,11 @@ export class MaAccordionItemComponent implements AfterContentInit {
   constructor() { }
 
   ngAfterContentInit(): void {
-    this.itemHeader.headerClicked.subscribe(() => {
+    this.itemHeader.headerClicked.subscribe((open: boolean) => {
       if (this.maLock)
         return;
 
-      this.openItem();
+      open ? this.openItem() : this.closeItem();
       this.itemChange.emit();
     });
 
@@ -37,6 +37,7 @@ export class MaAccordionItemComponent implements AfterContentInit {
     if (this.maLock && !force)
       return;
 
+    this.itemHeader.isOpen = true;
     this.itemContent.show();
   }
 
@@ -44,6 +45,7 @@ export class MaAccordionItemComponent implements AfterContentInit {
     if (this.maLock && !force)
       return;
 
+    this.itemHeader.isOpen = false;
     this.itemContent.hide();
   }
 

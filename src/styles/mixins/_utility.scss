@@ -82,6 +82,41 @@
   &::ng-deep { @include svg($wight, $height, $color, $tone, $shape) }
 }
 
+/// Wycentrowanie elementu
+///
+/// @group mixin utility
+///
+///
+/// @example Center `div`
+///   div {
+///     @include center();
+///   }
+@mixin center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/// Ustawienie elementu jako flex
+///
+/// @group mixin utility
+///
+/// @param {Length} $fd - [row] flex direction
+/// @param {Length} $jc [flex-start] justify content
+/// @param {Length} $ai [center] align items
+///
+/// @example Center `div`
+///   div {
+///     @include flex();
+///   }
+@mixin flex($fd: row, $jc: flex-start, $ai: center) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
 /// Wyśrodkowanie elementu
 ///
 /// @group mixin utility

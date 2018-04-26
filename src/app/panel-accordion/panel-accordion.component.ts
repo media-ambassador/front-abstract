@@ -16,7 +16,7 @@ export class PanelAccordionComponent implements AfterViewInit {
   constructor(private rwdBreakpointsService: MaRwdBreakpointsService) { }
 
   ngAfterViewInit(): void {
-    this.rwdBreakpointsService.getRwdBreakpoint('tabletSmallDevices').subscribe(isBreakpoint => this.updateAccordion(isBreakpoint));
+   this.rwdBreakpointsService.getRwdBreakpoint('tabletSmallDevices').subscribe(isBreakpoint => this.updateAccordion(isBreakpoint));
   }
 
   updateAccordion(isMobile: boolean) {

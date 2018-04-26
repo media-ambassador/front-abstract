@@ -1,4 +1,4 @@
-import { Component, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, HostListener, Output, EventEmitter, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'ma-accordion-item-header',
@@ -6,10 +6,15 @@ import { Component, HostListener, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./accordion-item-header.component.scss']
 })
 export class MaAccordionItemHeaderComponent {
-  @Output() headerClicked: EventEmitter<any> = new EventEmitter();
+  @Output() headerClicked: EventEmitter<boolean> = new EventEmitter();
+
+  @HostBinding('class.open') isOpen: boolean = false;
 
   @HostListener('click') onClick() {
-    this.headerClicked.emit();
+    this.isOpen = !this.isOpen;
+
+    console.log('emituje click', this.isOpen);
+    this.headerClicked.emit(this.isOpen);
   }
 
   constructor() { }
