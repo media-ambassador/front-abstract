@@ -4,10 +4,10 @@ import {
   HostBinding,
   AfterViewInit,
   OnInit,
-  OnDestroy
+  OnDestroy,
+  HostListener
 } from '@angular/core';
 import { MaSliderNavTo } from './slider.model';
-import { HostListener } from '@angular/core';
 import { maSliderCssClassNavToActive } from './slider.component';
 
 /**
@@ -31,9 +31,19 @@ export class MaSliderNavToDirective implements OnInit, OnDestroy {
 
   private sliderStateSub: any;
 
-  @HostListener('click') onClick() {
+  @HostListener('selectstart', [ '$event' ]) onSelectStart(event: Event): boolean {
+    if (event.preventDefault) {
+      event.preventDefault();
+    }
+    return false;
+  }
+
+  @HostListener('click', [ '$event' ]) onClick(event: Event): void {
     if (this.maSlider) {
       this.maSlider.slideTo(this.maIndex, this.maTime);
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
     }
   }
 

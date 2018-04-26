@@ -1,15 +1,13 @@
 import {
   Directive,
-  Input
-} from '@angular/core';
-import { MaSliderNavPrev } from './slider.model';
-import {
+  Input,
   HostListener,
   HostBinding,
   AfterViewInit,
   OnInit,
   OnDestroy
 } from '@angular/core';
+import { MaSliderNavPrev } from './slider.model';
 import { maSliderCssClassNavPrevActive } from './slider.component';
 
 /**
@@ -29,9 +27,19 @@ export class MaSliderNavPrevDirective implements OnInit, OnDestroy {
 
   private sliderStateSub: any;
 
-  @HostListener('click') onClick() {
+  @HostListener('selectstart', [ '$event' ]) onSelectStart(event: Event): boolean {
+    if (event.preventDefault) {
+      event.preventDefault();
+    }
+    return false;
+  }
+
+  @HostListener('click', [ '$event' ]) onClick(event: Event): void {
     if (this.maSlider) {
       this.maSlider.slidePrev(this.maTime);
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
     }
   }
 

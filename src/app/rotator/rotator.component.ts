@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { MaSliderOptions } from '../common/components/slider/slider.model';
+import { MaSliderOptions, MaSliderPagination } from '../common/components/slider/slider.model';
 
 @Component({
   selector: 'app-rotator',
@@ -10,9 +10,9 @@ export class RotatorComponent implements OnInit {
 
   rotatorOptions: MaSliderOptions = {
     slidesPerView: 3,
-    spaceBetween: 40,
-    direction: 'vertical'
+    spaceBetween: 40
   };
+  pagination: MaSliderPagination;
 
   items = [
     {
@@ -65,6 +65,10 @@ export class RotatorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+  
+  onPaginationChanged(pagination) {
+    this.pagination = pagination;
   }
 
 }

@@ -1,12 +1,14 @@
 import { MaSliderBreakpointData } from './slider.model';
 import { Observable } from 'rxjs/Observable';
-import { MaRwdThresholds } from '../../models';
 export declare type SlideEffect = 'slide' | 'fade';
 export declare type SlideDirection = 'horizontal' | 'vertical';
 export interface CommonWithBreakpoint {
     slidesPerView?: number;
     /** odstępy pomiędzy slajdami w px (jeśli wiele slajdów jednocześnie) */
     spaceBetween?: number;
+}
+export interface MaRwdThresholds<T> {
+    [index: number]: T;
 }
 export interface MaSliderBreakpointData extends CommonWithBreakpoint {
 }
@@ -29,13 +31,24 @@ export interface MaSliderState {
     initialized: boolean;
     /** ilość slajdów */
     slides: number;
+    /** ilość slajdów wyświetlanych na raz w danym momencie */
+    slidesPerView: number;
     /** aktualnie wyświetlany slajd (index) - gdy wiele slajdów, to pierwszy wyświetlany slide */
     currentSlide: number;
     /** czy jest wyświetlany pierwszy slajd */
     isBeginning: boolean;
     /** czy jest wyświetlany ostatni slajd */
     isEnd: boolean;
+    /** czy jest włączony tryb loop */
+    loop: boolean;
 }
+export interface MaSliderPaginationItem {
+    /** id pierwszego slajdu na stronie - nie licząc klonowanych slajdów */
+    slideIndex: number;
+    /** czy strona aktywna */
+    active: boolean;
+}
+export declare type MaSliderPagination = MaSliderPaginationItem[];
 export interface MaSliderStateHolder {
     state$: Observable<MaSliderState>;
 }

@@ -30,9 +30,19 @@ export class MaSliderNavNextDirective implements OnInit, OnDestroy {
   /** subskrypcja Rx */
   private sliderStateSub: any;
 
-  @HostListener('click') onClick() {
+  @HostListener('selectstart', [ '$event' ]) onSelectStart(event: Event): boolean {
+    if (event.preventDefault) {
+      event.preventDefault();
+    }
+    return false;
+  }
+
+  @HostListener('click', [ '$event' ]) onClick(event: Event): void {
     if (this.maSlider) {
       this.maSlider.slideNext(this.maTime);
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
     }
   }
 

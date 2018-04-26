@@ -12,7 +12,8 @@ export declare class MaSliderNavNextDirective implements OnInit, OnDestroy {
     active: boolean;
     /** subskrypcja Rx */
     private sliderStateSub;
-    onClick(): void;
+    onSelectStart(event: Event): boolean;
+    onClick(event: Event): void;
     ngOnInit(): void;
     ngOnDestroy(): void;
 }

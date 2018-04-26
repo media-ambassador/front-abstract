@@ -1,5 +1,5 @@
-import { MaSliderNavPrev } from './slider.model';
 import { OnInit, OnDestroy } from '@angular/core';
+import { MaSliderNavPrev } from './slider.model';
 /**
  * (click) przewija do poprzedniego slajdu
  */
@@ -10,7 +10,8 @@ export declare class MaSliderNavPrevDirective implements OnInit, OnDestroy {
     maTime: number;
     active: boolean;
     private sliderStateSub;
-    onClick(): void;
+    onSelectStart(event: Event): boolean;
+    onClick(event: Event): void;
     ngOnInit(): void;
     ngOnDestroy(): void;
 }
