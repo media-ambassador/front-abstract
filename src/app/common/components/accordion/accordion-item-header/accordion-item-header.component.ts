@@ -8,12 +8,10 @@ import { Component, HostListener, Output, EventEmitter, HostBinding } from '@ang
 export class MaAccordionItemHeaderComponent {
   @Output() headerClicked: EventEmitter<boolean> = new EventEmitter();
 
-  @HostBinding('class.open') isOpen: boolean = false;
+  @HostBinding('class.open') isOpen = false;
 
   @HostListener('click') onClick() {
     this.isOpen = !this.isOpen;
-
-    console.log('emituje click', this.isOpen);
     this.headerClicked.emit(this.isOpen);
   }
 

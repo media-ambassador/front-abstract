@@ -1,6 +1,6 @@
 {
   "name": "@ma_tkuchne/front-abstract",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "Warstwa abstrakcyjna aplikacji FE",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "inline-build-templates": "gulp inline-build-templates",
     "ngc-build": "ngc -p ./tsconfig.lib.json",
     "build-styles": "gulp copy-styles && sassdoc ./lib/styles/*",
-    "prepublish": "npm run cleardown && npm run inline-build-templates && npm run ngc-build && npm run build-styles"
+    "prepublish": "npm run cleardown && npm run inline-build-templates && npm run ngc-build && npm run build-styles",
+    "publish": "npm publish --access public"
   },
   "repository": {
     "type": "git",

@@ -15,6 +15,7 @@ export interface MaRwdThresholds<T> {
 }
 
 export interface MaSliderBreakpointData extends CommonWithBreakpoint {
+
 }
 
 export interface MaSliderBreakpoints extends MaRwdThresholds<MaSliderBreakpointData> {

@@ -9,7 +9,7 @@ import { MaAccordionItemComponent } from './accordion-item/accordion-item.compon
 export class MaAccordionComponent implements AfterContentInit {
 
   @ContentChildren(MaAccordionItemComponent, {descendants: true}) items: QueryList<MaAccordionItemComponent>;
-  
+
   constructor() { }
 
   ngAfterContentInit(): void {
@@ -20,12 +20,13 @@ export class MaAccordionComponent implements AfterContentInit {
 
   toogleItems(id: number) {
     this.items.toArray().forEach((item, index) => {
-      if (index != id)
+      if (index !== id) {
         item.closeItem();
+      }
     });
   }
 
-  closeItem(index:number, force = false) {
+  closeItem(index: number, force = false) {
     this.items.toArray()[index].closeItem(force);
   }
 
@@ -33,7 +34,7 @@ export class MaAccordionComponent implements AfterContentInit {
     this.items.toArray().forEach(item => item.closeItem(force));
   }
 
-  showItem(index:number, force = false) {
+  showItem(index: number, force = false) {
     this.items.toArray()[index].openItem(force);
   }
 

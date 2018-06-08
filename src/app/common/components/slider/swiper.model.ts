@@ -3,6 +3,7 @@
 // Definitions by: Sebastián Galiano <https://github.com/sgaliano>, Luca Trazzi <https://github.com/lucax88x>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.3
+// tslint:disable
 
 interface SwiperOptions {
   initialSlide?: number;
