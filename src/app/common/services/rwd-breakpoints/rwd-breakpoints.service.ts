@@ -15,7 +15,7 @@ export class MaRwdBreakpointsService {
     tabletSmallDevices: { minSize: 768, subject: new BehaviorSubject<boolean>(true) },
     phoneDevices: { minSize: 500, subject: new BehaviorSubject<boolean>(true) },
     phoneSmallDevices: { minSize: 320, subject: new BehaviorSubject<boolean>(true) }
-  }
+  };
 
   constructor() {
     this.handleWindowSize(window.innerWidth);

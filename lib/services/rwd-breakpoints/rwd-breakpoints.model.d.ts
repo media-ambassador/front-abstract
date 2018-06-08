@@ -1,4 +1,4 @@
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export interface MaRwdBreakpoint {
     minSize: number;
     subject: BehaviorSubject<boolean>;
