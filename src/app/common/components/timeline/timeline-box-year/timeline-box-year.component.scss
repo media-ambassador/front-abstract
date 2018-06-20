@@ -1,0 +1,17 @@
+:host {
+  .year-box {
+    position: relative;
+
+    span {
+      position: absolute;
+      text-transform: uppercase;
+      color: black;
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      top: -40px;
+      background: white;
+      z-index: 5;
+    }
+  }
+}
