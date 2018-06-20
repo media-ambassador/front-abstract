@@ -9,6 +9,8 @@ import { RotatorComponent } from './rotator/rotator.component';
 import { MaAccordionModule } from './common/components/accordion/accordion.module';
 import { PanelAccordionComponent } from './panel-accordion/panel-accordion.component';
 import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-breakpoints.service';
+import { TimelineComponent } from './timeline/timeline.component';
+import { MaTimelineBoxModule } from './common/components/timeline';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-b
 
     RotatorComponent,
     PanelAccordionComponent,
+    TimelineComponent,
 
   ],
   imports: [
@@ -25,7 +28,8 @@ import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-b
 
     MaBreadcrumbsModule,
     MaSliderModule,
-    MaAccordionModule
+    MaAccordionModule,
+    MaTimelineBoxModule
   ],
   providers: [
     MaRwdBreakpointsService
