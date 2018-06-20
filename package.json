@@ -1,6 +1,6 @@
 {
   "name": "@ma_tkuchne/front-abstract",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Warstwa abstrakcyjna aplikacji FE",
   "main": "index.js",
   "scripts": {
@@ -71,6 +71,7 @@
     "karma-coverage-istanbul-reporter": "^1.4.2",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "node-sass": "^4.9.0",
     "protractor": "~5.1.2",
     "run-sequence": "^2.2.1",
     "sassdoc": "^2.5.0",
