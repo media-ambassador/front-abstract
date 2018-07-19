@@ -15,7 +15,7 @@ import { MaSliderItemDirective } from './slider-item.directive';
 import { combineAll } from 'rxjs/operators/combineAll';
 import { MaSliderTopLayerDirective } from './slider-top-layer.directive';
 import { DebugElement } from '@angular/core/src/debug/debug_node';
-import { click, ButtonClickEvents} from '../../testing/index';
+import { click, ButtonClickEvents} from '../../testing';
 
 class Page<C, T extends Type<C>> {
   public fixture: ComponentFixture<C>;

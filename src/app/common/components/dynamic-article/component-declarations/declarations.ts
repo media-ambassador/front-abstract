@@ -2,11 +2,12 @@ import { Dictionary } from 'lodash';
 
 import { MaDynamicArticleFactoryService } from '../dynamic-article-factory-resolver/dynamic-article-factory.service';
 import { MaDynamicArticleFactoryGenerator } from '../dynamic-article-factory-generator/dynamic-article-factory-generator';
+import { MaDynamicArticleType } from '../dynamic-article-factory-resolver/dynamic-article-factory-resolver.model';
+import { MaDynamicArticleFactoryGeneratorParams } from '../dynamic-article-factory-generator/dynamic-article-factory-generator.model';
 
 import { MaTextComponentDeclaration } from './text/text.declaration';
 import { MaTwoColumnsComponentDeclaration } from './2columns/2columns';
-import { MaDynamicArticleType } from '../dynamic-article-factory-resolver/dynamic-article-factory-resolver.model';
-import { MaDynamicArticleFactoryGeneratorParams } from '../dynamic-article-factory-generator/dynamic-article-factory-generator.model';
+import { MaThreeColumnsComponentDeclaration } from './3columns/3columns';
 
 import * as _ from 'lodash';
 
@@ -14,7 +15,8 @@ export interface MaComponentDeclarations extends Dictionary<MaDynamicArticleFact
 
 export const DefaultComponentDeclarations: MaComponentDeclarations = {
   'text': MaTextComponentDeclaration,
-  '2columns': MaTwoColumnsComponentDeclaration
+  '2columns': MaTwoColumnsComponentDeclaration,
+  '3columns': MaThreeColumnsComponentDeclaration
 };
 
 export const MaDynamicArticleDeclarationFactory = function MaDynamicArticleDeclarationFactory_(

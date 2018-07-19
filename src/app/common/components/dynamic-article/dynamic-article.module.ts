@@ -6,6 +6,7 @@ import { MaBlockTextComponent } from './components/block-text/block-text.compone
 import { MaDynamicArticleFactoryGenerator } from './dynamic-article-factory-generator/dynamic-article-factory-generator';
 import { MaDynamicArticleDeclarationFactory, MaComponentDeclarations } from './component-declarations/declarations';
 import { MaTwoColumnsTextComponent } from './components/two-columns-text/two-columns-text.component';
+import { MaThreeColumnsTextComponent } from './components/three-columns-text/three-columns-text.component';
 
 const ComponentDeclarationsName = 'ComponentDeclarationsNameRef';
 
@@ -26,7 +27,8 @@ export function articleDeclarationFactory(factoryService: MaDynamicArticleFactor
     MaDynamicArticleComponent,
 
     MaBlockTextComponent,
-    MaTwoColumnsTextComponent
+    MaTwoColumnsTextComponent,
+    MaThreeColumnsTextComponent
   ],
   providers: [
     MaDynamicArticleFactoryService,
@@ -38,7 +40,8 @@ export function articleDeclarationFactory(factoryService: MaDynamicArticleFactor
   ],
   entryComponents: [
     MaBlockTextComponent,
-    MaTwoColumnsTextComponent
+    MaTwoColumnsTextComponent,
+    MaThreeColumnsTextComponent
   ]
 })
 export class MaDynamicArticleModule {
