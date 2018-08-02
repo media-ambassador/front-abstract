@@ -9,26 +9,11 @@ import { MaAccordionComponent } from '../common/components/accordion';
 })
 export class PanelAccordionComponent implements AfterViewInit {
 
-  lockDescription = true;
-  
   @ViewChild(MaAccordionComponent) accordion: MaAccordionComponent;
 
   constructor(private rwdBreakpointsService: MaRwdBreakpointsService) { }
 
   ngAfterViewInit(): void {
-   this.rwdBreakpointsService.getRwdBreakpoint('tabletSmallDevices').subscribe(isBreakpoint => this.updateAccordion(isBreakpoint));
-  }
-
-  updateAccordion(isMobile: boolean) {
-    setTimeout(() => {
-      if (isMobile) {
-        this.lockDescription = false;
-        this.accordion.closeAll(true);
-      } else {
-        this.lockDescription = true;
-        this.accordion.showAll(true);
-      }
-    }, 100);
   }
 
 }
