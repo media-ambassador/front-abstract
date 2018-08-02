@@ -1,11 +1,11 @@
 {
   "name": "@ma_tkuchne/front-abstract",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Warstwa abstrakcyjna aplikacji FE",
   "main": "index.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -p 4299",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

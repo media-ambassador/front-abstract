@@ -1,8 +1,4 @@
 <section>
-  <div>
-    {{ content.left }}
-  </div>
-  <div>
-    {{ content.right }}
-  </div>
+  <div [innerHTML]="content.left"></div>
+  <div [innerHTML]="content.right"></div>
 </section>
