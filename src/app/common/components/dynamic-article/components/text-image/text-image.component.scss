@@ -6,9 +6,12 @@
 
     > div {
       flex: 1;
+      margin-right: $column-gap;
+    }
 
-      &:nth-child(1) { margin-right: $column-gap; }
-      &:nth-child(2) { margin-left: $column-gap; }
+    > figure {
+      flex: 1;
+      margin-left: $column-gap;
     }
   }
 }

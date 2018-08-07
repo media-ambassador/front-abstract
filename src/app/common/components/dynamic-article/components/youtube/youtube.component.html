@@ -3,6 +3,11 @@
   <iframe *ngIf="content && url"
           type="text/html"
           [src]="url"
+          allowfullscreen
+          mozallowfullscreen
+          msallowfullscreen
+          oallowfullscreen
+          webkitallowfullscreen
           frameborder="0">
   </iframe>
 
