@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'ma-youtube',
@@ -14,7 +14,7 @@ export class MaYouTubeComponent implements OnInit {
   ngOnInit() {
   }
 
-  getSafeUrl() {
+  getSafeUrl(): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(`http://www.youtube.com/embed/${ this.content }`);
   }
 
