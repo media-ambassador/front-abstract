@@ -1,0 +1,14 @@
+:host {
+  $column-gap: 15px;
+
+  > section {
+    display: flex;
+
+    > div {
+      flex: 1;
+
+      &:nth-child(1) { margin-right: $column-gap; }
+      &:nth-child(2) { margin-left: $column-gap; }
+    }
+  }
+}
