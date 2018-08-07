@@ -7,6 +7,11 @@ import { MaDynamicArticleFactoryGenerator } from './dynamic-article-factory-gene
 import { MaDynamicArticleDeclarationFactory, MaComponentDeclarations } from './component-declarations/declarations';
 import { MaTwoColumnsTextComponent } from './components/two-columns-text/two-columns-text.component';
 import { MaThreeColumnsTextComponent } from './components/three-columns-text/three-columns-text.component';
+import { MaImageTextComponent } from './components/image-text/image-text.component';
+import { MaTextImageComponent } from './components/text-image/text-image.component';
+import { MaImageComponent } from './components/image/image.component';
+import { MaQuoteComponent } from './components/quote/quote.component';
+import { MaYouTubeComponent } from './components/youtube/youtube.component';
 
 const ComponentDeclarationsName = 'ComponentDeclarationsNameRef';
 
@@ -28,7 +33,12 @@ export function articleDeclarationFactory(factoryService: MaDynamicArticleFactor
 
     MaBlockTextComponent,
     MaTwoColumnsTextComponent,
-    MaThreeColumnsTextComponent
+    MaThreeColumnsTextComponent,
+    MaImageTextComponent,
+    MaTextImageComponent,
+    MaImageComponent,
+    MaQuoteComponent,
+    MaYouTubeComponent
   ],
   providers: [
     MaDynamicArticleFactoryService,
@@ -41,7 +51,12 @@ export function articleDeclarationFactory(factoryService: MaDynamicArticleFactor
   entryComponents: [
     MaBlockTextComponent,
     MaTwoColumnsTextComponent,
-    MaThreeColumnsTextComponent
+    MaThreeColumnsTextComponent,
+    MaImageTextComponent,
+    MaTextImageComponent,
+    MaImageComponent,
+    MaQuoteComponent,
+    MaYouTubeComponent
   ]
 })
 export class MaDynamicArticleModule {
