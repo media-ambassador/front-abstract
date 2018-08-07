@@ -9,9 +9,14 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class MaYouTubeComponent implements OnInit {
   @Input() content: string;
 
+  url: SafeResourceUrl;
+
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    if (!!this.content) {
+      this.url = this.getSafeUrl();
+    }
   }
 
   getSafeUrl(): SafeResourceUrl {
