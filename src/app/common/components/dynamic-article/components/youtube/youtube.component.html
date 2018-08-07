@@ -1,8 +1,8 @@
 <section>
 
-  <iframe *ngIf="content"
+  <iframe *ngIf="content && url"
           type="text/html"
-          [src]="getSafeUrl()"
+          [src]="url"
           frameborder="0">
   </iframe>
 
