@@ -6,7 +6,7 @@ import { MaTwoColumnsTextLayout } from '../../components/two-columns-text/two-co
 
 export const MaTwoColumnsComponentDeclaration: MaDynamicArticleFactoryGeneratorParams<MaTwoColumnsTextComponent, MaTwoColumnsTextLayout> = {
   componentType: MaTwoColumnsTextComponent,
-  classList: [ '' ],
+  classList: [ 'dynamic-two-columns-component' ],
   onInit: (componentRef: ComponentRef<MaTwoColumnsTextComponent>, componentData: MaTwoColumnsTextLayout) => {
     componentRef.instance.content = componentData.content;
   }

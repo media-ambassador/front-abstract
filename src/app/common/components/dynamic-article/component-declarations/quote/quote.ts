@@ -6,7 +6,7 @@ import { MaQuoteLayout } from '../../components/quote/quote.model';
 
 export const MaQuoteComponentDeclaration: MaDynamicArticleFactoryGeneratorParams<MaQuoteComponent, MaQuoteLayout> = {
   componentType: MaQuoteComponent,
-  classList: [ '' ],
+  classList: [ 'dynamic-quote-component' ],
   onInit: (componentRef: ComponentRef<MaQuoteComponent>, componentData: MaQuoteLayout) => {
     componentRef.instance.content = componentData.content;
   }

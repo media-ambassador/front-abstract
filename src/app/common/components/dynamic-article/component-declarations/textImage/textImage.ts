@@ -6,7 +6,7 @@ import { MaTextImageLayout } from '../../components/text-image/text-image.model'
 
 export const MaTextImageComponentDeclaration: MaDynamicArticleFactoryGeneratorParams<MaTextImageComponent, MaTextImageLayout> = {
   componentType: MaTextImageComponent,
-  classList: [ '' ],
+  classList: [ 'dynamic-text-image-component' ],
   onInit: (componentRef: ComponentRef<MaTextImageComponent>, componentData: MaTextImageLayout) => {
     componentRef.instance.content = componentData.content;
   }
