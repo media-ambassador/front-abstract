@@ -6,7 +6,7 @@ import { MaThreeColumnsTextLayout } from '../../components/three-columns-text/th
 
 export const MaThreeColumnsComponentDeclaration: MaDynamicArticleFactoryGeneratorParams<MaThreeColumnsTextComponent, MaThreeColumnsTextLayout> = {
   componentType: MaThreeColumnsTextComponent,
-  classList: [ '' ],
+  classList: [ 'dynamic-three-columns-component' ],
   onInit: (componentRef: ComponentRef<MaThreeColumnsTextComponent>, componentData: MaThreeColumnsTextLayout) => {
     componentRef.instance.content = componentData.content;
   }

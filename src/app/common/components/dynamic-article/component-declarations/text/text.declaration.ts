@@ -6,7 +6,7 @@ import { MaDynamicArticleFactoryGeneratorParams } from '../../dynamic-article-fa
 
 export const MaTextComponentDeclaration: MaDynamicArticleFactoryGeneratorParams<MaBlockTextComponent, MaBlockTextLayout> = {
   componentType: MaBlockTextComponent,
-  classList: [ '' ],
+  classList: [ 'dynamic-text-component' ],
   onInit: (componentRef: ComponentRef<MaBlockTextComponent>, componentData: MaBlockTextLayout) => {
     componentRef.instance.content = componentData.content;
   }

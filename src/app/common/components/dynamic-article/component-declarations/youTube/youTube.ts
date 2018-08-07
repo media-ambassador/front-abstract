@@ -6,7 +6,7 @@ import { MaYouTubeLayout } from '../../components/youtube/youtube.model';
 
 export const MaYouTubeComponentDeclaration: MaDynamicArticleFactoryGeneratorParams<MaYouTubeComponent, MaYouTubeLayout> = {
   componentType: MaYouTubeComponent,
-  classList: [ '' ],
+  classList: [ 'dynamic-youtube-component' ],
   onInit: (componentRef: ComponentRef<MaYouTubeComponent>, componentData: MaYouTubeLayout) => {
     componentRef.instance.content = componentData.content;
   }

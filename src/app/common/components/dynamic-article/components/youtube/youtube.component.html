@@ -2,7 +2,7 @@
 
   <iframe *ngIf="content"
           type="text/html"
-          src="http://www.youtube.com/embed/{{ content }}"
+          [src]="getSafeUrl()"
           frameborder="0">
   </iframe>
 
