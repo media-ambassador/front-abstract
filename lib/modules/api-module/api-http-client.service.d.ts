@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { MaApiModuleConfig } from './api-common.model';
-export interface RequestOptions {
+export interface MaRequestOptions {
     headers?: HttpHeaders;
     observe?: 'body';
     params?: HttpParams;
@@ -21,7 +21,7 @@ export declare class MaApiHttpClient {
      * @param {RequestOptions} options options of the request like headers, body, etc.
      * @returns {Observable<T>}
      */
-    get<T>(endPoint: string, options?: RequestOptions): Observable<T>;
+    get<T>(endPoint: string, options?: MaRequestOptions): Observable<T>;
     /**
      * POST request
      * @param {string} endPoint end point of the api
@@ -29,7 +29,7 @@ export declare class MaApiHttpClient {
      * @param {RequestOptions} options options of the request like headers, body, etc.
      * @returns {Observable<T>}
      */
-    post<T>(endPoint: string, params: Object, options?: RequestOptions): Observable<T>;
+    post<T>(endPoint: string, params: Object, options?: MaRequestOptions): Observable<T>;
     /**
      * PUT request
      * @param {string} endPoint end point of the api
@@ -37,13 +37,13 @@ export declare class MaApiHttpClient {
      * @param {RequestOptions} options options of the request like headers, body, etc.
      * @returns {Observable<T>}
      */
-    put<T>(endPoint: string, params: Object, options?: RequestOptions): Observable<T>;
+    put<T>(endPoint: string, params: Object, options?: MaRequestOptions): Observable<T>;
     /**
      * DELETE request
      * @param {string} endPoint end point of the api
      * @param {RequestOptions} options options of the request like headers, body, etc.
      * @returns {Observable<T>}
      */
-    delete<T>(endPoint: string, options?: RequestOptions): Observable<T>;
+    delete<T>(endPoint: string, options?: MaRequestOptions): Observable<T>;
 }
 export declare function maApiHttpClientCreator(config: MaApiModuleConfig, http: HttpClient): MaApiHttpClient;

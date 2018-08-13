@@ -8,6 +8,6 @@ export declare class MaApiSafeService {
     constructor(apiHttpClient: MaApiHttpClient);
     getList(): Observable<MaApiCartListResponse>;
     setItem(setItemData: MaApiSetItemData): Observable<MaApiSetItemResponse>;
-    clear(id: number): Observable<MaApiResponse>;
+    clear(): Observable<MaApiResponse>;
     create(): Observable<MaApiSafeCreateResponse>;
 }

@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 
 import { MaApiModuleConfigKey, MaApiModuleConfig } from './api-common.model';
 
-export interface RequestOptions {
+export interface MaRequestOptions {
   headers?: HttpHeaders;
   observe?: 'body';
   params?: HttpParams;
@@ -31,7 +31,7 @@ export class MaApiHttpClient {
    * @param {RequestOptions} options options of the request like headers, body, etc.
    * @returns {Observable<T>}
    */
-  public get<T>(endPoint: string, options?: RequestOptions): Observable<T> {
+  public get<T>(endPoint: string, options?: MaRequestOptions): Observable<T> {
     return this.http.get<T>(this.api + endPoint, options);
   }
 
@@ -42,7 +42,7 @@ export class MaApiHttpClient {
    * @param {RequestOptions} options options of the request like headers, body, etc.
    * @returns {Observable<T>}
    */
-  public post<T>(endPoint: string, params: Object, options?: RequestOptions): Observable<T> {
+  public post<T>(endPoint: string, params: Object, options?: MaRequestOptions): Observable<T> {
     return this.http.post<T>(this.api + endPoint, params, options);
   }
 
@@ -53,7 +53,7 @@ export class MaApiHttpClient {
    * @param {RequestOptions} options options of the request like headers, body, etc.
    * @returns {Observable<T>}
    */
-  public put<T>(endPoint: string, params: Object, options?: RequestOptions): Observable<T> {
+  public put<T>(endPoint: string, params: Object, options?: MaRequestOptions): Observable<T> {
     return this.http.put<T>(this.api + endPoint, params, options);
   }
 
@@ -63,7 +63,7 @@ export class MaApiHttpClient {
    * @param {RequestOptions} options options of the request like headers, body, etc.
    * @returns {Observable<T>}
    */
-  public delete<T>(endPoint: string, options?: RequestOptions): Observable<T> {
+  public delete<T>(endPoint: string, options?: MaRequestOptions): Observable<T> {
     return this.http.delete<T>(this.api + endPoint, options);
   }
 }

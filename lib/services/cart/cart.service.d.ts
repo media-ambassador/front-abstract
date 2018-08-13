@@ -1,0 +1,32 @@
+import { Observable } from 'rxjs/Observable';
+import { MaAuthService } from '../auth/auth.service';
+import { MaApiCartService } from '../../modules/api-module/api-cart/api-cart.service';
+import { MaApiCartListResponse, MaApiSetItemResponse, MaApiCartListData, MaApiDeliveryOption, MaApiMakeOrderResponse, MaApiCartProduct } from '../../modules/api-module/api-cart/api-cart.model';
+export declare class MaCartService {
+    private apiCartService;
+    private authService;
+    private sidebarCartOpenSubject$;
+    private cartListSubject$;
+    private cartList;
+    private cartId;
+    constructor(apiCartService: MaApiCartService, authService: MaAuthService);
+    getCartList(): Observable<MaApiCartListResponse>;
+    refreshCartList(): void;
+    private updateCartList(data);
+    watchCartList(): Observable<MaApiCartListResponse>;
+    getProduct(id: string): MaApiCartProduct;
+    getCartData(): MaApiCartListData;
+    getItemsCount(): number;
+    getCartId(): number;
+    watchSidebarCartOpen(): Observable<boolean>;
+    addElement(productId: number): Observable<MaApiSetItemResponse>;
+    removeElement(productId: number): Observable<MaApiSetItemResponse>;
+    clear(): void;
+    changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse>;
+    setDelivery(id: number, parcel?: string): void;
+    getSelectedDeliveryOption(): MaApiDeliveryOption;
+    isDeliveryInpost(): boolean;
+    setPayment(type: string): void;
+    makeOrder(makeOrderData: any): Observable<MaApiMakeOrderResponse>;
+    validateCart(): boolean;
+}

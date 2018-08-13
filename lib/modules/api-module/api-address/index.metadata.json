@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./api-address.service","export":["MaApiAddressService"]},{"from":"./api-address.model","export":["MaApiAddressData","MaApiInvoiceData","MaApiAddressType"]}]}]

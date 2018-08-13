@@ -18,8 +18,8 @@ export class MaApiSafeService {
     return this.apiHttpClient.post(`/safe/setitem`, setItemData);
   }
 
-  clear(id: number): Observable<MaApiResponse> {
-    return this.apiHttpClient.post(`/safe/clear`, { id: id });
+  clear(): Observable<MaApiResponse> {
+    return this.apiHttpClient.post(`/safe/clear`, { });
   }
 
   create(): Observable<MaApiSafeCreateResponse> {
