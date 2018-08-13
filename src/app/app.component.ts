@@ -1,5 +1,4 @@
-import { Component, HostListener } from '@angular/core';
-import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-breakpoints.service';
+import { Component } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -9,6 +8,4 @@ import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-b
 })
 export class AppComponent {
   title = 'app';
-
-  constructor() {}
 }

@@ -11,6 +11,7 @@ import { PanelAccordionComponent } from './panel-accordion/panel-accordion.compo
 import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-breakpoints.service';
 import { TimelineComponent } from './timeline/timeline.component';
 import { MaTimelineBoxModule } from './common/components/timeline';
+import { MaApiModule } from './common/modules/api-module/api.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,11 @@ import { MaTimelineBoxModule } from './common/components/timeline';
     MaBreadcrumbsModule,
     MaSliderModule,
     MaAccordionModule,
-    MaTimelineBoxModule
+    MaTimelineBoxModule,
+
+    MaApiModule.forRoot({
+      api: '//bigstar.local/api'
+    })
   ],
   providers: [
     MaRwdBreakpointsService
