@@ -5,8 +5,8 @@ import { MaApiUserAuthorizeData, MaApiUserAuthorizeResponse, MaApiUserData, MaAp
 import { MaApiResponse } from '../../modules/api-module';
 export declare const MaTokenKeyName = "session-token";
 export declare class MaAuthService {
-    private apiUserService;
-    private cookieService;
+    protected apiUserService: MaApiUserService;
+    protected cookieService: CookieService;
     private authorized;
     private authorizeSubject$;
     private userData;

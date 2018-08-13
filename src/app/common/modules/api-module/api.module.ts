@@ -4,7 +4,7 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { CookieService } from 'ngx-cookie-service';
 
 import { MaApiModuleConfig, MaApiModuleConfigKey } from './api-common.model';
-import { MaApiHttpClient, maApiHttpClientCreator } from './api-http-client.service';
+import { MaApiHttpClient, MaApiHttpClientCreator } from './api-http-client.service';
 import { MaApiHttpClientInterceptor } from './api-http-client.interceptor';
 
 import { MaApiAddressService } from './api-address/api-address.service';
@@ -59,7 +59,7 @@ export class MaApiModule {
         },
         {
           provide: MaApiHttpClient,
-          useFactory: maApiHttpClientCreator,
+          useFactory: MaApiHttpClientCreator,
           deps: [MaApiModuleConfigKey, HttpClient]
         },
         {

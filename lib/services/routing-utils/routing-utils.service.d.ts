@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 export declare class MaRoutingUtilsService {
-    private router;
+    protected router: Router;
     private history;
     constructor(router: Router);
     starSavesRoutingHistory(): void;

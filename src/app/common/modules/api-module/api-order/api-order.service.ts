@@ -7,7 +7,7 @@ import { MaApiOrderResponse } from './api-order.model';
 @Injectable()
 export class MaApiOrderService {
 
-  constructor(private apiHttpClient: MaApiHttpClient) { }
+  constructor(protected apiHttpClient: MaApiHttpClient) { }
 
   getOrder(id: string): Observable<MaApiOrderResponse> {
     return this.apiHttpClient.post(`/order/get`, { id: id });

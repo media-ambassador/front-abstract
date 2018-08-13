@@ -4,7 +4,8 @@ export {
 
 export {
   MaRequestOptions,
-  MaApiHttpClient
+  MaApiHttpClient,
+  MaApiHttpClientCreator
 } from './api-http-client.service';
 
 export {

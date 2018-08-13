@@ -3,8 +3,8 @@ import { MaAuthService } from '../auth/auth.service';
 import { MaApiCartService } from '../../modules/api-module/api-cart/api-cart.service';
 import { MaApiCartListResponse, MaApiSetItemResponse, MaApiCartListData, MaApiDeliveryOption, MaApiMakeOrderResponse, MaApiCartProduct } from '../../modules/api-module/api-cart/api-cart.model';
 export declare class MaCartService {
-    private apiCartService;
-    private authService;
+    protected apiCartService: MaApiCartService;
+    protected authService: MaAuthService;
     private sidebarCartOpenSubject$;
     private cartListSubject$;
     private cartList;

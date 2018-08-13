@@ -8,7 +8,7 @@ import { MaApiMenuCategories } from './api-menu.model';
 export class MaApiMenuService {
   private baseUrl = `/menu`;
 
-  constructor(private apiHttpClient: MaApiHttpClient) { }
+  constructor(protected apiHttpClient: MaApiHttpClient) { }
 
   getMenuCategories(): Observable<MaApiMenuCategories> {
     return this.apiHttpClient.get<MaApiMenuCategories>(`${this.baseUrl}/categories`);

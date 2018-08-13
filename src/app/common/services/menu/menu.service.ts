@@ -10,7 +10,7 @@ export class MaMenuService {
   private menuData$ = new ReplaySubject<MaMenuItem[]>(1);
   private menuData: MaMenuItem[];
 
-  constructor(private apiMenuService: MaApiMenuService) { }
+  constructor(protected apiMenuService: MaApiMenuService) { }
 
   loadMenu() {
     this.apiMenuService.getMenuCategories().subscribe(response => {

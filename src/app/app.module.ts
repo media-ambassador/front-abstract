@@ -12,6 +12,7 @@ import { MaRwdBreakpointsService } from './common/services/rwd-breakpoints/rwd-b
 import { TimelineComponent } from './timeline/timeline.component';
 import { MaTimelineBoxModule } from './common/components/timeline';
 import { MaApiModule } from './common/modules/api-module/api.module';
+import { MaProcessingSpinnerDirective } from './common/directives/processing-spinner/processing-spinner.directive';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MaApiModule } from './common/modules/api-module/api.module';
     RotatorComponent,
     PanelAccordionComponent,
     TimelineComponent,
+    MaProcessingSpinnerDirective
 
   ],
   imports: [

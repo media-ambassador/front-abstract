@@ -16,7 +16,7 @@ import { MaApiResponse } from '../api-common.model';
 @Injectable()
 export class MaApiCartService {
 
-  constructor(private apiHttpClient: MaApiHttpClient) { }
+  constructor(protected apiHttpClient: MaApiHttpClient) { }
 
   getList(): Observable<MaApiCartListResponse> {
     return this.apiHttpClient.get(`/cart/list`);

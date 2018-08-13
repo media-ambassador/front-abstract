@@ -7,7 +7,7 @@ import { MaApiCategoryResponse } from './api-category.model';
 @Injectable()
 export class MaApiCategoryService {
 
-  constructor(private apiHttpClient: MaApiHttpClient) { }
+  constructor(protected apiHttpClient: MaApiHttpClient) { }
 
   getCategory(name: string, filters: string = ''): Observable<MaApiCategoryResponse> {
     return this.apiHttpClient.get(`/category/${name}/${filters}`);

@@ -7,7 +7,7 @@ import { MaApiShopListResponse } from './api-shop.model';
 @Injectable()
 export class MaApiShopService {
 
-  constructor(private apiHttpClient: MaApiHttpClient) { }
+  constructor(protected apiHttpClient: MaApiHttpClient) { }
 
   getShopList(): Observable<MaApiShopListResponse> {
     return this.apiHttpClient.get(`/shop/list`);

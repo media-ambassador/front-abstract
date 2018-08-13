@@ -17,7 +17,7 @@ import {
 @Injectable()
 export class MaApiUserService {
 
-  constructor(private apiHttpClient: MaApiHttpClient) { }
+  constructor(protected apiHttpClient: MaApiHttpClient) { }
 
   authorize(authData: MaApiUserAuthorizeData): Observable<MaApiUserAuthorizeResponse> {
     return this.apiHttpClient.post(`/user/authorize`, authData);

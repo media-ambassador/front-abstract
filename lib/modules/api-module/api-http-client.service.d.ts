@@ -46,4 +46,4 @@ export declare class MaApiHttpClient {
      */
     delete<T>(endPoint: string, options?: MaRequestOptions): Observable<T>;
 }
-export declare function maApiHttpClientCreator(config: MaApiModuleConfig, http: HttpClient): MaApiHttpClient;
+export declare function MaApiHttpClientCreator(config: MaApiModuleConfig, http: HttpClient): MaApiHttpClient;

@@ -5,7 +5,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class MaRoutingUtilsService {
   private history: string[] = [];
 
-  constructor(private router: Router) { }
+  constructor(protected router: Router) { }
 
   public starSavesRoutingHistory(): void {
     this.router.events

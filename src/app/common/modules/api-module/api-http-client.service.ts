@@ -68,6 +68,6 @@ export class MaApiHttpClient {
   }
 }
 
-export function maApiHttpClientCreator(config: MaApiModuleConfig, http: HttpClient) {
+export function MaApiHttpClientCreator(config: MaApiModuleConfig, http: HttpClient) {
   return new MaApiHttpClient(config, http);
 }
