@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { MaApiCartListResponse, MaApiSetItemData, MaApiSetItemResponse, MaApiSetDeliveryData, MaApiSetPaymentData, MaApiMakeOrderData, MaApiMakeOrderResponse } from './api-cart.model';
 import { MaApiResponse } from '../api-common.model';
 export declare class MaApiCartService {
-    private apiHttpClient;
+    protected apiHttpClient: MaApiHttpClient;
     constructor(apiHttpClient: MaApiHttpClient);
     getList(): Observable<MaApiCartListResponse>;
     setItem(setItemData: MaApiSetItemData): Observable<MaApiSetItemResponse>;

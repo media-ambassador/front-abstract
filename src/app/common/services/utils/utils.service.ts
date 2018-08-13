@@ -8,7 +8,7 @@ import { MaApiOrderStatus } from '../../modules/api-module/api-order';
 @Injectable()
 export class MaUtilsService {
 
-  constructor(private router: Router) { }
+  constructor(protected router: Router) { }
 
   markFormGroupTouched(formGroup: FormGroup) {
     if (!formGroup || !formGroup.controls) {

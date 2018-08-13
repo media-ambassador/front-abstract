@@ -27,8 +27,8 @@ export class MaCartService {
   private cartList: MaApiCartListResponse;
   private cartId: number;
 
-  constructor(private apiCartService: MaApiCartService,
-              private authService: MaAuthService) {
+  constructor(protected apiCartService: MaApiCartService,
+              protected authService: MaAuthService) {
 
     this.sidebarCartOpenSubject$ = new ReplaySubject<boolean>(1);
     this.cartListSubject$ = new ReplaySubject<MaApiCartListResponse>(1);

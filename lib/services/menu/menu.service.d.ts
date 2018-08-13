@@ -1,7 +1,7 @@
 import { MaMenuItem, MaApiMenuService } from '../../modules/api-module/api-menu';
 import { Observable } from 'rxjs/Observable';
 export declare class MaMenuService {
-    private apiMenuService;
+    protected apiMenuService: MaApiMenuService;
     private menuData$;
     private menuData;
     constructor(apiMenuService: MaApiMenuService);

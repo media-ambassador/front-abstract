@@ -8,7 +8,7 @@ import { MaApiSetItemResponse, MaApiSetItemData, MaApiCartListResponse } from '.
 @Injectable()
 export class MaApiSafeService {
 
-  constructor(private apiHttpClient: MaApiHttpClient) { }
+  constructor(protected apiHttpClient: MaApiHttpClient) { }
 
   getList(): Observable<MaApiCartListResponse> {
     return this.apiHttpClient.get(`/safe/list`);

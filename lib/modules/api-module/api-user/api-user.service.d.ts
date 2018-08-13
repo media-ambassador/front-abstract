@@ -3,7 +3,7 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiResponse } from '../api-common.model';
 import { MaApiUserAuthorizeData, MaApiUserAuthorizeResponse, MaApiUserRegisterData, MaApiUserRegisterResponse, MaApiUserTokenResponse, MaApiUserChangePasswordData, MaApiUserOrderListResponse, MaApiUserRemindData } from './api-user.model';
 export declare class MaApiUserService {
-    private apiHttpClient;
+    protected apiHttpClient: MaApiHttpClient;
     constructor(apiHttpClient: MaApiHttpClient);
     authorize(authData: MaApiUserAuthorizeData): Observable<MaApiUserAuthorizeResponse>;
     register(registerData: MaApiUserRegisterData): Observable<MaApiUserRegisterResponse>;

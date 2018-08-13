@@ -20,9 +20,8 @@ export class MaSafeService {
   private cartSafeListSubject$: ReplaySubject<MaApiCartListResponse>;
   private cartSafeList: MaApiCartListResponse;
 
-  constructor(private apiSafeService: MaApiSafeService,
-              private authService: MaAuthService,
-              private cookieService: CookieService) {
+  constructor(protected apiSafeService: MaApiSafeService,
+              protected authService: MaAuthService) {
 
     this.cartSafeListSubject$ = new ReplaySubject<MaApiCartListResponse>(1);
     this.authService.watchAuthorized().subscribe(() => this.refreshCartSafeList());

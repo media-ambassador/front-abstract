@@ -26,8 +26,8 @@ export class MaAuthService {
   private userDataSubject$: ReplaySubject<MaApiUserData> = new ReplaySubject<MaApiUserData>(1);
   private token: string;
 
-  constructor(private apiUserService: MaApiUserService,
-              private cookieService: CookieService) { }
+  constructor(protected apiUserService: MaApiUserService,
+              protected cookieService: CookieService) { }
 
   populate(): Promise<boolean> {
     return new Promise<boolean>(resolve => {
