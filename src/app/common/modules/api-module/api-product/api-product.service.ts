@@ -14,7 +14,7 @@ export class MaApiProductService {
 
   getProductsWithFlag(flag: string, category: string = '', filters: string = ''): Observable<MaApiProductResponse> {
     const url = category.length > 0
-                ? `/p/${flag}/category/${category}/${filters}`
+                ? `/p/${flag}/c-${category}/${filters}`
                 : `/p/${flag}/${filters}`;
 
     return this.apiHttpClient.get(url);

@@ -4,7 +4,7 @@ import { MaDynamicComponentFactory, MaDynamicArticleType } from './dynamic-artic
 @Injectable()
 export class MaDynamicArticleFactoryService {
 
-  private factoryMap = new Map<MaDynamicArticleType, MaDynamicComponentFactory<any>>();
+  protected factoryMap = new Map<MaDynamicArticleType, MaDynamicComponentFactory<any>>();
 
   registerFactory(componentName: MaDynamicArticleType, componentFactory: MaDynamicComponentFactory<any>) {
     this.factoryMap.set(componentName, componentFactory);

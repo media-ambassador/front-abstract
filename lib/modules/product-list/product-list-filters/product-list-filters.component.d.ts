@@ -16,5 +16,5 @@ export declare class MaProductListFiltersComponent extends MaProductListComponen
     onAttributeChange(attribute: MaApiFilterAttribute, attrItem: MaApiFilterAttributesListValue): void;
     clearAllFilters(): void;
     clearAttributeFilters(attribute: MaApiFilterAttribute): void;
-    private updateAttributes();
+    protected updateAttributes(): void;
 }

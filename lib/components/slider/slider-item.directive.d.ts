@@ -3,7 +3,7 @@
  */
 export declare class MaSliderItemDirective {
     /** klasy przypisane do hosta na sztywno */
-    private __cssClasses;
+    protected __cssClasses: boolean;
     active: boolean;
     /** Ustala czy slajd jest aktywnym slajdem */
     setActive(active: boolean): void;

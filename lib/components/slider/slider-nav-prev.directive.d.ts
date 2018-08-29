@@ -9,7 +9,7 @@ export declare class MaSliderNavPrevDirective implements OnInit, OnDestroy {
     /** Czas przewiniecia slajdu w ms */
     maTime: number;
     active: boolean;
-    private sliderStateSub;
+    protected sliderStateSub: any;
     onSelectStart(event: Event): boolean;
     onClick(event: Event): void;
     ngOnInit(): void;

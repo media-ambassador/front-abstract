@@ -1,3 +1,4 @@
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 export interface MaCheckoutStep {
     active: boolean;
@@ -6,7 +7,7 @@ export interface MaCheckoutStep {
 }
 export declare class MaCheckoutStepCountService {
     steps: MaCheckoutStep[];
-    private stepSubject$;
+    protected stepSubject$: ReplaySubject<MaCheckoutStep[]>;
     constructor();
     watchSteps(): Observable<MaCheckoutStep[]>;
     updateOptions(steps: MaCheckoutStep[]): void;

@@ -17,7 +17,7 @@ export class MaProductListPriceComponent extends MaProductListComponent implemen
   minPrice: number;
   maxPrice: number;
 
-  private price: MaProductListPriceOptions;
+  protected price: MaProductListPriceOptions;
 
   constructor() {
     super();

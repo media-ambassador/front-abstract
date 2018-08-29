@@ -3,6 +3,6 @@
  */
 export declare class MaSliderTopLayerDirective {
     /** klasy przypisane do hosta na sztywno */
-    private __cssClasses;
+    protected __cssClasses: boolean;
     constructor();
 }

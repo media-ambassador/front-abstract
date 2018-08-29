@@ -11,7 +11,7 @@ export class MaYouTubeComponent implements OnInit {
 
   url: SafeResourceUrl;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(protected sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     if (!!this.content) {

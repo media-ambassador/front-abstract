@@ -11,7 +11,7 @@ export declare class MaSliderNavToDirective implements OnInit, OnDestroy {
     /** Index docelowego sladju 0-indexed */
     maIndex: number;
     active: boolean;
-    private sliderStateSub;
+    protected sliderStateSub: any;
     onSelectStart(event: Event): boolean;
     onClick(event: Event): void;
     ngOnInit(): void;

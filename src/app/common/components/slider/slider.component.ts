@@ -82,13 +82,13 @@ export class MaSliderComponent implements OnDestroy, AfterViewInit, AfterContent
   /** Lista slajdów */
   @ContentChildren(MaSliderItemDirective, { descendants: true }) slides: QueryList<MaSliderItemDirective>;
 
-  private slider: ElementRef;
-  private swiperInstance: any;
-  private updateSubject: BehaviorSubject<Partial<MaSliderState>>;
-  private stateSubscription: Subscription;
-  private eventsSubscription: Subscription;
-  private _state: MaSliderState;
-  private _options: MaSliderOptions;
+  protected slider: ElementRef;
+  protected swiperInstance: any;
+  protected updateSubject: BehaviorSubject<Partial<MaSliderState>>;
+  protected stateSubscription: Subscription;
+  protected eventsSubscription: Subscription;
+  protected _state: MaSliderState;
+  protected _options: MaSliderOptions;
 
   constructor(element: ElementRef) {
     this.slider = element;
@@ -188,7 +188,7 @@ export class MaSliderComponent implements OnDestroy, AfterViewInit, AfterContent
     this.updateSlidersActiveCssIndicator();
   }
 
-  private updateSlidersActiveCssIndicator() {
+  protected updateSlidersActiveCssIndicator() {
     if (!this._state.initialized) {
       return;
     }

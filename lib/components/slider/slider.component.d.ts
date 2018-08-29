@@ -2,6 +2,8 @@ import { MaSliderItemDirective } from './slider-item.directive';
 import { ElementRef, QueryList, AfterViewInit, OnDestroy, AfterContentInit } from '@angular/core';
 import { MaSliderOptions, MaSliderState, MaSliderPagination } from './slider.model';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/scan';
 import 'rxjs/add/operator/map';
@@ -44,13 +46,13 @@ export declare class MaSliderComponent implements OnDestroy, AfterViewInit, Afte
     pagination$: Observable<MaSliderPagination>;
     /** Lista slajdów */
     slides: QueryList<MaSliderItemDirective>;
-    private slider;
-    private swiperInstance;
-    private updateSubject;
-    private stateSubscription;
-    private eventsSubscription;
-    private _state;
-    private _options;
+    protected slider: ElementRef;
+    protected swiperInstance: any;
+    protected updateSubject: BehaviorSubject<Partial<MaSliderState>>;
+    protected stateSubscription: Subscription;
+    protected eventsSubscription: Subscription;
+    protected _state: MaSliderState;
+    protected _options: MaSliderOptions;
     constructor(element: ElementRef);
     slideNext(time?: number): void;
     slidePrev(time?: number): void;
@@ -58,5 +60,5 @@ export declare class MaSliderComponent implements OnDestroy, AfterViewInit, Afte
     ngOnDestroy(): void;
     ngAfterContentInit(): void;
     ngAfterViewInit(): void;
-    private updateSlidersActiveCssIndicator();
+    protected updateSlidersActiveCssIndicator(): void;
 }

@@ -11,9 +11,9 @@ export interface MaRequestOptions {
     body?: any;
 }
 export declare class MaApiHttpClient {
-    private config;
+    protected config: MaApiModuleConfig;
     http: HttpClient;
-    private api;
+    protected api: string;
     constructor(config: MaApiModuleConfig, http: HttpClient);
     /**
      * GET request

@@ -1,3 +1,4 @@
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { MaAuthService } from '../auth/auth.service';
 import { MaApiCartService } from '../../modules/api-module/api-cart/api-cart.service';
@@ -5,14 +6,14 @@ import { MaApiCartListResponse, MaApiSetItemResponse, MaApiCartListData, MaApiDe
 export declare class MaCartService {
     protected apiCartService: MaApiCartService;
     protected authService: MaAuthService;
-    private sidebarCartOpenSubject$;
-    private cartListSubject$;
-    private cartList;
-    private cartId;
+    protected sidebarCartOpenSubject$: ReplaySubject<boolean>;
+    protected cartListSubject$: ReplaySubject<MaApiCartListResponse>;
+    protected cartList: MaApiCartListResponse;
+    protected cartId: number;
     constructor(apiCartService: MaApiCartService, authService: MaAuthService);
     getCartList(): Observable<MaApiCartListResponse>;
     refreshCartList(): void;
-    private updateCartList(data);
+    protected updateCartList(data: MaApiCartListResponse): void;
     watchCartList(): Observable<MaApiCartListResponse>;
     getProduct(id: string): MaApiCartProduct;
     getCartData(): MaApiCartListData;

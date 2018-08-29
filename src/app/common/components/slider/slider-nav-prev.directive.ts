@@ -25,7 +25,7 @@ export class MaSliderNavPrevDirective implements OnInit, OnDestroy {
 
   @HostBinding('class.' + maSliderCssClassNavPrevActive) active = false;
 
-  private sliderStateSub: any;
+  protected sliderStateSub: any;
 
   @HostListener('selectstart', [ '$event' ]) onSelectStart(event: Event): boolean {
     if (event.preventDefault) {

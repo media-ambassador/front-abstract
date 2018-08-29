@@ -7,11 +7,11 @@ import { MaApiModuleConfigKey, MaApiModuleConfig } from './api-common.model';
 
 @Injectable()
 export class MaApiHttpClientInterceptor implements HttpInterceptor {
-  private tokenName: string;
-  private headerName: string;
+  protected tokenName: string;
+  protected headerName: string;
 
-  constructor(@Inject(MaApiModuleConfigKey) private config: MaApiModuleConfig,
-              private cookieService: CookieService) {
+  constructor(@Inject(MaApiModuleConfigKey) protected config: MaApiModuleConfig,
+              protected cookieService: CookieService) {
       this.tokenName = !!this.config && this.config.cookieSessionToken ? this.config.cookieSessionToken : 'session-token';
       this.headerName = !!this.config && this.config.headerSessionToken ? this.config.headerSessionToken : 'x-jwt-token';
     }

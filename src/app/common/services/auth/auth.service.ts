@@ -20,11 +20,11 @@ export const MaTokenKeyName = 'session-token';
 
 @Injectable()
 export class MaAuthService {
-  private authorized = false;
-  private authorizeSubject$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
-  private userData: MaApiUserData = null;
-  private userDataSubject$: ReplaySubject<MaApiUserData> = new ReplaySubject<MaApiUserData>(1);
-  private token: string;
+  protected authorized = false;
+  protected authorizeSubject$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
+  protected userData: MaApiUserData = null;
+  protected userDataSubject$: ReplaySubject<MaApiUserData> = new ReplaySubject<MaApiUserData>(1);
+  protected token: string;
 
   constructor(protected apiUserService: MaApiUserService,
               protected cookieService: CookieService) { }
@@ -42,7 +42,7 @@ export class MaAuthService {
     });
   }
 
-  private setUserData(data: MaApiUserAuthorizeResponseData): void {
+  protected setUserData(data: MaApiUserAuthorizeResponseData): void {
     this.userData = {
       id: !!data.user_id ? data.user_id : null,
       login: !!data.user_login ? data.user_login : null,
@@ -91,7 +91,7 @@ export class MaAuthService {
     return this.apiUserService.remind(remind);
   }
 
-  private setAuthorized(auth: boolean) {
+  protected setAuthorized(auth: boolean) {
     this.authorized = auth;
     this.authorizeSubject$.next(auth);
   }

@@ -28,8 +28,8 @@ export class MaMarkupComponent implements OnInit {
     this._innerHtml = markup;
   }
 
-  private inited = false;
-  private _innerHtml = '';
+  protected inited = false;
+  protected _innerHtml = '';
 
   constructor() { }
 

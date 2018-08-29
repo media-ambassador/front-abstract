@@ -7,7 +7,7 @@ export class MaProcessingSpinnerDirective implements AfterViewInit, OnChanges {
   @Input() maProcessingSpinner: boolean;
   @HostBinding('class.processing') isProcessed = false;
 
-  constructor(private element: ElementRef) { }
+  constructor(protected element: ElementRef) { }
 
   ngOnChanges() {
     this.isProcessed = this.maProcessingSpinner;

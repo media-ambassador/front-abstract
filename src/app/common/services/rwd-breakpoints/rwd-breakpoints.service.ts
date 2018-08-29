@@ -6,7 +6,7 @@ import { MaRwdBreakpoints } from '.';
 
 @Injectable()
 export class MaRwdBreakpointsService {
-  private rwdBreakpoints: MaRwdBreakpoints = {
+  protected rwdBreakpoints: MaRwdBreakpoints = {
     default: { minSize: 99999, subject: new BehaviorSubject<boolean>(true) },
     desktopDevices: { minSize: 1540, subject: new BehaviorSubject<boolean>(true) },
     laptopDevices: { minSize: 1366, subject: new BehaviorSubject<boolean>(true) },
@@ -22,11 +22,11 @@ export class MaRwdBreakpointsService {
     window.addEventListener('resize', (event: any) => this.handleWindowSize(event.target.innerWidth), false);
   }
 
-  private emitRwdBreakpoints(name: keyof MaRwdBreakpoints, value: boolean) {
+  protected emitRwdBreakpoints(name: keyof MaRwdBreakpoints, value: boolean) {
     this.rwdBreakpoints[name].subject.next(value);
   }
 
-  private handleWindowSize(size: number) {
+  protected handleWindowSize(size: number) {
     _.forOwn(this.rwdBreakpoints, (breakpoint, key: keyof MaRwdBreakpoints) => {
       size > breakpoint.minSize
         ? this.emitRwdBreakpoints(key, false)

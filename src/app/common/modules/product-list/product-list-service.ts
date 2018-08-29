@@ -14,7 +14,7 @@ export class MaProductListService {
     price: null
   };
 
-  private options: MaProductListOptions = Object.assign({}, this.defaultOptions);
+  protected options: MaProductListOptions = Object.assign({}, this.defaultOptions);
 
   optionsSubject$: ReplaySubject<MaProductListOptions>;
 

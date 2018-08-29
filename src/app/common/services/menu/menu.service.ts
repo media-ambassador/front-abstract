@@ -7,8 +7,8 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class MaMenuService {
-  private menuData$ = new ReplaySubject<MaMenuItem[]>(1);
-  private menuData: MaMenuItem[];
+  protected menuData$ = new ReplaySubject<MaMenuItem[]>(1);
+  protected menuData: MaMenuItem[];
 
   constructor(protected apiMenuService: MaApiMenuService) { }
 
@@ -32,7 +32,7 @@ export class MaMenuService {
   }
 
   /** Parse to correct menu model structure */
-  private parseMenuModel(menuData: MaApiMenuCategoryData[]): MaMenuItem[] {
+  protected parseMenuModel(menuData: MaApiMenuCategoryData[]): MaMenuItem[] {
     const items: any[] = [];
     let parsedItem: MaMenuItem = null;
 
@@ -88,7 +88,7 @@ export class MaMenuService {
     return items;
   }
 
-  private mapMenuItemModel(item: any): MaMenuItem {
+  protected mapMenuItemModel(item: any): MaMenuItem {
     return {
       active: false,
       children: [],
