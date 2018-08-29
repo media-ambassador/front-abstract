@@ -1,3 +1,4 @@
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { MaApiSafeService } from '../../modules/api-module/api-safe/api-safe.service';
 import { MaApiSafeCreateResponse } from '../../modules/api-module/api-safe/api-safe.model';
@@ -6,8 +7,8 @@ import { MaAuthService } from '../auth/auth.service';
 export declare class MaSafeService {
     protected apiSafeService: MaApiSafeService;
     protected authService: MaAuthService;
-    private cartSafeListSubject$;
-    private cartSafeList;
+    protected cartSafeListSubject$: ReplaySubject<MaApiCartListResponse>;
+    protected cartSafeList: MaApiCartListResponse;
     constructor(apiSafeService: MaApiSafeService, authService: MaAuthService);
     init(): Observable<MaApiSafeCreateResponse>;
     refreshCartSafeList(): void;

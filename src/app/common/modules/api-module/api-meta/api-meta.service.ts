@@ -7,7 +7,7 @@ import { MaApiMetaListResponse, MaApiMetaTagResponse } from './api-meta.model';
 @Injectable()
 export class MaApiMetaService {
 
-  constructor(private apiHttp: MaApiHttpClient) { }
+  constructor(protected apiHttp: MaApiHttpClient) { }
 
   getList(): Observable<MaApiMetaListResponse> {
     return this.apiHttp.get(`/meta/list`);

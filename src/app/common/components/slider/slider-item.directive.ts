@@ -13,7 +13,7 @@ export class MaSliderItemDirective {
   /** klasy przypisane do hosta na sztywno */
   @HostBinding('class.' + maSliderCssClassItem)
   @HostBinding('class.swiper-slide') // klasa na potrzeby komponentu slajdera
-  private __cssClasses = true;
+  protected __cssClasses = true;
 
   @HostBinding('class.' + maSliderCssClassItemActive) active = false;
 

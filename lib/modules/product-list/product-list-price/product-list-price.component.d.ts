@@ -1,4 +1,5 @@
 import { OnInit, OnChanges } from '@angular/core';
+import { MaProductListPriceOptions } from '../product-list.model';
 import { MaProductListComponent } from '../product-list.component';
 export declare class MaProductListPriceComponent extends MaProductListComponent implements OnInit, OnChanges {
     priceChecked: number[];
@@ -7,7 +8,7 @@ export declare class MaProductListPriceComponent extends MaProductListComponent 
     selectedMaxPrice: string;
     minPrice: number;
     maxPrice: number;
-    private price;
+    protected price: MaProductListPriceOptions;
     constructor();
     ngOnInit(): void;
     ngOnChanges(): void;

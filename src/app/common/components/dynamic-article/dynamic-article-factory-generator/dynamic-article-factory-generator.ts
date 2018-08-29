@@ -5,7 +5,7 @@ import { MaDynamicArticleData, MaDynamicComponentFactory } from '../dynamic-arti
 
 export class MaDynamicArticleFactoryGenerator {
 
-  private generatorInit<T, DT extends MaDynamicArticleData<any>>(
+  protected generatorInit<T, DT extends MaDynamicArticleData<any>>(
     cmpRef: ComponentRef<any>,
     params: MaDynamicArticleFactoryGeneratorParams<T, DT>,
     cmpData: DT) {

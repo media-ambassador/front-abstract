@@ -102,7 +102,7 @@ export class MaProductListFiltersComponent extends MaProductListComponent implem
     this.updateAttributes();
   }
 
-  private updateAttributes() {
+  protected updateAttributes() {
     let attributes = null;
 
     if (!!this.filters.attributes) {

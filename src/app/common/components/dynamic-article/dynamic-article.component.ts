@@ -23,11 +23,11 @@ export class MaDynamicArticleComponent implements OnInit, AfterViewInit, OnDestr
 
   @ViewChild('vc', {read: ViewContainerRef}) vc: ViewContainerRef;
 
-  private sub: Subscription;
+  protected sub: Subscription;
 
   constructor(
-    private injector: Injector,
-    private componentFactory: MaDynamicArticleFactoryService
+    protected injector: Injector,
+    protected componentFactory: MaDynamicArticleFactoryService
   ) {
   }
 

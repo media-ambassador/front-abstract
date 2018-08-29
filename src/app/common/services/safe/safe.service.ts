@@ -17,8 +17,8 @@ import { MaAuthService } from '../auth/auth.service';
 
 @Injectable()
 export class MaSafeService {
-  private cartSafeListSubject$: ReplaySubject<MaApiCartListResponse>;
-  private cartSafeList: MaApiCartListResponse;
+  protected cartSafeListSubject$: ReplaySubject<MaApiCartListResponse>;
+  protected cartSafeList: MaApiCartListResponse;
 
   constructor(protected apiSafeService: MaApiSafeService,
               protected authService: MaAuthService) {

@@ -1,8 +1,8 @@
 import { AfterContentInit, QueryList, ElementRef, Renderer2 } from '@angular/core';
 import { MaTimelineBoxYearComponent } from './timeline-box-year/timeline-box-year.component';
 export declare class MaTimelineBoxComponent implements AfterContentInit {
-    private el;
-    private renderer;
+    protected el: ElementRef;
+    protected renderer: Renderer2;
     timelineHeight: number;
     transitionY: number;
     yearSeparator: number;

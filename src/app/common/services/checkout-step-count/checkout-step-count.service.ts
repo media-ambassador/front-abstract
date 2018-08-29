@@ -12,7 +12,7 @@ export interface MaCheckoutStep {
 export class MaCheckoutStepCountService {
   steps: MaCheckoutStep[] = [];
 
-  private stepSubject$: ReplaySubject<MaCheckoutStep[]>;
+  protected stepSubject$: ReplaySubject<MaCheckoutStep[]>;
 
   constructor() {
     this.stepSubject$ = new ReplaySubject<MaCheckoutStep[]>(1);

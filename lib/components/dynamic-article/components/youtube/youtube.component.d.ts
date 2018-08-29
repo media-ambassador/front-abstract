@@ -1,7 +1,7 @@
 import { OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export declare class MaYouTubeComponent implements OnInit {
-    private sanitizer;
+    protected sanitizer: DomSanitizer;
     content: string;
     url: SafeResourceUrl;
     constructor(sanitizer: DomSanitizer);

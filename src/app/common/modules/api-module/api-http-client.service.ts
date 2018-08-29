@@ -17,10 +17,10 @@ export interface MaRequestOptions {
 
 @Injectable()
 export class MaApiHttpClient {
-  private api: string;
+  protected api: string;
 
   // Extending the HttpClient through the Angular DI.
-  public constructor(@Inject(MaApiModuleConfigKey) private config: MaApiModuleConfig,
+  public constructor(@Inject(MaApiModuleConfigKey) protected config: MaApiModuleConfig,
                      public http: HttpClient) {
     this.api = this.config.api;
   }

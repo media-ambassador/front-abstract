@@ -13,7 +13,7 @@ export class MaProductListPageSizeComponent extends MaProductListComponent imple
 
   selectedPageSize: string;
 
-  private pageSize: number;
+  protected pageSize: number;
 
   constructor() {
     super();

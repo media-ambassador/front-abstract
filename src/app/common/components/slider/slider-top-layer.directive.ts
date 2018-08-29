@@ -11,7 +11,7 @@ export class MaSliderTopLayerDirective {
 
   /** klasy przypisane do hosta na sztywno */
   @HostBinding('class.' + maSliderCssClassTopLayer)
-  private __cssClasses = true;
+  protected __cssClasses = true;
 
   constructor() { }
 

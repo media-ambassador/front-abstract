@@ -9,8 +9,8 @@ export declare class MaMarkupComponent implements OnInit {
     innerHtml: any;
     /** Kod HTML do umieszczenia w innerHTML */
     maHtmlMarkup: string;
-    private inited;
-    private _innerHtml;
+    protected inited: boolean;
+    protected _innerHtml: string;
     constructor();
     ngOnInit(): void;
 }

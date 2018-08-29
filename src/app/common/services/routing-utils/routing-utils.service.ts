@@ -3,7 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 
 @Injectable()
 export class MaRoutingUtilsService {
-  private history: string[] = [];
+  protected history: string[] = [];
 
   constructor(protected router: Router) { }
 

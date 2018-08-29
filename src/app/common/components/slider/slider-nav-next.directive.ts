@@ -28,7 +28,7 @@ export class MaSliderNavNextDirective implements OnInit, OnDestroy {
   @HostBinding('class.' + maSliderCssClassNavNextActive) active = false;
 
   /** subskrypcja Rx */
-  private sliderStateSub: any;
+  protected sliderStateSub: any;
 
   @HostListener('selectstart', [ '$event' ]) onSelectStart(event: Event): boolean {
     if (event.preventDefault) {

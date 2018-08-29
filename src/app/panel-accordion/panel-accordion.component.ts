@@ -11,7 +11,7 @@ export class PanelAccordionComponent implements AfterViewInit {
 
   @ViewChild(MaAccordionComponent) accordion: MaAccordionComponent;
 
-  constructor(private rwdBreakpointsService: MaRwdBreakpointsService) { }
+  constructor() { }
 
   ngAfterViewInit(): void {
   }

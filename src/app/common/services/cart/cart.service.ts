@@ -21,11 +21,11 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class MaCartService {
-  private sidebarCartOpenSubject$: ReplaySubject<boolean>;
-  private cartListSubject$: ReplaySubject<MaApiCartListResponse>;
+  protected sidebarCartOpenSubject$: ReplaySubject<boolean>;
+  protected cartListSubject$: ReplaySubject<MaApiCartListResponse>;
 
-  private cartList: MaApiCartListResponse;
-  private cartId: number;
+  protected cartList: MaApiCartListResponse;
+  protected cartId: number;
 
   constructor(protected apiCartService: MaApiCartService,
               protected authService: MaAuthService) {
@@ -49,7 +49,7 @@ export class MaCartService {
     });
   }
 
-  private updateCartList(data: MaApiCartListResponse) {
+  protected updateCartList(data: MaApiCartListResponse) {
     if (!data.action_status) {
       this.cartId = null;
       this.cartList = null;

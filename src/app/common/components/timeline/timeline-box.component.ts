@@ -12,8 +12,8 @@ export class MaTimelineBoxComponent implements AfterContentInit {
   @Input() yearSeparator = 0.8;
   @ContentChildren(MaTimelineBoxYearComponent) timelineYears: QueryList<MaTimelineBoxYearComponent>;
 
-  constructor(private el: ElementRef,
-              private renderer: Renderer2) { }
+  constructor(protected el: ElementRef,
+              protected renderer: Renderer2) { }
 
   ngAfterContentInit() {
     setTimeout(() => {

@@ -3,7 +3,7 @@ import { MaProductListComponent } from '../product-list.component';
 export declare class MaProductListPageSizeComponent extends MaProductListComponent implements OnInit {
     pageSizeOptions: number[];
     selectedPageSize: string;
-    private pageSize;
+    protected pageSize: number;
     constructor();
     ngOnInit(): void;
     setDefaultOptions(): void;

@@ -7,14 +7,14 @@ import { MaTimelineBoxItemSide } from '..';
   styleUrls: ['./timeline-box-item.component.scss']
 })
 export class MaTimelineBoxItemComponent implements OnInit {
-  private timelineHeight = 300;
+  protected timelineHeight = 300;
 
   @Input() itemSide: MaTimelineBoxItemSide = 'left';
   @HostBinding('class.left') isLeftSide = false;
   @HostBinding('class.right') isRightSide = false;
 
-  constructor(private el: ElementRef,
-              private renderer: Renderer2) { }
+  constructor(protected el: ElementRef,
+              protected renderer: Renderer2) { }
 
   ngOnInit() {
     this.isLeftSide = this.itemSide === 'left';
