@@ -96,3 +96,14 @@ export interface MaApiFilters {
   };
 }
 
+export interface MaApiFbLoginResponse {
+  action_status: boolean;
+  status: string;
+  authResponse: {
+      accessToken: string;
+      expiresIn: string;
+      signedRequest: string;
+      userID: string;
+  };
+}
+

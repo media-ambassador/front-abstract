@@ -29,6 +29,15 @@ export interface MaApiUserAuthorizeResponse extends MaApiResponse {
   data: MaApiUserAuthorizeResponseData;
 }
 
+export interface MaApiFbAuthorizeData {
+  fbAccessToken: string;
+  fbId: string;
+}
+
+export interface MaApiFbAuthorizeResponse extends MaApiResponse {
+  data: any;
+}
+
 export interface MaApiUserData {
   id: string;
   login: string;

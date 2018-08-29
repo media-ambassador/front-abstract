@@ -11,7 +11,9 @@ import {
   MaApiUserTokenResponse,
   MaApiUserChangePasswordData,
   MaApiUserOrderListResponse,
-  MaApiUserRemindData
+  MaApiUserRemindData,
+  MaApiFbAuthorizeData,
+  MaApiFbAuthorizeResponse
 } from './api-user.model';
 
 @Injectable()
@@ -21,6 +23,10 @@ export class MaApiUserService {
 
   authorize(authData: MaApiUserAuthorizeData): Observable<MaApiUserAuthorizeResponse> {
     return this.apiHttpClient.post(`/user/authorize`, authData);
+  }
+
+  fbAuthorize(fbAuthData: MaApiFbAuthorizeData): Observable<MaApiFbAuthorizeResponse> {
+    return this.apiHttpClient.post(`/user/fbauthorize`, fbAuthData);
   }
 
   register(registerData: MaApiUserRegisterData): Observable<MaApiUserRegisterResponse> {
