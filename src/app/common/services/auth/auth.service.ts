@@ -12,7 +12,9 @@ import {
   MaApiUserRegisterData,
   MaApiUserRegisterResponse,
   MaApiUserAuthorizeResponseData,
-  MaApiUserRemindData
+  MaApiUserRemindData,
+  MaApiFbAuthorizeData,
+  MaApiFbAuthorizeResponse
 } from '../../modules/api-module/api-user/api-user.model';
 import { MaApiResponse } from '../../modules/api-module';
 
@@ -59,6 +61,24 @@ export class MaAuthService {
       tap(response => {
         if (response.action_status) {
 
+          this.setUserData(response.data);
+          this.userDataSubject$.next(this.userData);
+
+          if (!!response.data.x_jwt_token) {
+            this.token = response.data.x_jwt_token;
+            this.cookieService.set(MaTokenKeyName, this.token, 30, '/');
+          }
+
+          this.setAuthorized(true);
+        }
+      })
+    );
+  }
+
+  fbAuthorize(auth: MaApiFbAuthorizeData): Observable<MaApiFbAuthorizeResponse> {
+    return this.apiUserService.fbAuthorize(auth).pipe(
+      tap(response => {
+        if (response.action_status) {
           this.setUserData(response.data);
           this.userDataSubject$.next(this.userData);
 
