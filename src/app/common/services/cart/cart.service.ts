@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 
 import { MaAuthService } from '../auth/auth.service';
 import { MaApiCartService } from '../../modules/api-module/api-cart/api-cart.service';
+import { MaApiProductVariation } from '../../modules/api-module/api-product';
 import {
   MaApiCartListResponse,
   MaApiSetItemData,
@@ -23,6 +24,7 @@ import * as _ from 'lodash';
 export class MaCartService {
   protected sidebarCartOpenSubject$: ReplaySubject<boolean>;
   protected cartListSubject$: ReplaySubject<MaApiCartListResponse>;
+  protected relatedProductsData$: ReplaySubject<MaApiProductVariation[]>;
 
   protected cartList: MaApiCartListResponse;
   protected cartId: number;
@@ -32,6 +34,7 @@ export class MaCartService {
 
     this.sidebarCartOpenSubject$ = new ReplaySubject<boolean>(1);
     this.cartListSubject$ = new ReplaySubject<MaApiCartListResponse>(1);
+    this.relatedProductsData$ = new ReplaySubject<MaApiProductVariation[]>(1);
 
     this.authService.watchAuthorized().subscribe(() => this.refreshCartList());
   }
@@ -93,6 +96,10 @@ export class MaCartService {
     return this.sidebarCartOpenSubject$.asObservable();
   }
 
+  watchRelatedProducts(): Observable<MaApiProductVariation[]> {
+    return this.relatedProductsData$.asObservable();
+  }
+
   addElement(productId: number): Observable<MaApiSetItemResponse> {
     const cartProduct = this.getProduct(productId.toString());
     const quantity = !!cartProduct ? cartProduct.quantity + 1 : 1;
@@ -118,8 +125,25 @@ export class MaCartService {
     };
 
     return this.apiCartService.setItem(itemData).pipe(
-      tap(response => this.refreshCartList())
-    );
+      tap(response =>  {
+        this.relatedProductsData$.next(response.data.related_products);
+        this.refreshCartList();
+      }));
+  }
+
+  changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse> {
+    const itemData: MaApiSetItemData = {
+      product_id: newProductId,
+      quantity: quantity
+    };
+
+    this.removeElement(oldProductId).subscribe();
+
+    return this.apiCartService.setItem(itemData).pipe(
+      tap(response =>  {
+        this.relatedProductsData$.next(response.data.related_products);
+        this.refreshCartList();
+      }));
   }
 
   setDelivery(id: number, parcel: string = null): void {

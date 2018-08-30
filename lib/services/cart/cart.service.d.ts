@@ -2,12 +2,14 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { MaAuthService } from '../auth/auth.service';
 import { MaApiCartService } from '../../modules/api-module/api-cart/api-cart.service';
+import { MaApiProductVariation } from '../../modules/api-module/api-product';
 import { MaApiCartListResponse, MaApiSetItemResponse, MaApiCartListData, MaApiDeliveryOption, MaApiMakeOrderResponse, MaApiCartProduct } from '../../modules/api-module/api-cart/api-cart.model';
 export declare class MaCartService {
     protected apiCartService: MaApiCartService;
     protected authService: MaAuthService;
     protected sidebarCartOpenSubject$: ReplaySubject<boolean>;
     protected cartListSubject$: ReplaySubject<MaApiCartListResponse>;
+    protected relatedProductsData$: ReplaySubject<MaApiProductVariation[]>;
     protected cartList: MaApiCartListResponse;
     protected cartId: number;
     constructor(apiCartService: MaApiCartService, authService: MaAuthService);
@@ -20,10 +22,12 @@ export declare class MaCartService {
     getItemsCount(): number;
     getCartId(): number;
     watchSidebarCartOpen(): Observable<boolean>;
+    watchRelatedProducts(): Observable<MaApiProductVariation[]>;
     addElement(productId: number): Observable<MaApiSetItemResponse>;
     removeElement(productId: number): Observable<MaApiSetItemResponse>;
     clear(): void;
     changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse>;
+    changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse>;
     setDelivery(id: number, parcel?: string): void;
     getSelectedDeliveryOption(): MaApiDeliveryOption;
     isDeliveryInpost(): boolean;

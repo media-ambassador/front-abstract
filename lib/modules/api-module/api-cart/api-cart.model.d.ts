@@ -1,6 +1,6 @@
 import { Dictionary } from 'lodash';
 import { MaApiPriceDetails, MaApiResponse } from '../api-common.model';
-import { MaApiProductPrice, MaApiProductDiscount } from '../api-product/api-product.model';
+import { MaApiProductPrice, MaApiProductDiscount, MaApiProductVariation } from '../api-product/api-product.model';
 import { MaApiAddressData, MaApiInvoiceData } from '../api-address/api-address.model';
 export interface MaApiPaymentOption {
     active: boolean;
@@ -92,6 +92,7 @@ export interface MaApiSetItemResponse extends MaApiResponse {
     data: {
         currentQuantity?: number;
         units?: number;
+        related_products?: MaApiProductVariation[];
     };
 }
 export interface MaApiSetDeliveryData {
