@@ -1,4 +1,5 @@
 import { MaApiPriceInfo, MaApiPriceDetails, MaApiBreadcrumbs } from '../api-common.model';
+import { Dictionary } from 'lodash';
 export interface MaApiProductResponse {
     breadcrumbs: MaApiBreadcrumbs[];
     description: string;
@@ -49,6 +50,15 @@ export interface MaApiProductTemplate {
     group_select_id: string;
     slug: string;
 }
+export interface MaApiProductSize {
+    attribute_id: string;
+    attribute_name: string;
+    attribute_value: string;
+    attribute_value_id: string;
+    display_name: string;
+    sortValue: number;
+    variation_id: string;
+}
 export interface MaApiProductData {
     active?: boolean;
     brand_id: number;
@@ -76,7 +86,7 @@ export interface MaApiProductData {
     size?: MaApiProductAttribute;
     sizechart_id?: number;
     sizetable?: string[][];
-    sizes?: Object;
+    sizes?: Dictionary<MaApiProductSize>;
     sku?: string;
     slug_name: string;
     v_flag_new?: boolean;
