@@ -1,6 +1,6 @@
 import { Dictionary } from 'lodash';
 import { MaApiPriceDetails, MaApiResponse } from '../api-common.model';
-import { MaApiProductPrice, MaApiProductDiscount, MaApiProductVariation } from '../api-product/api-product.model';
+import { MaApiProductPrice, MaApiProductDiscount, MaApiProductVariation, MaApiProductSize } from '../api-product/api-product.model';
 import { MaApiAddressData, MaApiInvoiceData } from '../api-address/api-address.model';
 export interface MaApiPaymentOption {
     active: boolean;
@@ -51,6 +51,7 @@ export interface MaApiCartProduct {
     brand_id: string | number;
     brand_name: string;
     sku: string;
+    sizes?: Dictionary<MaApiProductSize>;
     image_file: string;
     attribute_value_list: MaApiCartProductAttribute[];
     price: MaApiCartPrice;
