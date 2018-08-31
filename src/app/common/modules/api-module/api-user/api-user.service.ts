@@ -55,4 +55,8 @@ export class MaApiUserService {
   getReturnsList(): Observable<MaApiUserOrderListResponse> {
     return this.apiHttpClient.get(`/user/returnlist`);
   }
+
+  checkUserExist(email: string): Observable<MaApiResponse> {
+    return this.apiHttpClient.post(`/user/exists`, { email: email });
+  }
 }

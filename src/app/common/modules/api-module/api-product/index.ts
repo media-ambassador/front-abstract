@@ -10,5 +10,6 @@ export {
   MaApiProductTemplate,
   MaApiProductData,
   MaApiProductPrice,
-  MaApiProductDiscount
+  MaApiProductDiscount,
+  MaApiProductSize
 } from './api-product.model';

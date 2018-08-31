@@ -117,5 +117,6 @@ export interface MaApiMakeOrderResponse extends MaApiResponse {
         order_id?: string;
         redirectUrl?: string;
         reload?: boolean;
+        validationErrors?: Dictionary<string>;
     };
 }

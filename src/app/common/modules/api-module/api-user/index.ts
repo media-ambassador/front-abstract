@@ -6,6 +6,8 @@ export {
   MaApiUserAuthorizeData,
   MaApiUserAuthorizeResponseData,
   MaApiUserAuthorizeResponse,
+  MaApiFbAuthorizeData,
+  MaApiFbAuthorizeResponse,
   MaApiUserData,
   MaApiUserRegisterData,
   MaApiUserRemindData,

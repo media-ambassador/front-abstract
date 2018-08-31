@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
+import { MaApiOrderStatus } from '../../modules/api-module/api-order';
+import { MaStreetAddressData } from '.';
 
 import * as moment from 'moment';
-import { MaApiOrderStatus } from '../../modules/api-module/api-order';
-
 @Injectable()
 export class MaUtilsService {
 
@@ -67,5 +70,37 @@ export class MaUtilsService {
     url.indexOf('://') >= 0
       ? window.location.href = url
       : this.router.navigate([url]);
+  }
+
+  getFullStreetAddress(data: MaStreetAddressData): string {
+    if (!data) {
+      return '';
+    }
+
+    const street = !!data.street ? data.street : '';
+    const number = !!data.number ? data.number : '';
+    const address = `${street} ${number}`;
+
+    return !!data.apartment ? `${address}/${data.apartment}` : address;
+  }
+
+  checkFileExist(url: string): Observable<boolean> {
+    const subject = new Subject<boolean>();
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+
+    xhr.addEventListener('load', () => {
+      subject.next(xhr.status === 200);
+      subject.complete();
+    });
+
+    xhr.addEventListener('error', () => {
+      subject.next(false);
+      subject.complete();
+    });
+
+    xhr.send();
+
+    return subject.asObservable();
   }
 }
