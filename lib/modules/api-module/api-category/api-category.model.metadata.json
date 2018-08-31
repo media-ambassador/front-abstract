@@ -1,1 +1,1 @@
-[{"__symbolic":"module","version":4,"metadata":{"MaApiCategoryResponse":{"__symbolic":"interface"}}}]
+[{"__symbolic":"module","version":4,"metadata":{"MaApiCategoryData":{"__symbolic":"interface"},"MaApiCategoryResponse":{"__symbolic":"interface"}}}]

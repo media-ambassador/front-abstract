@@ -26,6 +26,7 @@ export interface MaApiOrderListData {
     currency: MaApiPriceCurrency;
     id: string;
     code: string;
+    discount?: MaApiProductDiscount;
     identifier: string;
     items: Dictionary<MaApiOrderListItem>;
     modified: boolean;
