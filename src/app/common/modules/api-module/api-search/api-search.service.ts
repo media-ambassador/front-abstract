@@ -7,7 +7,7 @@ import { MaApiSearchResponse } from './api-search.model';
 @Injectable()
 export class MaApiSearchService {
 
-  constructor(private apiHttpClient: MaApiHttpClient) { }
+  constructor(protected apiHttpClient: MaApiHttpClient) { }
 
   search(searchQuery: string, filters: string = ''): Observable<MaApiSearchResponse> {
     return this.apiHttpClient.get(`/search/${searchQuery}/${filters}`);
