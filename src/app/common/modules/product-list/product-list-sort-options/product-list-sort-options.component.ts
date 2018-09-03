@@ -33,6 +33,11 @@ export class MaProductListSortOptionsComponent extends MaProductListComponent im
     this.sortTypes = ['nhl', 'nlh', 'plh', 'phl', 'tlh', 'thl'];
   }
 
+  changeSortType(type: MaApiSortType) {
+    this.selectedSortType = type;
+    this.updateCurrentSortType();
+  }
+
   updateCurrentSortType() {
     this.productListUtils.updateOptions({ sortType: this.selectedSortType });
   }

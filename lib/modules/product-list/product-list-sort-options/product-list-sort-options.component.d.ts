@@ -7,5 +7,6 @@ export declare class MaProductListSortOptionsComponent extends MaProductListComp
     constructor();
     ngOnInit(): void;
     setDefaultSortTypes(): void;
+    changeSortType(type: MaApiSortType): void;
     updateCurrentSortType(): void;
 }

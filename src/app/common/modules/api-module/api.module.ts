@@ -18,6 +18,7 @@ import { MaApiProductService } from './api-product/api-product.service';
 import { MaApiSafeService } from './api-safe/api-safe.service';
 import { MaApiShopService } from './api-shop/api-shop.service';
 import { MaApiUserService } from './api-user/api-user.service';
+import { MaApiSearchService } from './api-search';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { MaApiUserService } from './api-user/api-user.service';
     MaApiSafeService,
     MaApiShopService,
     MaApiUserService,
+    MaApiSearchService
   ]
 })
 export class MaApiModule {
