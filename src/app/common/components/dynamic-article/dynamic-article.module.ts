@@ -12,6 +12,7 @@ import { MaTextImageComponent } from './components/text-image/text-image.compone
 import { MaImageComponent } from './components/image/image.component';
 import { MaQuoteComponent } from './components/quote/quote.component';
 import { MaYouTubeComponent } from './components/youtube/youtube.component';
+import { MaSafeHtmlPipe } from '../../pipes/safe-html';
 
 const ComponentDeclarationsName = 'ComponentDeclarationsNameRef';
 
@@ -38,7 +39,9 @@ export function articleDeclarationFactory(factoryService: MaDynamicArticleFactor
     MaTextImageComponent,
     MaImageComponent,
     MaQuoteComponent,
-    MaYouTubeComponent
+    MaYouTubeComponent,
+
+    MaSafeHtmlPipe
   ],
   providers: [
     MaDynamicArticleFactoryService,

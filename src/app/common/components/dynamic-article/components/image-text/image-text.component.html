@@ -3,5 +3,5 @@
     <img src="{{ content.image.url }}" alt="{{ content.image.alt }}">
   </figure>
 
-  <div [innerHTML]="content.right"></div>
+  <div [innerHTML]="content.right | safeHtml"></div>
 </section>

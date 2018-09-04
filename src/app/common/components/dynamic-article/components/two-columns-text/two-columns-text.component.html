@@ -1,4 +1,4 @@
 <section>
-  <div [innerHTML]="content.left"></div>
-  <div [innerHTML]="content.right"></div>
+  <div [innerHTML]="content.left | safeHtml"></div>
+  <div [innerHTML]="content.right | safeHtml"></div>
 </section>

@@ -1,5 +1,5 @@
 <section>
-  <div [innerHTML]="content.left"></div>
+  <div [innerHTML]="content.left | safeHtml"></div>
 
   <figure>
     <img src="{{ content.image.url }}" alt="{{ content.image.alt }}">
