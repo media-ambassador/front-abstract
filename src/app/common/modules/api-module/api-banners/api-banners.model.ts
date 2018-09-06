@@ -5,6 +5,8 @@ export interface MaApiBannerData {
   language: string;
   identifier: string;
   file: string;
+  file_tablet_vertical?: string;
+  file_mobile_vertical?: string;
   type: string;
   url: string;
   target: string;
@@ -12,6 +14,7 @@ export interface MaApiBannerData {
   html: string;
   title: string;
   description: string;
+  slogan?: string;
 }
 
 export interface MaApiBannersListResponse extends MaApiResponse {

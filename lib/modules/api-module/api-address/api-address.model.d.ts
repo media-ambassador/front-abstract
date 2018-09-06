@@ -13,7 +13,8 @@ export interface MaApiAddressData {
     type?: MaApiAddressType;
 }
 export interface MaApiInvoiceData {
-    isCompany: boolean;
+    id?: string;
+    isCompany?: boolean;
     street: string;
     number: number;
     apartment: string;
@@ -22,6 +23,6 @@ export interface MaApiInvoiceData {
     company: string;
     firstname: string;
     lastname: string;
-    tax_no: string;
+    tax_no?: string;
 }
 export declare type MaApiAddressType = 'billing' | 'shipping' | 'invoice';

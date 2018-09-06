@@ -34,8 +34,18 @@ export interface MaApiDynamicArticleTagContent {
 export interface MaApiDynamicArticleTagData {
   content: MaApiDynamicArticleTagContent[];
   entry: MaApiArticleCategoryData;
+  categories?: MaApiDynamicArticleCategoryInfo[];
 }
 
 export interface MaApiDynamicArticleTagsResponse extends MaApiResponse {
   data: Dictionary<MaApiDynamicArticleTagData>;
+}
+
+export interface MaApiDynamicArticleCategoryInfo {
+  bc_id: string;
+  bc_name: string;
+  bc_news: string;
+  bc_banner: string;
+  bc_description: string;
+  bc_lang: string;
 }
