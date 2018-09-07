@@ -1,8 +1,11 @@
 import { MaApiProductData } from '../api-product/api-product.model';
 import { MaApiBreadcrumbs, MaApiFilters } from '../api-common.model';
 export interface MaApiCategoryData {
+    category_banner_title: string;
     category_banner1: string;
     category_banner2: string;
+    category_banner_slogan: string;
+    category_banner_description: string;
     category_children: any[];
     category_code: string;
     category_description: string;

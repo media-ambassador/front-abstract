@@ -66,6 +66,12 @@ export interface MaApiProductSize {
   variation_id: string;
 }
 
+export interface MaApiProductCustomFlag {
+  background: string;
+  font: string;
+  text: string;
+}
+
 export interface MaApiProductData {
   active?: boolean;
   brand_id: number;
@@ -77,6 +83,7 @@ export interface MaApiProductData {
   color?: MaApiProductAttribute;
   colors?: any;
   display_name: string;
+  customFlags?: MaApiProductCustomFlag;
   images: MaApiProductImage[];
   link?: string;
   template?: MaApiProductTemplate;

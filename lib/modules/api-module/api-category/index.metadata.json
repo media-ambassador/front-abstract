@@ -1,1 +1,1 @@
-[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./api-category.service","export":["MaApiCategoryService"]},{"from":"./api-category.model","export":["MaApiCategoryResponse"]}]}]
+[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./api-category.service","export":["MaApiCategoryService"]},{"from":"./api-category.model","export":["MaApiCategoryResponse","MaApiCategoryData"]}]}]

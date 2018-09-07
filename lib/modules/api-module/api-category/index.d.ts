@@ -1,2 +1,2 @@
 export { MaApiCategoryService } from './api-category.service';
-export { MaApiCategoryResponse } from './api-category.model';
+export { MaApiCategoryResponse, MaApiCategoryData } from './api-category.model';

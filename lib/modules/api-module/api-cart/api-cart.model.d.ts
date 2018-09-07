@@ -76,6 +76,7 @@ export interface MaApiCartListData {
     discount: MaApiProductDiscount;
     payment: MaApiPayment;
     delivery: MaApiDelivery;
+    salons?: MaApiDelivery;
     spedition_cost: string;
     logistics_minimum: MaApiPriceDetails;
     items: Dictionary<MaApiCartProduct>;

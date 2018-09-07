@@ -4,4 +4,5 @@ export {
 
 export {
   MaApiCategoryResponse,
+  MaApiCategoryData,
 } from './api-category.model';
