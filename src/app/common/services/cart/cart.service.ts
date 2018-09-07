@@ -166,7 +166,13 @@ export class MaCartService {
       return null;
     }
 
-    return this.cartList.data.delivery.options[selected];
+    let option = this.cartList.data.delivery.options[selected];
+
+    if (!option && !!this.cartList.data.salons) {
+      option = this.cartList.data.salons.options[selected];
+    }
+
+    return option;
   }
 
   isDeliveryInpost(): boolean {

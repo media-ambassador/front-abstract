@@ -135,7 +135,7 @@ export class MaAuthService {
   logout(): void {
     this.cookieService.deleteAll('/');
 
-    this.populate();
+    this.apiUserService.logout().subscribe(() => this.populate());
   }
 
 }

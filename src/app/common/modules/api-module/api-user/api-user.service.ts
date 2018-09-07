@@ -59,4 +59,9 @@ export class MaApiUserService {
   checkUserExist(email: string): Observable<MaApiResponse> {
     return this.apiHttpClient.post(`/user/exists`, { email: email });
   }
+
+  logout(): Observable<MaApiResponse> {
+    return this.apiHttpClient.post(`/user/logout`, {});
+  }
+
 }

@@ -15,4 +15,5 @@ export declare class MaApiUserService {
     remind(remindData: MaApiUserRemindData): Observable<MaApiResponse>;
     getReturnsList(): Observable<MaApiUserOrderListResponse>;
     checkUserExist(email: string): Observable<MaApiResponse>;
+    logout(): Observable<MaApiResponse>;
 }
