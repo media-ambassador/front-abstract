@@ -1,5 +1,5 @@
 <section>
-  <div [innerHTML]="content.left | safeHtml"></div>
-  <div [innerHTML]="content.center | safeHtml"></div>
-  <div [innerHTML]="content.right | safeHtml"></div>
+  <ma-markup [maHtmlMarkup]="content.left"></ma-markup>
+  <ma-markup [maHtmlMarkup]="content.center"></ma-markup>
+  <ma-markup [maHtmlMarkup]="content.right"></ma-markup>
 </section>

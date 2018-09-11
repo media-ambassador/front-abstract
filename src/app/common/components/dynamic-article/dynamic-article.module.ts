@@ -13,6 +13,7 @@ import { MaImageComponent } from './components/image/image.component';
 import { MaQuoteComponent } from './components/quote/quote.component';
 import { MaYouTubeComponent } from './components/youtube/youtube.component';
 import { MaSafeHtmlPipe } from '../../pipes/safe-html';
+import { MaMarkupModule } from '../../modules/markup/markup.module';
 
 const ComponentDeclarationsName = 'ComponentDeclarationsNameRef';
 
@@ -27,7 +28,8 @@ export function articleDeclarationFactory(factoryService: MaDynamicArticleFactor
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MaMarkupModule
   ],
   declarations: [
     MaDynamicArticleComponent,

@@ -3,5 +3,5 @@
     <img src="{{ content.image.url }}" alt="{{ content.image.alt }}">
   </figure>
 
-  <div [innerHTML]="content.right | safeHtml"></div>
+  <ma-markup [maHtmlMarkup]="content.right"></ma-markup>
 </section>

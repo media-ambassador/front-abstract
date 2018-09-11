@@ -1,5 +1,5 @@
 <section>
-  <div [innerHTML]="content.left | safeHtml"></div>
+  <ma-markup [maHtmlMarkup]="content.left"></ma-markup>
 
   <figure>
     <img src="{{ content.image.url }}" alt="{{ content.image.alt }}">
