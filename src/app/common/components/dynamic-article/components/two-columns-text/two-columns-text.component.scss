@@ -4,7 +4,7 @@
   > section {
     display: flex;
 
-    > div {
+    > ma-markup {
       flex: 1;
 
       &:nth-child(1) { margin-right: $column-gap; }
