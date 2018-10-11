@@ -11,7 +11,7 @@ export class MaSearchService {
   protected isProcessing = false;
   protected searchingProcessing$ = new ReplaySubject<boolean>(1);
 
-  constructor(private apiSearchService: MaApiSearchService) { }
+  constructor(protected apiSearchService: MaApiSearchService) { }
 
   watchSearchProcessing(): Observable<boolean> {
     return this.searchingProcessing$.asObservable();

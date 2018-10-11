@@ -11,7 +11,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class MaSafeHtmlPipe implements PipeTransform {
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(protected sanitizer: DomSanitizer) { }
 
   transform(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);

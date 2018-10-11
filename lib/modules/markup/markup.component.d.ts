@@ -9,15 +9,15 @@ import { MaMarkupUpdateInnerHtmlEvent } from './markup.model';
  * Usuwa tag &lt;script&gt;.
  */
 export declare class MaMarkupComponent implements OnInit {
-    private sanitizer;
-    private elementRef;
-    private router;
+    protected sanitizer: DomSanitizer;
+    protected elementRef: ElementRef;
+    protected router: Router;
     innerHtml: any;
     /** Kod HTML do umieszczenia w innerHTML */
     maHtmlMarkup: string;
     updateHtml: EventEmitter<MaMarkupUpdateInnerHtmlEvent>;
-    private initialized;
-    private _innerHtml;
+    protected initialized: boolean;
+    protected _innerHtml: any;
     onClick(event: any): void;
     constructor(sanitizer: DomSanitizer, elementRef: ElementRef, router: Router);
     ngOnInit(): void;

@@ -7,7 +7,7 @@ import { MaApiNewsletterAddData, MaApiNewsletterAddResponse } from './api-newsle
 @Injectable()
 export class MaApiNewsletterService {
 
-  constructor(private apiHttp: MaApiHttpClient) { }
+  constructor(protected apiHttp: MaApiHttpClient) { }
 
   addFreshMailSubscriber(data: MaApiNewsletterAddData): Observable<MaApiNewsletterAddResponse> {
     return this.apiHttp.post(`/freshmail/subscriber/add`, data);

@@ -29,8 +29,8 @@ export class MaMarkupComponent implements OnInit {
 
   @Output() updateHtml: EventEmitter<MaMarkupUpdateInnerHtmlEvent> = new EventEmitter<MaMarkupUpdateInnerHtmlEvent>();
 
-  private initialized = false;
-  private _innerHtml = '' as any;
+  protected initialized = false;
+  protected _innerHtml = '' as any;
 
   @HostListener('click', ['$event']) onClick(event: any) {
     const target = event.target || {};
@@ -44,9 +44,9 @@ export class MaMarkupComponent implements OnInit {
   }
 
   constructor(
-    private sanitizer: DomSanitizer,
-    private elementRef: ElementRef,
-    private router: Router
+    protected sanitizer: DomSanitizer,
+    protected elementRef: ElementRef,
+    protected router: Router
   ) { }
 
   ngOnInit() {

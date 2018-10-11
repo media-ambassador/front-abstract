@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { MaApiSearchService, MaApiSearchResponse } from '../../modules/api-module/api-search';
 export declare class MaSearchService {
-    private apiSearchService;
+    protected apiSearchService: MaApiSearchService;
     protected isProcessing: boolean;
     protected searchingProcessing$: ReplaySubject<boolean>;
     constructor(apiSearchService: MaApiSearchService);
