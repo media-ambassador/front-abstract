@@ -83,9 +83,12 @@ export interface MaApiProductData {
     model_variations: MaApiProductVariation[];
     nextLink?: string;
     prevLink?: string;
+    next_slug_name?: string;
+    prev_slug_name?: string;
     price_current?: string | number;
     price_regular: string | number;
     product_id: number;
+    product_code?: string;
     related_products?: any[];
     shortdescription?: string;
     sposob_konserwacji?: string;
@@ -94,6 +97,8 @@ export interface MaApiProductData {
     sizetable?: string[][];
     sizes?: Dictionary<MaApiProductSize>;
     sku?: string;
+    flag_announcement?: boolean;
+    available_from?: string;
     slug_name: string;
     v_flag_new?: boolean;
     v_flag_sale?: boolean;

@@ -2,13 +2,14 @@ import { Dictionary } from 'lodash';
 import { MaApiResponse, MaApiSeo } from '../api-common.model';
 
 export interface MaApiArticleCategoryData {
-  content: string;
+  content?: string;
   id?: string;
   seo?: MaApiSeo;
   status?: string;
   tag?: string;
   target_link?: string;
-  title: string;
+  title?: string;
+  grouping?: string;
 }
 
 export interface MaApiArticleCategoriesResponse extends MaApiResponse {

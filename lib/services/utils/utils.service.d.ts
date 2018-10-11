@@ -14,4 +14,5 @@ export declare class MaUtilsService {
     moveToUrl(url: string): void;
     getFullStreetAddress(data: MaStreetAddressData): string;
     checkFileExist(url: string): Observable<boolean>;
+    isSupportActive(hourFrom: number, hourTo: number, minuteFrom?: number, minuteTo?: number): boolean;
 }

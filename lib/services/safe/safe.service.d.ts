@@ -17,6 +17,8 @@ export declare class MaSafeService {
     isInSafeList(productId: number): boolean;
     addElement(productId: number, quantity?: number): Observable<MaApiSetItemResponse>;
     removeElement(productId: number): Observable<MaApiSetItemResponse>;
+    changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse>;
+    changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse>;
     clear(): void;
     reset(): void;
 }

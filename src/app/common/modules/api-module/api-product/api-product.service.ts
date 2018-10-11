@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
 import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiProductResponse } from './api-product.model';
+import { MaApiCategoryResponse } from '../api-category/api-category.model';
 
 @Injectable()
 export class MaApiProductService {
@@ -18,5 +20,10 @@ export class MaApiProductService {
                 : `/p/${flag}/${filters}`;
 
     return this.apiHttpClient.get(url);
+  }
+
+  getProductsById(ids: string[]): Observable<MaApiCategoryResponse> {
+    const query = `{"productsIds":${JSON.stringify(ids)}}`;
+    return this.apiHttpClient.get(`/products/?query=${query}`);
   }
 }

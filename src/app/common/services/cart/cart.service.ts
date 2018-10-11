@@ -149,7 +149,7 @@ export class MaCartService {
   setDelivery(id: number, parcel: string = null): void {
     const data: MaApiSetDeliveryData = {
       delivery_id: id,
-      parcel_shop: parcel
+      delivery_parcel_code_preferred: parcel
     };
 
     this.apiCartService.setDelivery(data).subscribe(response => {
@@ -166,13 +166,7 @@ export class MaCartService {
       return null;
     }
 
-    let option = this.cartList.data.delivery.options[selected];
-
-    if (!option && !!this.cartList.data.salons) {
-      option = this.cartList.data.salons.options[selected];
-    }
-
-    return option;
+    return this.cartList.data.delivery.options[selected];
   }
 
   isDeliveryInpost(): boolean {
@@ -182,6 +176,15 @@ export class MaCartService {
 
     const selectedOption = this.getSelectedDeliveryOption();
     return selectedOption ? selectedOption.abbrev === 'inpost' : false;
+  }
+
+  isSalonDelivery(): boolean {
+    if (!this.cartList.data.delivery.selected) {
+      return false;
+    }
+
+    const selectedOption = this.getSelectedDeliveryOption();
+    return selectedOption ? selectedOption.code.indexOf('salon_') >= 0 : false;
   }
 
   setPayment(type: string) {
@@ -215,6 +218,7 @@ export class MaCartService {
 
     return !!selectedOption
            && !!this.cartList.data.payment.selected
-           && (!this.isDeliveryInpost() || (this.isDeliveryInpost() && !!selectedOption.parcel_shop));
+           && (!this.isDeliveryInpost() || (this.isDeliveryInpost() && !!selectedOption.parcel_shop))
+           && (!this.isSalonDelivery() || (this.isSalonDelivery() && !!selectedOption.parcel_shop));
   }
 }

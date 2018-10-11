@@ -89,7 +89,7 @@ export class MaUtilsService {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
 
-    xhr.addEventListener('load', () => {
+    xhr.addEventListener('progress', () => {
       subject.next(xhr.status === 200);
       subject.complete();
     });
@@ -102,5 +102,12 @@ export class MaUtilsService {
     xhr.send();
 
     return subject.asObservable();
+  }
+
+  isSupportActive(hourFrom: number, hourTo: number, minuteFrom = 0, minuteTo = 0) {
+    const day = moment().day();
+    const isWeekend = day === 0 || day === 6 ? true : false;
+    const isOpen = moment().isAfter(moment({ hour: hourFrom, minute: minuteFrom })) && moment().isBefore(moment({ hour: hourTo, minute: minuteTo })) ? true : false;
+    return  isOpen && !isWeekend ? true : false;
   }
 }

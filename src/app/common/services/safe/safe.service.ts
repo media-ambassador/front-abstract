@@ -92,6 +92,28 @@ export class MaSafeService {
     return this.addElement(productId, 0);
   }
 
+  changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse> {
+    const itemData: MaApiSetItemData = {
+      product_id: productId,
+      quantity: quantity
+    };
+
+    return this.apiSafeService.setItem(itemData).pipe(
+      tap(() =>  this.refreshCartSafeList()));
+  }
+
+  changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse> {
+    const itemData: MaApiSetItemData = {
+      product_id: newProductId,
+      quantity: quantity
+    };
+
+    this.removeElement(oldProductId).subscribe();
+
+    return this.apiSafeService.setItem(itemData).pipe(
+      tap(() => this.refreshCartSafeList()));
+  }
+
   clear(): void {
     const subscriber = this.apiSafeService.clear().subscribe(() => {
       this.refreshCartSafeList();

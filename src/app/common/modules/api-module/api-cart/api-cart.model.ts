@@ -26,8 +26,40 @@ export interface MaApiDeliveryOption {
   name?: string;
   company_name?: string;
   image?: string;
-  parcel_shop?: any;
+  parcel_shop?: MaApiParcelShopData;
+}
 
+export interface MaApiParcelShopData {
+  code: string;
+  details: MaApiDeliveryParcelData;
+}
+
+export interface MaApiDeliveryParcelData {
+  lang: string;
+  selected: boolean;
+  sl_address: string;
+  sl_address_description: string;
+  sl_address_number: string;
+  sl_city: string;
+  sl_code: string;
+  sl_collection_point: string;
+  sl_country: string;
+  sl_description: string;
+  sl_email: string;
+  sl_gps_x: string;
+  sl_gps_y: string;
+  sl_id: string;
+  sl_imagefilename: string;
+  sl_imagefilename_mime_type: string;
+  sl_link: string;
+  sl_name: string;
+  sl_name_short: string;
+  sl_opening_hours: string;
+  sl_phone: string;
+  sl_region: string;
+  sl_shop_type: string;
+  sl_updatedate: string;
+  sl_zip: string;
 }
 
 export interface MaApiDelivery {
@@ -47,8 +79,8 @@ export interface MaApiCartPrice {
 }
 
 export interface MaApiCartPriceInfo {
-    unit: MaApiPriceDetails;
-    total: MaApiPriceDetails;
+  unit: MaApiPriceDetails;
+  total: MaApiPriceDetails;
 }
 
 export interface MaApiCartProduct {
@@ -56,6 +88,7 @@ export interface MaApiCartProduct {
   quantity: number;
   product_code: string;
   display_name: string;
+  category_name: string;
   slug_name: string;
   brand_id: string | number;
   brand_name: string;
@@ -73,6 +106,10 @@ export interface MaApiCartProduct {
       }
     }
   };
+  price_current: string;
+  price_regular: string;
+  flag_announcement: boolean;
+  available_from: string;
 }
 
 export interface MaApiCartListData {
@@ -86,10 +123,10 @@ export interface MaApiCartListData {
  discount: MaApiProductDiscount;
  payment: MaApiPayment;
  delivery: MaApiDelivery;
- salons?: MaApiDelivery;
  spedition_cost: string;
  logistics_minimum: MaApiPriceDetails;
  items: Dictionary<MaApiCartProduct>;
+ salons: MaApiDeliveryParcelData[];
 }
 
 export interface MaApiCartListResponse extends MaApiResponse {
@@ -113,7 +150,7 @@ export interface MaApiSetItemResponse extends MaApiResponse {
 
 export interface MaApiSetDeliveryData {
   delivery_id: number;
-  parcel_shop?: string;
+  delivery_parcel_code_preferred?: string;
 }
 
 export interface MaApiSetPaymentData {

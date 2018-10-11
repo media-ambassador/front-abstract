@@ -31,6 +31,7 @@ export declare class MaCartService {
     setDelivery(id: number, parcel?: string): void;
     getSelectedDeliveryOption(): MaApiDeliveryOption;
     isDeliveryInpost(): boolean;
+    isSalonDelivery(): boolean;
     setPayment(type: string): void;
     makeOrder(makeOrderData: any): Observable<MaApiMakeOrderResponse>;
     validateCart(): boolean;
