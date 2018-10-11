@@ -218,7 +218,7 @@ export class MaCartService {
 
     return !!selectedOption
            && !!this.cartList.data.payment.selected
-           && (!this.isDeliveryInpost() || (this.isDeliveryInpost() && !!selectedOption.parcel_shop))
-           && (!this.isSalonDelivery() || (this.isSalonDelivery() && !!selectedOption.parcel_shop));
+           && (!this.isDeliveryInpost() || (this.isDeliveryInpost() && !!selectedOption.parcel_shop && !!selectedOption.parcel_shop.code))
+           && (!this.isSalonDelivery() || (this.isSalonDelivery() && !!selectedOption.parcel_shop && !!selectedOption.parcel_shop.code));
   }
 }

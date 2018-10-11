@@ -8,6 +8,9 @@ export interface CommonWithBreakpoint {
   slidesPerView?: number;
   /** odstępy pomiędzy slajdami w px (jeśli wiele slajdów jednocześnie) */
   spaceBetween?: number;
+  centeredSlides?: boolean;
+  slidesOffsetBefore?: number;
+  slidesOffsetAfter?: number;
 }
 
 export interface MaRwdThresholds<T> {
@@ -32,6 +35,7 @@ export interface MaSliderOptions extends CommonWithBreakpoint {
   allowTouchMove?: boolean;
   /** RWD breakpoints, umozliwia zmiane ustawień w zależności od szerokości wyświetlania */
   breakpoints?: MaSliderBreakpoints;
+
 }
 
 export const maSliderOptionsDefaults: MaSliderOptions = {

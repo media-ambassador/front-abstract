@@ -6,6 +6,9 @@ export interface CommonWithBreakpoint {
     slidesPerView?: number;
     /** odstępy pomiędzy slajdami w px (jeśli wiele slajdów jednocześnie) */
     spaceBetween?: number;
+    centeredSlides?: boolean;
+    slidesOffsetBefore?: number;
+    slidesOffsetAfter?: number;
 }
 export interface MaRwdThresholds<T> {
     [index: number]: T;
