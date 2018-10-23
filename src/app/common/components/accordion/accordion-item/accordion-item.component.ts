@@ -31,6 +31,7 @@ export class MaAccordionItemComponent implements AfterContentInit {
 
     if (this.maOpen) {
       this.itemContent.show();
+      this.itemHeader.isOpen = true;
     }
   }
 

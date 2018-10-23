@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
-import { CookieService } from 'ngx-cookie-service';
 import { MaApiSafeService } from '../../modules/api-module/api-safe/api-safe.service';
 import { MaApiSafeCreateResponse } from '../../modules/api-module/api-safe/api-safe.model';
 import {
@@ -14,6 +13,7 @@ import {
 
 import * as _ from 'lodash';
 import { MaAuthService } from '../auth/auth.service';
+import { MaApiResponse } from '../../modules/api-module';
 
 @Injectable()
 export class MaSafeService {
@@ -82,6 +82,16 @@ export class MaSafeService {
     return this.apiSafeService.setItem(itemData).pipe(
       tap(response => {
         if (response.action_status) {
+          this.refreshCartSafeList();
+        }
+      })
+    );
+  }
+
+  addAllToCart(removeAll = false): Observable<MaApiResponse> {
+    return this.apiSafeService.addAllToCart(removeAll).pipe(
+      tap(response => {
+        if (response.action_status && removeAll) {
           this.refreshCartSafeList();
         }
       })

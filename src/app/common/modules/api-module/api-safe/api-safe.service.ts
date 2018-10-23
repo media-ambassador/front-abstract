@@ -26,4 +26,8 @@ export class MaApiSafeService {
     return this.apiHttpClient.post(`/safe/create`, { });
   }
 
+  addAllToCart(removeAll = false): Observable<MaApiResponse> {
+    return this.apiHttpClient.post(`/safe/addalltocart`, { removeItems: removeAll });
+  }
+
 }

@@ -4,6 +4,7 @@ import { MaApiSafeService } from '../../modules/api-module/api-safe/api-safe.ser
 import { MaApiSafeCreateResponse } from '../../modules/api-module/api-safe/api-safe.model';
 import { MaApiCartListResponse, MaApiSetItemResponse, MaApiCartListData } from '../../modules/api-module/api-cart/api-cart.model';
 import { MaAuthService } from '../auth/auth.service';
+import { MaApiResponse } from '../../modules/api-module';
 export declare class MaSafeService {
     protected apiSafeService: MaApiSafeService;
     protected authService: MaAuthService;
@@ -16,6 +17,7 @@ export declare class MaSafeService {
     getCartSafeData(): MaApiCartListData;
     isInSafeList(productId: number): boolean;
     addElement(productId: number, quantity?: number): Observable<MaApiSetItemResponse>;
+    addAllToCart(removeAll?: boolean): Observable<MaApiResponse>;
     removeElement(productId: number): Observable<MaApiSetItemResponse>;
     changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse>;
     changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse>;

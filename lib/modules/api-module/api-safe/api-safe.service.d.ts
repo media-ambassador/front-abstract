@@ -10,4 +10,5 @@ export declare class MaApiSafeService {
     setItem(setItemData: MaApiSetItemData): Observable<MaApiSetItemResponse>;
     clear(): Observable<MaApiResponse>;
     create(): Observable<MaApiSafeCreateResponse>;
+    addAllToCart(removeAll?: boolean): Observable<MaApiResponse>;
 }
