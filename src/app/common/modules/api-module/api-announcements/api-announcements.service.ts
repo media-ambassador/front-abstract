@@ -7,7 +7,7 @@ import { MaApiAnnouncementsResponseData } from './api-announcements.model';
 @Injectable()
 export class MaApiAnnouncementsService {
 
-  constructor(private apiHttpClient: MaApiHttpClient) { }
+  constructor(protected apiHttpClient: MaApiHttpClient) { }
 
   getAnnouncementsData(): Observable<MaApiAnnouncementsResponseData> {
     return this.apiHttpClient.get(`/announcements`);
