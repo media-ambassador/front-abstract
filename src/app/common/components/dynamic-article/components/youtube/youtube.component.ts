@@ -11,6 +11,8 @@ export class MaYouTubeComponent implements OnInit {
 
   url: SafeResourceUrl;
 
+  protected baseEmbedUrl = 'https://www.youtube.com/embed';
+
   constructor(protected sanitizer: DomSanitizer) { }
 
   ngOnInit() {
@@ -20,7 +22,7 @@ export class MaYouTubeComponent implements OnInit {
   }
 
   getSafeUrl(): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(`http://www.youtube.com/embed/${ this.content }`);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`${this.baseEmbedUrl}/${ this.content }`);
   }
 
 }
