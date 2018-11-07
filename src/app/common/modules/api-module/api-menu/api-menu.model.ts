@@ -42,4 +42,5 @@ export interface MaMenuItem {
   icon?: string;
   id?: string;
   name?: string;
+  category_id?: number;
 }

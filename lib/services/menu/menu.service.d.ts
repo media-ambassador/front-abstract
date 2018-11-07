@@ -6,10 +6,10 @@ export declare class MaMenuService {
     protected menuData$: ReplaySubject<MaMenuItem[]>;
     protected menuData: MaMenuItem[];
     constructor(apiMenuService: MaApiMenuService);
-    loadMenu(): void;
+    loadMenu(rootLevel?: number, deepLevel?: number): void;
+    protected parseMenuModel(menuData: MaApiMenuCategoryData[], rootLevel?: number, deepLevel?: number): MaMenuItem[];
+    protected buildMenuTree(menuData: MaApiMenuCategoryData[], items: MaMenuItem[], parentId?: number, level?: number): void;
+    protected mapMenuItemModel(item: MaApiMenuCategoryData): MaMenuItem;
     getMenuData(): MaMenuItem[];
     watchMenuData(): Observable<MaMenuItem[]>;
-    /** Parse to correct menu model structure */
-    protected parseMenuModel(menuData: MaApiMenuCategoryData[]): MaMenuItem[];
-    protected mapMenuItemModel(item: any): MaMenuItem;
 }
