@@ -25,5 +25,6 @@ export declare class MaAuthService {
     isAuthorized(): boolean;
     watchUserData(): Observable<MaApiUserData>;
     getUserData(): MaApiUserData;
+    clearData(): void;
     logout(): void;
 }

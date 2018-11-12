@@ -33,7 +33,7 @@ export class MaAuthService {
 
   populate(clear = false): Promise<boolean> {
     if (clear) {
-      this.cookieService.deleteAll('/');
+      this.clearData();
     }
 
     return new Promise<boolean>(resolve => {
@@ -136,9 +136,14 @@ export class MaAuthService {
     return this.userData;
   }
 
-  logout(): void {
+  clearData() {
     this.cookieService.deleteAll('/');
+    localStorage.clear();
+    sessionStorage.clear();
+  }
 
+  logout(): void {
+    this.clearData();
     this.apiUserService.logout().subscribe(() => this.populate());
   }
 
