@@ -37,7 +37,7 @@ export class MaAuthService {
     }
 
     return new Promise<boolean>(resolve => {
-      const subscription = this.apiUserService.token().subscribe(response => {
+      const subscription = this.apiUserService.token(clear).subscribe(response => {
         this.cookieService.set(MaTokenKeyName, response.data.x_jwt_token, 30, '/');
         this.setAuthorized(response.data.is_logged);
         this.setUserData(response.data.user_data);

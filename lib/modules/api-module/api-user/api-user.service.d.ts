@@ -11,7 +11,7 @@ export declare class MaApiUserService {
     getAddressList(): Observable<MaApiResponse>;
     changePassword(changePasswordData: MaApiUserChangePasswordData): Observable<MaApiResponse>;
     getOrderList(): Observable<MaApiUserOrderListResponse>;
-    token(): Observable<MaApiUserTokenResponse>;
+    token(clear?: boolean): Observable<MaApiUserTokenResponse>;
     remind(remindData: MaApiUserRemindData): Observable<MaApiResponse>;
     getReturnsList(): Observable<MaApiUserOrderListResponse>;
     checkUserExist(email: string): Observable<MaApiResponse>;

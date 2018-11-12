@@ -44,8 +44,9 @@ export class MaApiUserService {
     return this.apiHttpClient.get(`/user/orderlist`);
   }
 
-  token(): Observable<MaApiUserTokenResponse> {
-    return this.apiHttpClient.get(`/user/token`);
+  token(clear = false): Observable<MaApiUserTokenResponse> {
+    const clearParam = clear ? '?clear=true' : '';
+    return this.apiHttpClient.get(`/user/token${clearParam}`);
   }
 
   remind(remindData: MaApiUserRemindData): Observable<MaApiResponse> {
