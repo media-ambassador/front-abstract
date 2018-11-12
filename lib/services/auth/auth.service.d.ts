@@ -14,7 +14,7 @@ export declare class MaAuthService {
     protected userDataSubject$: ReplaySubject<MaApiUserData>;
     protected token: string;
     constructor(apiUserService: MaApiUserService, cookieService: CookieService);
-    populate(): Promise<boolean>;
+    populate(clear?: boolean): Promise<boolean>;
     protected setUserData(data: MaApiUserAuthorizeResponseData): void;
     authorize(auth: MaApiUserAuthorizeData): Observable<MaApiUserAuthorizeResponse>;
     fbAuthorize(auth: MaApiFbAuthorizeData): Observable<MaApiFbAuthorizeResponse>;

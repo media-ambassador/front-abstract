@@ -31,7 +31,11 @@ export class MaAuthService {
   constructor(protected apiUserService: MaApiUserService,
               protected cookieService: CookieService) { }
 
-  populate(): Promise<boolean> {
+  populate(clear = false): Promise<boolean> {
+    if (clear) {
+      this.cookieService.deleteAll('/');
+    }
+
     return new Promise<boolean>(resolve => {
       const subscription = this.apiUserService.token().subscribe(response => {
         this.cookieService.set(MaTokenKeyName, response.data.x_jwt_token, 30, '/');
