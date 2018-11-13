@@ -23,6 +23,7 @@ export declare class MaCartService {
     getCartId(): number;
     watchSidebarCartOpen(): Observable<boolean>;
     watchRelatedProducts(): Observable<MaApiProductVariation[]>;
+    protected updateRelatedProducts(response: MaApiSetItemResponse): void;
     addElement(productId: number): Observable<MaApiSetItemResponse>;
     removeElement(productId: number): Observable<MaApiSetItemResponse>;
     clear(): void;

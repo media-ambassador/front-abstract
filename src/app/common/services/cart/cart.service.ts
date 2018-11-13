@@ -100,6 +100,12 @@ export class MaCartService {
     return this.relatedProductsData$.asObservable();
   }
 
+  protected updateRelatedProducts(response: MaApiSetItemResponse) {
+    !!response.data && response.data.related_products
+      ? this.relatedProductsData$.next(response.data.related_products)
+      : this.relatedProductsData$.next(null);
+  }
+
   addElement(productId: number): Observable<MaApiSetItemResponse> {
     const cartProduct = this.getProduct(productId.toString());
     const quantity = !!cartProduct ? cartProduct.quantity + 1 : 1;
@@ -126,7 +132,7 @@ export class MaCartService {
 
     return this.apiCartService.setItem(itemData).pipe(
       tap(response =>  {
-        this.relatedProductsData$.next(response.data.related_products);
+        this.updateRelatedProducts(response);
         this.refreshCartList();
       }));
   }
@@ -141,7 +147,7 @@ export class MaCartService {
 
     return this.apiCartService.setItem(itemData).pipe(
       tap(response =>  {
-        this.relatedProductsData$.next(response.data.related_products);
+        this.updateRelatedProducts(response);
         this.refreshCartList();
       }));
   }
