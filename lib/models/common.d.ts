@@ -3,3 +3,6 @@ export declare type MaUrl = string;
 export interface MaRwdThresholds<T> {
     [index: number]: T;
 }
+export interface Dictionary<T> {
+    [index: string]: T;
+}

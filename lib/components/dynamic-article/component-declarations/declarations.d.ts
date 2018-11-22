@@ -1,7 +1,7 @@
-import { Dictionary } from 'lodash';
 import { MaDynamicArticleFactoryService } from '../dynamic-article-factory-resolver/dynamic-article-factory.service';
 import { MaDynamicArticleFactoryGenerator } from '../dynamic-article-factory-generator/dynamic-article-factory-generator';
 import { MaDynamicArticleFactoryGeneratorParams } from '../dynamic-article-factory-generator/dynamic-article-factory-generator.model';
+import { Dictionary } from 'lodash';
 export interface MaComponentDeclarations extends Dictionary<MaDynamicArticleFactoryGeneratorParams<any, any>> {
 }
 export declare const DefaultComponentDeclarations: MaComponentDeclarations;

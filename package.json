@@ -1,6 +1,6 @@
 {
   "name": "@ma_tkuchne/front-abstract",
-  "version": "0.5.31",
+  "version": "0.5.32",
   "description": "Warstwa abstrakcyjna aplikacji FE",
   "main": "index.js",
   "scripts": {
@@ -45,7 +45,6 @@
     "angular2-notifications": "^1.0.4",
     "core-js": "^2.5.5",
     "lodash": "^4.17.5",
-    "moment": "^2.22.2",
     "ngx-cookie-service": "^1.0.10",
     "rxjs": "^5.5.10",
     "swiper": "^4.1.6",

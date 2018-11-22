@@ -128,10 +128,10 @@ export interface MaApiSetItemData {
 }
 export interface MaApiSetItemResponse extends MaApiResponse {
     data: {
-        currentQuantity?: number;
-        units?: number;
         related_products?: MaApiProductVariation[];
     };
+    currentQuantity?: number;
+    units?: number;
 }
 export interface MaApiSetDeliveryData {
     delivery_id: number;

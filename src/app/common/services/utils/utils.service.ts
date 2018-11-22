@@ -7,7 +7,6 @@ import { Subject } from 'rxjs/Subject';
 import { MaApiOrderStatus } from '../../modules/api-module/api-order';
 import { MaStreetAddressData } from '.';
 
-import * as moment from 'moment';
 @Injectable()
 export class MaUtilsService {
 
@@ -42,7 +41,9 @@ export class MaUtilsService {
   }
 
   getDateFromTimeStamp(timeStamp: number, format = 'DD-MM-YYYY HH:mm:ss'): string {
-    return moment.unix(timeStamp).format(format);
+    const date = new Date(timeStamp * 1000);
+
+    return date.toLocaleDateString('pl-PL');
   }
 
   returnColorClass(status: MaApiOrderStatus): string {
@@ -105,9 +106,13 @@ export class MaUtilsService {
   }
 
   isSupportActive(hourFrom: number, hourTo: number, minuteFrom = 0, minuteTo = 0) {
-    const day = moment().day();
+    const date = new Date(),
+          day = date.getDay(),
+          hour = date.getHours();
+
     const isWeekend = day === 0 || day === 6 ? true : false;
-    const isOpen = moment().isAfter(moment({ hour: hourFrom, minute: minuteFrom })) && moment().isBefore(moment({ hour: hourTo, minute: minuteTo })) ? true : false;
+    const isOpen = hour > hourFrom && hour < hourTo ? true : false;
+
     return  isOpen && !isWeekend ? true : false;
   }
 }

@@ -1,5 +1,3 @@
-import { Dictionary } from 'lodash';
-
 import { MaDynamicArticleFactoryService } from '../dynamic-article-factory-resolver/dynamic-article-factory.service';
 import { MaDynamicArticleFactoryGenerator } from '../dynamic-article-factory-generator/dynamic-article-factory-generator';
 import { MaDynamicArticleType } from '../dynamic-article-factory-resolver/dynamic-article-factory-resolver.model';
@@ -14,6 +12,7 @@ import { MaImageComponentDeclaration } from './image/image';
 import { MaQuoteComponentDeclaration } from './quote/quote';
 import { MaYouTubeComponentDeclaration } from './youTube/youTube';
 
+import { Dictionary } from 'lodash';
 import * as _ from 'lodash';
 
 export interface MaComponentDeclarations extends Dictionary<MaDynamicArticleFactoryGeneratorParams<any, any>> { }
