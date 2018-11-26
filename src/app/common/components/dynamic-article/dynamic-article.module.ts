@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER, ModuleWithProviders, Injector } from '@angular/core';
+import { NgModule, APP_INITIALIZER, ModuleWithProviders, Injector, InjectionToken } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaDynamicArticleComponent } from './dynamic-article.component';
 import { MaDynamicArticleFactoryService } from './dynamic-article-factory-resolver/dynamic-article-factory.service';
@@ -16,6 +16,8 @@ import { MaSafeHtmlPipe } from '../../pipes/safe-html';
 import { MaMarkupModule } from '../../modules/markup/markup.module';
 
 const ComponentDeclarationsName = 'ComponentDeclarationsNameRef';
+
+export const UNIQUE_DYNAMIC_MODULE = new InjectionToken<string>('DYNAMIC_MODULE');
 
 export function articleDeclarationFactory(factoryService: MaDynamicArticleFactoryService,
                                           factoryGenerator: MaDynamicArticleFactoryGenerator,
@@ -71,7 +73,7 @@ export class MaDynamicArticleModule {
       providers: [
         { provide: ComponentDeclarationsName, useValue: customDeclaration },
         {
-          provide: APP_INITIALIZER,
+          provide: UNIQUE_DYNAMIC_MODULE,
           useFactory: articleDeclarationFactory,
           deps: [ MaDynamicArticleFactoryService, MaDynamicArticleFactoryGenerator, Injector ],
           multi: true
