@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { MaDynamicArticleFactoryService } from './dynamic-article-factory-resolver/dynamic-article-factory.service';
 import { MaDynamicArticleData } from './dynamic-article-factory-resolver/dynamic-article-factory-resolver.model';
+import { MaDynamicDeclarationService } from './dynamic-declaration.service';
 
 @Component({
   selector: 'ma-dynamic-article',
@@ -25,10 +26,9 @@ export class MaDynamicArticleComponent implements OnInit, AfterViewInit, OnDestr
 
   protected sub: Subscription;
 
-  constructor(
-    protected injector: Injector,
-    protected componentFactory: MaDynamicArticleFactoryService
-  ) {
+  constructor(protected injector: Injector,
+              protected componentFactory: MaDynamicArticleFactoryService,
+              protected dynamicDeclarationService: MaDynamicDeclarationService ) {
   }
 
   ngOnInit() {

@@ -13,6 +13,7 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { MaTimelineBoxModule } from './common/components/timeline';
 import { MaApiModule } from './common/modules/api-module/api.module';
 import { MaProcessingSpinnerDirective } from './common/directives/processing-spinner/processing-spinner.directive';
+import { MaDynamicArticleModule } from './common/components/dynamic-article';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,6 @@ import { MaProcessingSpinnerDirective } from './common/directives/processing-spi
     PanelAccordionComponent,
     TimelineComponent,
     MaProcessingSpinnerDirective
-
   ],
   imports: [
     BrowserModule,
@@ -33,6 +33,7 @@ import { MaProcessingSpinnerDirective } from './common/directives/processing-spi
     MaSliderModule,
     MaAccordionModule,
     MaTimelineBoxModule,
+    MaDynamicArticleModule.forRoot(),
 
     MaApiModule.forRoot({
       api: '//bigstar.local/api'
