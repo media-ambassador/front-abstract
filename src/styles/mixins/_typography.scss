@@ -13,7 +13,7 @@
 @mixin custom-font($size, $font-weight, $line-height, $color, $tone: 1, $letter-spacing: 0, $text-transform: none) {
   font-size: make-rem($size);
   font-weight: font-weight($font-weight);
-  color: color($color);
+  color: color($color, $tone);
   letter-spacing: letter-spacing($letter-spacing, $size);
   line-height: line-height($line-height, $size);
   text-transform: $text-transform;
