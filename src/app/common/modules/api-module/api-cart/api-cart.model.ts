@@ -1,7 +1,7 @@
 import { Dictionary } from 'lodash';
 import { MaApiPriceDetails, MaApiResponse } from '../api-common.model';
 import { MaApiProductPrice, MaApiProductDiscount, MaApiProductVariation, MaApiProductSize } from '../api-product/api-product.model';
-import { MaApiAddressData, MaApiInvoiceData } from '../api-address/api-address.model';
+import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
 
 export interface MaApiPaymentOption {
   active: boolean;
@@ -158,8 +158,8 @@ export interface MaApiSetPaymentData {
 }
 
 export interface MaApiMakeOrderAddressData {
-  billing: MaApiAddressData;
-  shipping: MaApiAddressData;
+  billing: MaApiAddressData<MaApiAddressType>;
+  shipping: MaApiAddressData<MaApiAddressType>;
   invoice: MaApiInvoiceData;
 }
 

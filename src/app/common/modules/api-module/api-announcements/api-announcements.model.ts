@@ -3,6 +3,6 @@ export interface MaApiAnnouncementsItem {
   lastmod_date: string;
 }
 
-export interface MaApiAnnouncementsResponseData {
-  data: MaApiAnnouncementsItem[];
+export interface MaApiAnnouncementsResponseData<D extends MaApiAnnouncementsItem> {
+  data: D[];
 }

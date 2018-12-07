@@ -6,14 +6,20 @@ import {
   MaApiArticleCategoriesResponse,
   MaApiArticleTagsResponse,
   MaApiDynamicArticleCategoriesResponse,
-  MaApiDynamicArticleTagsResponse
+  MaApiDynamicArticleTagsResponse,
+  MaApiArticleCategoryData,
+  MaApiDynamicArticleTagData,
+  MaApiDynamicArticleTagContent,
+  MaApiDynamicArticleLayoutType
 } from './api-article.model';
+import { MaApiSeo } from '../api-meta';
 
 @Injectable()
-export class MaApiArticleService <CR extends MaApiArticleCategoriesResponse,
-                                  TR extends MaApiArticleTagsResponse,
-                                  DCR extends MaApiDynamicArticleCategoriesResponse,
-                                  DTR extends MaApiDynamicArticleTagsResponse> {
+export class MaApiArticleService <CR extends MaApiArticleCategoriesResponse<MaApiArticleCategoryData<MaApiSeo>>,
+                                  TR extends MaApiArticleTagsResponse<MaApiArticleCategoryData<MaApiSeo>>,
+                                  DCR extends MaApiDynamicArticleCategoriesResponse<MaApiArticleCategoryData<MaApiSeo>>,
+                                  DTR extends MaApiDynamicArticleTagsResponse<MaApiDynamicArticleTagData<MaApiDynamicArticleTagContent<MaApiDynamicArticleLayoutType>,
+                                              MaApiArticleCategoryData<MaApiSeo>>>> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 

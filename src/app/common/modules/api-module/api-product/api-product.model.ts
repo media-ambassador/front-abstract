@@ -1,4 +1,4 @@
-import { MaApiPriceInfo, MaApiPriceDetails, MaApiBreadcrumbs } from '../api-common.model';
+import { MaApiPriceInfo, MaApiPriceDetails, MaApiBreadcrumbs, MaApiPriceCurrency } from '../api-common.model';
 import { MaApiShopData } from '../api-shop/api-shop.model';
 import { Dictionary } from 'lodash';
 
@@ -25,11 +25,13 @@ export interface MaApiProductImage {
 }
 
 export interface MaApiProductAttribute {
+  code?: string;
   attribute_id?: string;
   attribute_name?: string;
   attribute_value?: string;
   attribute_value_id?: string;
   display_name?: string;
+  variation_id?: string;
 }
 
 export interface MaApiProductVariation {
@@ -140,4 +142,9 @@ export interface MaApiProductDiscount {
     total?: MaApiPriceDetails;
     unit?: MaApiPriceDetails;
   };
+}
+
+export interface MaApiProductAttributeList {
+  attributes?: MaApiProductAttribute[];
+  sizes?: Dictionary<MaApiProductAttribute>;
 }

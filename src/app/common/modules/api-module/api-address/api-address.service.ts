@@ -3,10 +3,10 @@ import { Observable } from 'rxjs/Observable';
 
 import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiResponse } from '../api-common.model';
-import { MaApiAddressData } from './api-address.model';
+import { MaApiAddressData, MaApiAddressType } from './api-address.model';
 
 @Injectable()
-export class MaApiAddressService<D extends MaApiAddressData, R extends MaApiResponse> {
+export class MaApiAddressService<D extends MaApiAddressData<MaApiAddressType>, R extends MaApiResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 

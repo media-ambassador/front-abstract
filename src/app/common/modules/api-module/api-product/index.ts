@@ -12,5 +12,6 @@ export {
   MaApiProductPrice,
   MaApiProductCustomFlag,
   MaApiProductDiscount,
-  MaApiProductSize
+  MaApiProductSize,
+  MaApiProductAttributeList
 } from './api-product.model';

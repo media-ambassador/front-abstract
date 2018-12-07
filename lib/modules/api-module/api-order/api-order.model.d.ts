@@ -2,7 +2,7 @@ import { Dictionary } from 'lodash';
 import { MaApiResponse, MaApiPriceCurrency } from '../api-common.model';
 import { MaApiCartProductAttribute, MaApiCartPrice, MaApiPaymentOption, MaApiDeliveryOption } from '../api-cart/api-cart.model';
 import { MaApiProductDiscount, MaApiProductPrice } from '../api-product/api-product.model';
-import { MaApiAddressData } from '../api-address/api-address.model';
+import { MaApiAddressData, MaApiAddressType } from '../api-address/api-address.model';
 export interface MaApiOrderListItem {
     product_id?: string;
     quantity?: string;
@@ -32,11 +32,11 @@ export interface MaApiOrderListData {
     items?: Dictionary<MaApiOrderListItem>;
     modified?: boolean;
     payment?: {
-        address?: MaApiAddressData;
+        address?: MaApiAddressData<MaApiAddressType>;
         selected_payment?: MaApiPaymentOption;
     };
     shipment?: {
-        address?: MaApiAddressData;
+        address?: MaApiAddressData<MaApiAddressType>;
         delivery?: MaApiDeliveryOption;
     };
     price?: MaApiProductPrice;

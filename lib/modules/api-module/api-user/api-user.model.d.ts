@@ -1,6 +1,6 @@
 import { Dictionary } from 'lodash';
 import { MaApiResponse } from '../api-common.model';
-import { MaApiAddressData, MaApiInvoiceData } from '../api-address/api-address.model';
+import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
 import { MaApiOrderListData } from '../api-order/api-order.model';
 export interface MaApiUserAuthorizeData {
     login?: string;
@@ -71,8 +71,8 @@ export interface MaApiUserTokenResponse extends MaApiResponse {
 }
 export interface MaApiUserAddressResponse extends MaApiResponse {
     data: {
-        billing?: MaApiAddressData[];
-        shipping?: MaApiAddressData[];
+        billing?: MaApiAddressData<MaApiAddressType>[];
+        shipping?: MaApiAddressData<MaApiAddressType>[];
         invoice?: MaApiInvoiceData[];
     };
 }

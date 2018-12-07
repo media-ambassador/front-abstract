@@ -22,11 +22,13 @@ export interface MaApiProductImage {
     image_normal?: string;
 }
 export interface MaApiProductAttribute {
+    code?: string;
     attribute_id?: string;
     attribute_name?: string;
     attribute_value?: string;
     attribute_value_id?: string;
     display_name?: string;
+    variation_id?: string;
 }
 export interface MaApiProductVariation {
     attributes?: MaApiProductAttribute[];
@@ -128,4 +130,8 @@ export interface MaApiProductDiscount {
         total?: MaApiPriceDetails;
         unit?: MaApiPriceDetails;
     };
+}
+export interface MaApiProductAttributeList {
+    attributes?: MaApiProductAttribute[];
+    sizes?: Dictionary<MaApiProductAttribute>;
 }

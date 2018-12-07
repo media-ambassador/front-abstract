@@ -2,10 +2,10 @@ import { Dictionary } from 'lodash';
 import { MaApiResponse } from '../api-common.model';
 import { MaApiSeo } from '../api-meta';
 
-export interface MaApiArticleCategoryData {
+export interface MaApiArticleCategoryData<S extends MaApiSeo> {
   content?: string;
   id?: string;
-  seo?: MaApiSeo;
+  seo?: S;
   status?: string;
   tag?: string;
   target_link?: string;
@@ -13,34 +13,35 @@ export interface MaApiArticleCategoryData {
   grouping?: string;
 }
 
-export interface MaApiArticleCategoriesResponse extends MaApiResponse {
-  data: Dictionary<Dictionary<MaApiArticleCategoryData>>;
+export interface MaApiArticleCategoriesResponse<AC extends MaApiArticleCategoryData<MaApiSeo>> extends MaApiResponse {
+  data: Dictionary<Dictionary<AC>>;
 }
 
-export interface MaApiArticleTagsResponse extends MaApiResponse {
-  data: Dictionary<MaApiArticleCategoryData>;
+export interface MaApiArticleTagsResponse<AC extends MaApiArticleCategoryData<MaApiSeo>> extends MaApiResponse {
+  data: Dictionary<AC>;
 }
 
 export type MaApiDynamicArticleLayoutType = 'text' | '2columns' | '3columns' | 'textImage' | 'imageText' | 'image' | 'quote' | 'youTube';
 
-export interface MaApiDynamicArticleCategoriesResponse extends MaApiResponse {
-  data: Dictionary<Dictionary<MaApiArticleCategoryData>>;
+export interface MaApiDynamicArticleCategoriesResponse<AC extends MaApiArticleCategoryData<MaApiSeo>> extends MaApiResponse {
+  data: Dictionary<Dictionary<AC>>;
 }
 
-export interface MaApiDynamicArticleTagContent {
+export interface MaApiDynamicArticleTagContent<LT extends MaApiDynamicArticleLayoutType> {
   content: any; // TODO: Model ze względu na layout
-  layout: MaApiDynamicArticleLayoutType;
+  layout: LT;
   order?: number;
 }
 
-export interface MaApiDynamicArticleTagData {
-  content: MaApiDynamicArticleTagContent[];
-  entry: MaApiArticleCategoryData;
+export interface MaApiDynamicArticleTagData<AT extends MaApiDynamicArticleTagContent<MaApiDynamicArticleLayoutType>, CD extends MaApiArticleCategoryData<MaApiSeo>> {
+  content: AT[];
+  entry: CD;
   categories?: MaApiDynamicArticleCategoryInfo[];
 }
 
-export interface MaApiDynamicArticleTagsResponse extends MaApiResponse {
-  data: Dictionary<MaApiDynamicArticleTagData>;
+export interface MaApiDynamicArticleTagsResponse<TD extends MaApiDynamicArticleTagData<MaApiDynamicArticleTagContent<MaApiDynamicArticleLayoutType>,
+                                                 MaApiArticleCategoryData<MaApiSeo>>> extends MaApiResponse {
+  data: Dictionary<TD>;
 }
 
 export interface MaApiDynamicArticleCategoryInfo {

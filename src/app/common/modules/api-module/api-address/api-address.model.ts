@@ -1,4 +1,4 @@
-export interface MaApiAddressData {
+export interface MaApiAddressData<T extends MaApiAddressType> {
   id?: string;
   email?: string;
   street?: string;
@@ -10,7 +10,7 @@ export interface MaApiAddressData {
   firstname?: string;
   lastname?: string;
   telephone?: string;
-  type?: MaApiAddressType;
+  type?: T;
 }
 
 export interface MaApiInvoiceData {
