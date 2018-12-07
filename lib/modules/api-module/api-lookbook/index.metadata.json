@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./api-lookbook.service","export":["MaApiLookBookService"]},{"from":"./api-lookbook.model","export":["MaApiLookBookItemProduct","MaApiLookBookItem","MaApiLookBookData","MaApiLookBookResponse"]}]}]

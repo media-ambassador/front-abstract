@@ -1,10 +1,11 @@
 import { Dictionary } from 'lodash';
-import { MaApiResponse, MaApiPriceCurrency } from '../api-common.model';
-import { MaApiCartProductAttribute, MaApiCartPrice, MaApiPaymentOption, MaApiDeliveryOption } from '../api-cart/api-cart.model';
+import { MaApiResponse, MaApiPriceCurrency, MaApiPriceDetails } from '../api-common.model';
+import { MaApiCartProductAttribute, MaApiCartPrice, MaApiPaymentOption, MaApiDeliveryOption, MaApiCartPriceInfo } from '../api-cart/api-cart.model';
 import { MaApiProductDiscount, MaApiProductPrice } from '../api-product/api-product.model';
 import { MaApiAddressData, MaApiAddressType } from '../api-address/api-address.model';
 
-export interface MaApiOrderListItem {
+export interface MaApiOrderListItem<P extends MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
+                                    D extends MaApiProductDiscount< MaApiPriceDetails<MaApiPriceCurrency>>> {
   product_id?: string;
   quantity?: string;
   product_code?: any;
@@ -15,8 +16,8 @@ export interface MaApiOrderListItem {
   sku?: string;
   image_file?: string;
   attribute_value_list?: MaApiCartProductAttribute;
-  price?: MaApiCartPrice;
-  discount?: MaApiProductDiscount;
+  price?: P;
+  discount?: D;
 }
 
 export interface MaApiOrderStatus {

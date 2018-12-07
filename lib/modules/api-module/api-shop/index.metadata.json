@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./api-shop.service","export":["MaApiShopService"]},{"from":"./api-shop.model","export":["MaApiShopData","MaApiShopListResponse"]}]}]

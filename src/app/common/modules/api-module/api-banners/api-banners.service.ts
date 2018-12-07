@@ -5,7 +5,7 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiBannersListResponse, MaApiBannersEmissionsListResponse } from './api-banners.model';
 
 @Injectable()
-export class MaApiBannersService<BR extends MaApiBannersListResponse, ER extends MaApiBannersEmissionsListResponse> {
+export class MaApiBannersService<BR extends MaApiBannersListResponse<any>, ER extends MaApiBannersEmissionsListResponse<any>> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 

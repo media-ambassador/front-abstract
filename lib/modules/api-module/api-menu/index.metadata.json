@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./api-menu.service","export":["MaApiMenuService"]},{"from":"./api-menu.model","export":["MaApiMenuCategories","MaApiMenuCategoryData","MaApiMenuCategoryChild","MaMenuItem"]}]}]

@@ -14,13 +14,13 @@ import {
 import { MaApiResponse } from '../api-common.model';
 
 @Injectable()
-export class MaApiCartService<CR extends MaApiCartListResponse,
+export class MaApiCartService<CR extends MaApiCartListResponse<any>,
                               ID extends MaApiSetItemData,
-                              IR extends MaApiSetItemResponse,
+                              IR extends MaApiSetItemResponse<any>,
                               DD extends MaApiSetDeliveryData,
                               R extends MaApiResponse,
                               PD extends MaApiSetPaymentData,
-                              OD extends MaApiMakeOrderData,
+                              OD extends MaApiMakeOrderData<any>,
                               OR extends MaApiMakeOrderResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }

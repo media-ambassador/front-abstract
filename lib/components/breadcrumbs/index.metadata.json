@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./breadcrumbs-item.directive"},{"from":"./breadcrumbs.component"},{"from":"./breadcrumbs.model"},{"from":"./breadcrumbs.module"},{"from":"./breadcrumbs.component","export":["MaBreadcrumbsComponent"]}]}]

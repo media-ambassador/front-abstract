@@ -4,7 +4,7 @@ import { MaApiBrandsResponse } from './api-brands.model';
 import { MaApiHttpClient } from '../api-http-client.service';
 
 @Injectable()
-export class MaApiBrandsService<BR extends MaApiBrandsResponse> {
+export class MaApiBrandsService<BR extends MaApiBrandsResponse<any>> {
 
   constructor(protected apiHttp: MaApiHttpClient) { }
 

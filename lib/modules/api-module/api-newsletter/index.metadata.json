@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./api-newsletter.service","export":["MaApiNewsletterService"]},{"from":"./api-newsletter.model","export":["MaApiNewsletterAddData","MaApiNewsletterAddResponse"]}]}]

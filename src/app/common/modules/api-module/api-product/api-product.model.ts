@@ -119,28 +119,28 @@ export interface MaApiProductData {
   variation_id?: number | string;
 }
 
-export interface MaApiProductPrice {
-  regular?: MaApiPriceInfo;
-  final?: MaApiPriceInfo;
+export interface MaApiProductPrice<T extends MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>> {
+  regular?: T;
+  final?: T;
 }
 
-export interface MaApiProductDiscount {
+export interface MaApiProductDiscount<T extends MaApiPriceDetails<MaApiPriceCurrency>> {
   components?: [
     {
       name?: string;
       type?: string;
       value?: {
-        unit?: MaApiPriceDetails;
-        total?: MaApiPriceDetails;
+        unit?: T;
+        total?: T;
       };
     }
   ];
   summary?: {
-    value?: MaApiPriceDetails;
+    value?: T;
   };
   value?: {
-    total?: MaApiPriceDetails;
-    unit?: MaApiPriceDetails;
+    total?: T;
+    unit?: T;
   };
 }
 

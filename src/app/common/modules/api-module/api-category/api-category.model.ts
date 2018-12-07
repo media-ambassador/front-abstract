@@ -1,5 +1,5 @@
 import { MaApiProductData } from '../api-product/api-product.model';
-import { MaApiBreadcrumbs, MaApiFilters } from '../api-common.model';
+import { MaApiBreadcrumbs, MaApiFilters, MaApiFilterAttributes, MaApiFilterAttribute, MaApiFilterAttributesListValue } from '../api-common.model';
 
 export interface MaApiCategoryData {
   category_banner_title?: string;
@@ -28,7 +28,7 @@ export interface MaApiCategoryData {
   category_url?: string;
 }
 
-export interface MaApiCategoryResponse {
+export interface MaApiCategoryResponse<T extends MaApiFilters<MaApiFilterAttributes<MaApiFilterAttribute<MaApiFilterAttributesListValue>>>> {
   brand_data?: any;
   brand_id?: number;
   brand_name?: string;
@@ -42,7 +42,7 @@ export interface MaApiCategoryResponse {
   debug?: boolean;
   description?: string;
   filter_type?: string;
-  filters?: MaApiFilters;
+  filters?: T;
   isCategoryBanner?: any;
   keywords?: string;
   list: MaApiProductData[];
