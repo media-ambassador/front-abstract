@@ -7,4 +7,5 @@ export declare class MaGtmService {
     gtmSendStateChange(path: string, referrer: string): void;
     gtmStateChangePush(page: string): void;
     gtmEcommercePush(orderData: MaApiCartListData, orderId: string): void;
+    gtmPushCustomEvent(event: string, category?: string, label?: string): void;
 }

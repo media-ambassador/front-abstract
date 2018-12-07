@@ -16,7 +16,6 @@ export {
   MaApiModuleConfigKey,
   MaApiModuleConfig,
   MaApiResponse,
-  MaApiSeo,
   MaApiPriceCurrency,
   MaApiPriceDetails,
   MaApiPriceInfo,

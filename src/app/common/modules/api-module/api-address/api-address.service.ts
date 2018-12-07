@@ -6,19 +6,19 @@ import { MaApiResponse } from '../api-common.model';
 import { MaApiAddressData } from './api-address.model';
 
 @Injectable()
-export class MaApiAddressService {
+export class MaApiAddressService<D extends MaApiAddressData, R extends MaApiResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 
-  createAddress(data: MaApiAddressData): Observable<MaApiResponse> {
+  createAddress(data: D): Observable<R> {
     return this.apiHttpClient.post(`/address/create`, JSON.stringify(data));
   }
 
-  updateAddress(data: MaApiAddressData): Observable<MaApiResponse> {
+  updateAddress(data: D): Observable<R> {
     return this.apiHttpClient.post(`/address/update`, JSON.stringify(data));
   }
 
-  deleteAddress(id: string): Observable<MaApiResponse> {
+  deleteAddress(id: string): Observable<R> {
     return this.apiHttpClient.delete(`/address/delete`, { body: { id: id } });
   }
 }

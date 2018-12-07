@@ -5,19 +5,19 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiNewsletterAddData, MaApiNewsletterAddResponse } from './api-newsletter.model';
 
 @Injectable()
-export class MaApiNewsletterService {
+export class MaApiNewsletterService<ND extends MaApiNewsletterAddData, NR extends MaApiNewsletterAddResponse> {
 
   constructor(protected apiHttp: MaApiHttpClient) { }
 
-  addFreshMailSubscriber(data: MaApiNewsletterAddData): Observable<MaApiNewsletterAddResponse> {
+  addFreshMailSubscriber(data: ND): Observable<NR> {
     return this.apiHttp.post(`/freshmail/subscriber/add`, data);
   }
 
-  addGetResponseSubscriber(data: MaApiNewsletterAddData): Observable<MaApiNewsletterAddResponse> {
+  addGetResponseSubscriber(data: ND): Observable<NR> {
     return this.apiHttp.post(`/getresponse/subscriber/add`, data);
   }
 
-  addSubscriber(data: MaApiNewsletterAddData): Observable<MaApiNewsletterAddResponse> {
+  addSubscriber(data: ND): Observable<NR> {
     return this.apiHttp.post(`/newsletter/subscriber/add`, data);
   }
 

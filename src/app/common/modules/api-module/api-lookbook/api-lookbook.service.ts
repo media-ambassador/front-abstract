@@ -4,15 +4,15 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiLookBookResponse } from './api-lookbook.model';
 
 @Injectable()
-export class MaApiLookBookService {
+export class MaApiLookBookService<LR extends MaApiLookBookResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 
-  getLookBook(): Observable<MaApiLookBookResponse> {
+  getLookBook(): Observable<LR> {
     return this.apiHttpClient.get(`/lookbook/list`);
   }
 
-  getLookBookBySlug(slug: string): Observable<MaApiLookBookResponse> {
+  getLookBookBySlug(slug: string): Observable<LR> {
     return this.apiHttpClient.get(`/lookbook/${slug}`);
   }
 }

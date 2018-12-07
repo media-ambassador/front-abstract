@@ -15,15 +15,6 @@ export interface MaApiResponse {
   data: any;
 }
 
-export interface MaApiSeo {
-  description?: string;
-  keywords?: string;
-  nofollow?: string;
-  noindex?: string;
-  title?: string;
-  url?: string;
-}
-
 
 export interface MaApiPriceCurrency {
   code: string;

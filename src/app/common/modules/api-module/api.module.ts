@@ -10,6 +10,7 @@ import { MaApiHttpClientInterceptor } from './api-http-client.interceptor';
 import { MaApiAddressService } from './api-address/api-address.service';
 import { MaApiArticleService } from './api-article/api-article.service';
 import { MaApiBannersService } from './api-banners/api-banners.service';
+import { MaApiBrandsService } from './api-brands/api-brands.service';
 import { MaApiCartService } from './api-cart/api-cart.service';
 import { MaApiCategoryService } from './api-category/api-category.service';
 import { MaApiMenuService } from './api-menu/api-menu.service';
@@ -31,6 +32,7 @@ import { MaApiSearchService } from './api-search';
     MaApiAddressService,
     MaApiArticleService,
     MaApiBannersService,
+    MaApiBrandsService,
     MaApiCartService,
     MaApiCategoryService,
     MaApiMenuService,

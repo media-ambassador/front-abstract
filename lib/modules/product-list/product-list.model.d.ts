@@ -15,4 +15,5 @@ export interface MaProductListOptions {
     attributes?: MaProductListOptionsAttribute[];
     price?: MaProductListPriceOptions;
     brands?: any;
+    flag?: string;
 }

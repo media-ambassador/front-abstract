@@ -20,7 +20,7 @@ export class MaSafeService {
   protected cartSafeListSubject$: ReplaySubject<MaApiCartListResponse>;
   protected cartSafeList: MaApiCartListResponse;
 
-  constructor(protected apiSafeService: MaApiSafeService,
+  constructor(protected apiSafeService: MaApiSafeService<MaApiCartListResponse, MaApiSetItemResponse, MaApiSafeCreateResponse, MaApiResponse>,
               protected authService: MaAuthService) {
 
     this.cartSafeListSubject$ = new ReplaySubject<MaApiCartListResponse>(1);

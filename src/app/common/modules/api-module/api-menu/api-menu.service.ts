@@ -5,12 +5,12 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiMenuCategories } from './api-menu.model';
 
 @Injectable()
-export class MaApiMenuService {
+export class MaApiMenuService<MR extends MaApiMenuCategories> {
   protected baseUrl = `/menu`;
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 
-  getMenuCategories(): Observable<MaApiMenuCategories> {
-    return this.apiHttpClient.get<MaApiMenuCategories>(`${this.baseUrl}/categories`);
+  getMenuCategories(): Observable<MR> {
+    return this.apiHttpClient.get<MR>(`${this.baseUrl}/categories`);
   }
 }

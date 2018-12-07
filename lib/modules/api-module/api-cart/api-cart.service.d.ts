@@ -2,15 +2,15 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { Observable } from 'rxjs/Observable';
 import { MaApiCartListResponse, MaApiSetItemData, MaApiSetItemResponse, MaApiSetDeliveryData, MaApiSetPaymentData, MaApiMakeOrderData, MaApiMakeOrderResponse } from './api-cart.model';
 import { MaApiResponse } from '../api-common.model';
-export declare class MaApiCartService {
+export declare class MaApiCartService<CR extends MaApiCartListResponse, ID extends MaApiSetItemData, IR extends MaApiSetItemResponse, DD extends MaApiSetDeliveryData, R extends MaApiResponse, PD extends MaApiSetPaymentData, OD extends MaApiMakeOrderData, OR extends MaApiMakeOrderResponse> {
     protected apiHttpClient: MaApiHttpClient;
     constructor(apiHttpClient: MaApiHttpClient);
-    getList(): Observable<MaApiCartListResponse>;
-    setItem(setItemData: MaApiSetItemData): Observable<MaApiSetItemResponse>;
-    setDelivery(data: MaApiSetDeliveryData): Observable<MaApiResponse>;
-    setPayment(data: MaApiSetPaymentData): Observable<MaApiResponse>;
-    clear(id: number): Observable<MaApiResponse>;
-    makeOrder(makeOrderData: MaApiMakeOrderData): Observable<MaApiMakeOrderResponse>;
-    setDiscount(code: string): Observable<MaApiResponse>;
-    removeDiscount(): Observable<MaApiResponse>;
+    getList(): Observable<CR>;
+    setItem(setItemData: ID): Observable<IR>;
+    setDelivery(data: DD): Observable<R>;
+    setPayment(data: PD): Observable<R>;
+    clear(id: number): Observable<R>;
+    makeOrder(makeOrderData: OD): Observable<OR>;
+    setDiscount(code: string): Observable<R>;
+    removeDiscount(): Observable<R>;
 }

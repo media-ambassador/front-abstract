@@ -14,7 +14,11 @@ import {
   MaApiUserAuthorizeResponseData,
   MaApiUserRemindData,
   MaApiFbAuthorizeData,
-  MaApiFbAuthorizeResponse
+  MaApiFbAuthorizeResponse,
+  MaApiUserTokenResponse,
+  MaApiUserChangePasswordData,
+  MaApiUserAddressResponse,
+  MaApiUserOrderListResponse
 } from '../../modules/api-module/api-user/api-user.model';
 import { MaApiResponse } from '../../modules/api-module';
 
@@ -28,7 +32,18 @@ export class MaAuthService {
   protected userDataSubject$: ReplaySubject<MaApiUserData> = new ReplaySubject<MaApiUserData>(1);
   protected token: string;
 
-  constructor(protected apiUserService: MaApiUserService,
+  constructor(protected apiUserService: MaApiUserService<MaApiUserAuthorizeData,
+                                                         MaApiUserAuthorizeResponse,
+                                                         MaApiFbAuthorizeData,
+                                                         MaApiFbAuthorizeResponse,
+                                                         MaApiUserRegisterData,
+                                                         MaApiUserRegisterResponse,
+                                                         MaApiUserOrderListResponse,
+                                                         MaApiUserAddressResponse,
+                                                         MaApiUserChangePasswordData,
+                                                         MaApiUserTokenResponse,
+                                                         MaApiUserRemindData,
+                                                         MaApiResponse>,
               protected cookieService: CookieService) { }
 
   populate(clear = false): Promise<boolean> {

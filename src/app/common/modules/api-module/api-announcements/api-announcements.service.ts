@@ -5,11 +5,11 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiAnnouncementsResponseData } from './api-announcements.model';
 
 @Injectable()
-export class MaApiAnnouncementsService {
+export class MaApiAnnouncementsService<R extends MaApiAnnouncementsResponseData> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 
-  getAnnouncementsData(): Observable<MaApiAnnouncementsResponseData> {
+  getAnnouncementsData(): Observable<R> {
     return this.apiHttpClient.get(`/announcements`);
   }
 }

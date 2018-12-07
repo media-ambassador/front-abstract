@@ -16,14 +16,14 @@ export interface MaApiAddressData {
 export interface MaApiInvoiceData {
   id?: string;
   isCompany?: boolean;
-  street: string;
-  number: number;
-  apartment: string;
-  zip: string;
-  city: string;
-  company: string;
-  firstname: string;
-  lastname: string;
+  street?: string;
+  number?: number;
+  apartment?: string;
+  zip?: string;
+  city?: string;
+  company?: string;
+  firstname?: string;
+  lastname?: string;
   tax_no?: string;
 }
 

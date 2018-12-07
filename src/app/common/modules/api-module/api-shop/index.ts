@@ -3,6 +3,6 @@ export {
 } from './api-shop.service';
 
 export {
-  MaApiShopItem,
+  MaApiShopData,
   MaApiShopListResponse
 } from './api-shop.model';

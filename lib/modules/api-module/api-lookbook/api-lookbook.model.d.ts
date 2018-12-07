@@ -1,9 +1,9 @@
 import { MaApiResponse } from '../api-common.model';
 export interface MaApiLookBookItemProduct {
-    idProduct: string;
-    ean: string;
-    displayName: string;
-    product_code: string;
+    idProduct?: string;
+    ean?: string;
+    displayName?: string;
+    product_code?: string;
 }
 export interface MaApiLookBookItem {
     ll_id?: string;

@@ -5,11 +5,11 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiShopListResponse } from './api-shop.model';
 
 @Injectable()
-export class MaApiShopService {
+export class MaApiShopService<SR extends MaApiShopListResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 
-  getShopList(): Observable<MaApiShopListResponse> {
+  getShopList(): Observable<SR> {
     return this.apiHttpClient.get(`/shop/list`);
   }
 }

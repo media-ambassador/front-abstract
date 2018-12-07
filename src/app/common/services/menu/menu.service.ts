@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
-import { MaMenuItem, MaApiMenuCategoryData, MaApiMenuService } from '../../modules/api-module/api-menu';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
+
+
+import {
+  MaMenuItem,
+  MaApiMenuCategoryData,
+  MaApiMenuService,
+  MaApiMenuCategories
+} from '../../modules/api-module/api-menu';
 
 import * as _ from 'lodash';
 
@@ -10,7 +17,7 @@ export class MaMenuService {
   protected menuData$ = new ReplaySubject<MaMenuItem[]>(1);
   protected menuData: MaMenuItem[];
 
-  constructor(protected apiMenuService: MaApiMenuService) { }
+  constructor(protected apiMenuService: MaApiMenuService<MaApiMenuCategories>) { }
 
   loadMenu(rootLevel = 1, deepLevel = 3) {
     this.apiMenuService.getMenuCategories().subscribe(response => {

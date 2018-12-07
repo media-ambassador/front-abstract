@@ -62,4 +62,14 @@ export class MaGtmService {
     }
   }
 
+  gtmPushCustomEvent(event: string, category = '', label = '' ) {
+    const gtmEventData = {
+      event: event,
+      category: category,
+      label: label
+    };
+
+    this.dataLayer.push(gtmEventData);
+  }
+
 }

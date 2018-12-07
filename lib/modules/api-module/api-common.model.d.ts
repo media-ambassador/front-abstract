@@ -11,14 +11,6 @@ export interface MaApiResponse {
     message_vars: any[];
     data: any;
 }
-export interface MaApiSeo {
-    description?: string;
-    keywords?: string;
-    nofollow?: string;
-    noindex?: string;
-    title?: string;
-    url?: string;
-}
 export interface MaApiPriceCurrency {
     code: string;
     label: string;

@@ -13,7 +13,7 @@ export {
   MaApiUserRemindData,
   MaApiUserRegisterResponse,
   MaApiUserTokenResponse,
-  MaApiUserAddressResponseData,
+  MaApiUserAddressResponse,
   MaApiUserChangePasswordData,
   MaApiUserOrderListResponse
 } from './api-user.model';

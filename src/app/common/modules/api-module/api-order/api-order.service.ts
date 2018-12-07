@@ -5,11 +5,11 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiOrderResponse } from './api-order.model';
 
 @Injectable()
-export class MaApiOrderService {
+export class MaApiOrderService<OR extends MaApiOrderResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 
-  getOrder(id: string): Observable<MaApiOrderResponse> {
+  getOrder(id: string): Observable<OR> {
     return this.apiHttpClient.post(`/order/get`, { id: id });
   }
 }

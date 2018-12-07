@@ -1,4 +1,5 @@
 export { MaApiAnnouncementsService } from './api-announcements.service';
+
 export {
   MaApiAnnouncementsItem,
   MaApiAnnouncementsResponseData

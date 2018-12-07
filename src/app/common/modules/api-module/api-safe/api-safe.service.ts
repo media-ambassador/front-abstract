@@ -6,27 +6,27 @@ import { MaApiResponse } from '../api-common.model';
 import { MaApiSetItemResponse, MaApiSetItemData, MaApiCartListResponse } from '../api-cart/api-cart.model';
 
 @Injectable()
-export class MaApiSafeService {
+export class MaApiSafeService<CR extends MaApiCartListResponse, IR extends MaApiSetItemResponse, SR extends MaApiSafeCreateResponse, R extends MaApiResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 
-  getList(): Observable<MaApiCartListResponse> {
+  getList(): Observable<CR> {
     return this.apiHttpClient.get(`/safe/list`);
   }
 
-  setItem(setItemData: MaApiSetItemData): Observable<MaApiSetItemResponse> {
+  setItem(setItemData: MaApiSetItemData): Observable<IR> {
     return this.apiHttpClient.post(`/safe/setitem`, setItemData);
   }
 
-  clear(): Observable<MaApiResponse> {
+  clear(): Observable<R> {
     return this.apiHttpClient.post(`/safe/clear`, { });
   }
 
-  create(): Observable<MaApiSafeCreateResponse> {
+  create(): Observable<SR> {
     return this.apiHttpClient.post(`/safe/create`, { });
   }
 
-  addAllToCart(removeAll = false): Observable<MaApiResponse> {
+  addAllToCart(removeAll = false): Observable<R> {
     return this.apiHttpClient.post(`/safe/addalltocart`, { removeItems: removeAll });
   }
 

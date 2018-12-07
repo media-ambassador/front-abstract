@@ -1,5 +1,6 @@
 import { Dictionary } from 'lodash';
-import { MaApiResponse, MaApiSeo } from '../api-common.model';
+import { MaApiResponse } from '../api-common.model';
+import { MaApiSeo } from '../api-meta';
 export interface MaApiArticleCategoryData {
     content?: string;
     id?: string;
@@ -23,7 +24,7 @@ export interface MaApiDynamicArticleCategoriesResponse extends MaApiResponse {
 export interface MaApiDynamicArticleTagContent {
     content: any;
     layout: MaApiDynamicArticleLayoutType;
-    order: number;
+    order?: number;
 }
 export interface MaApiDynamicArticleTagData {
     content: MaApiDynamicArticleTagContent[];
@@ -34,10 +35,10 @@ export interface MaApiDynamicArticleTagsResponse extends MaApiResponse {
     data: Dictionary<MaApiDynamicArticleTagData>;
 }
 export interface MaApiDynamicArticleCategoryInfo {
-    bc_id: string;
-    bc_name: string;
-    bc_news: string;
-    bc_banner: string;
-    bc_description: string;
-    bc_lang: string;
+    bc_id?: string;
+    bc_name?: string;
+    bc_news?: string;
+    bc_banner?: string;
+    bc_description?: string;
+    bc_lang?: string;
 }

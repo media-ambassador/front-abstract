@@ -5,45 +5,46 @@ import { MaApiProductDiscount, MaApiProductPrice } from '../api-product/api-prod
 import { MaApiAddressData } from '../api-address/api-address.model';
 
 export interface MaApiOrderListItem {
-  product_id: string;
-  quantity: string;
-  product_code: any;
-  display_name: string;
-  slug_name: string;
-  brand_id: string;
-  brand_name: string;
-  sku: string;
-  image_file: string;
-  attribute_value_list: MaApiCartProductAttribute;
-  price: MaApiCartPrice;
-  discount: MaApiProductDiscount;
+  product_id?: string;
+  quantity?: string;
+  product_code?: any;
+  display_name?: string;
+  slug_name?: string;
+  brand_id?: string;
+  brand_name?: string;
+  sku?: string;
+  image_file?: string;
+  attribute_value_list?: MaApiCartProductAttribute;
+  price?: MaApiCartPrice;
+  discount?: MaApiProductDiscount;
 }
 
 export interface MaApiOrderStatus {
-  code: string;
-  name: string;
+  id?: string;
+  code?: string;
+  name?: string;
 }
 
 export interface MaApiOrderListData {
-  created: number;
-  currency: MaApiPriceCurrency;
-  id: string;
-  code: string;
+  created?: number;
+  currency?: MaApiPriceCurrency;
+  id?: string;
+  code?: string;
   discount?: MaApiProductDiscount;
-  identifier: string;
-  items: Dictionary<MaApiOrderListItem>;
-  modified: boolean;
-  payment: {
-    address: MaApiAddressData;
-    selected_payment: MaApiPaymentOption;
+  identifier?: string;
+  items?: Dictionary<MaApiOrderListItem>;
+  modified?: boolean;
+  payment?: {
+    address?: MaApiAddressData;
+    selected_payment?: MaApiPaymentOption;
   };
-  shipment: {
-    address: MaApiAddressData;
-    delivery: MaApiDeliveryOption;
+  shipment?: {
+    address?: MaApiAddressData;
+    delivery?: MaApiDeliveryOption;
   };
-  price: MaApiProductPrice;
-  status: MaApiOrderStatus;
-  user_id: string;
+  price?: MaApiProductPrice;
+  status?: MaApiOrderStatus;
+  user_id?: string;
 }
 
 export interface MaApiOrderResponse extends MaApiResponse {

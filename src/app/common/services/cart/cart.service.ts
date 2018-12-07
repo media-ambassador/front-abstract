@@ -15,10 +15,12 @@ import {
   MaApiSetPaymentData,
   MaApiDeliveryOption,
   MaApiMakeOrderResponse,
-  MaApiCartProduct
+  MaApiCartProduct,
+  MaApiMakeOrderData
 } from '../../modules/api-module/api-cart/api-cart.model';
 
 import * as _ from 'lodash';
+import { MaApiResponse } from '../../modules/api-module';
 
 @Injectable()
 export class MaCartService {
@@ -29,7 +31,14 @@ export class MaCartService {
   protected cartList: MaApiCartListResponse;
   protected cartId: number;
 
-  constructor(protected apiCartService: MaApiCartService,
+  constructor(protected apiCartService: MaApiCartService<MaApiCartListResponse,
+                                                         MaApiSetItemData,
+                                                         MaApiSetItemResponse,
+                                                         MaApiSetDeliveryData,
+                                                         MaApiResponse,
+                                                         MaApiSetPaymentData,
+                                                         MaApiMakeOrderData,
+                                                         MaApiMakeOrderResponse>,
               protected authService: MaAuthService) {
 
     this.sidebarCartOpenSubject$ = new ReplaySubject<boolean>(1);

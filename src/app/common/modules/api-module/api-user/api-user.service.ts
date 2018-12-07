@@ -13,55 +13,67 @@ import {
   MaApiUserOrderListResponse,
   MaApiUserRemindData,
   MaApiFbAuthorizeData,
-  MaApiFbAuthorizeResponse
+  MaApiFbAuthorizeResponse,
+  MaApiUserAddressResponse
 } from './api-user.model';
 
 @Injectable()
-export class MaApiUserService {
+export class MaApiUserService<UAD extends MaApiUserAuthorizeData,
+                              UAR extends MaApiUserAuthorizeResponse,
+                              FAD extends MaApiFbAuthorizeData,
+                              FAR extends MaApiFbAuthorizeResponse,
+                              URD extends MaApiUserRegisterData,
+                              URR extends MaApiUserRegisterResponse,
+                              UOR extends MaApiUserOrderListResponse,
+                              UADR extends MaApiUserAddressResponse,
+                              UPD extends MaApiUserChangePasswordData,
+                              UTR extends MaApiUserTokenResponse,
+                              URED extends MaApiUserRemindData,
+                              R extends MaApiResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 
-  authorize(authData: MaApiUserAuthorizeData): Observable<MaApiUserAuthorizeResponse> {
+  authorize(authData: UAD): Observable<UAR> {
     return this.apiHttpClient.post(`/user/authorize`, authData);
   }
 
-  fbAuthorize(fbAuthData: MaApiFbAuthorizeData): Observable<MaApiFbAuthorizeResponse> {
+  fbAuthorize(fbAuthData: FAD): Observable<FAR> {
     return this.apiHttpClient.post(`/user/fbauthorize`, fbAuthData);
   }
 
-  register(registerData: MaApiUserRegisterData): Observable<MaApiUserRegisterResponse> {
+  register(registerData: URD): Observable<URR> {
     return this.apiHttpClient.post(`/user/register`, registerData);
   }
 
-  getAddressList(): Observable<MaApiResponse> {
+  getAddressList(): Observable<UADR> {
     return this.apiHttpClient.get(`/user/addresslist`);
   }
-  changePassword(changePasswordData: MaApiUserChangePasswordData): Observable<MaApiResponse> {
+  changePassword(changePasswordData: UPD): Observable<R> {
     return this.apiHttpClient.post(`/user/changepassword`, changePasswordData);
   }
 
-  getOrderList(): Observable<MaApiUserOrderListResponse> {
+  getOrderList(): Observable<UOR> {
     return this.apiHttpClient.get(`/user/orderlist`);
   }
 
-  token(clear = false): Observable<MaApiUserTokenResponse> {
+  token(clear = false): Observable<UTR> {
     const clearParam = clear ? '?clear=true' : '';
     return this.apiHttpClient.get(`/user/token${clearParam}`);
   }
 
-  remind(remindData: MaApiUserRemindData): Observable<MaApiResponse> {
+  remind(remindData: URED): Observable<R> {
     return this.apiHttpClient.post(`/user/remindpassword`, remindData);
   }
 
-  getReturnsList(): Observable<MaApiUserOrderListResponse> {
+  getReturnsList(): Observable<UOR> {
     return this.apiHttpClient.get(`/user/returnlist`);
   }
 
-  checkUserExist(email: string): Observable<MaApiResponse> {
+  checkUserExist(email: string): Observable<R> {
     return this.apiHttpClient.post(`/user/exists`, { email: email });
   }
 
-  logout(): Observable<MaApiResponse> {
+  logout(): Observable<R> {
     return this.apiHttpClient.post(`/user/logout`, {});
   }
 

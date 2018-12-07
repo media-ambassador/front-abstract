@@ -6,11 +6,11 @@ import { MaApiCartListResponse, MaApiSetItemResponse, MaApiCartListData } from '
 import { MaAuthService } from '../auth/auth.service';
 import { MaApiResponse } from '../../modules/api-module';
 export declare class MaSafeService {
-    protected apiSafeService: MaApiSafeService;
+    protected apiSafeService: MaApiSafeService<MaApiCartListResponse, MaApiSetItemResponse, MaApiSafeCreateResponse, MaApiResponse>;
     protected authService: MaAuthService;
     protected cartSafeListSubject$: ReplaySubject<MaApiCartListResponse>;
     protected cartSafeList: MaApiCartListResponse;
-    constructor(apiSafeService: MaApiSafeService, authService: MaAuthService);
+    constructor(apiSafeService: MaApiSafeService<MaApiCartListResponse, MaApiSetItemResponse, MaApiSafeCreateResponse, MaApiResponse>, authService: MaAuthService);
     init(): Observable<MaApiSafeCreateResponse>;
     refreshCartSafeList(): void;
     watchCartSafeList(): Observable<MaApiCartListResponse>;
