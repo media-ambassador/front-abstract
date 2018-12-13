@@ -6,21 +6,21 @@ import { MaApiCartListResponse, MaApiSetItemResponse, MaApiCartListData } from '
 import { MaAuthService } from '../auth/auth.service';
 import { MaApiResponse } from '../../modules/api-module';
 export declare class MaSafeService {
-    protected apiSafeService: MaApiSafeService<MaApiCartListResponse, MaApiSetItemResponse, MaApiSafeCreateResponse, MaApiResponse>;
+    protected apiSafeService: MaApiSafeService<MaApiCartListResponse<any>, MaApiSetItemResponse<any>, MaApiSafeCreateResponse, MaApiResponse>;
     protected authService: MaAuthService;
-    protected cartSafeListSubject$: ReplaySubject<MaApiCartListResponse>;
-    protected cartSafeList: MaApiCartListResponse;
-    constructor(apiSafeService: MaApiSafeService<MaApiCartListResponse, MaApiSetItemResponse, MaApiSafeCreateResponse, MaApiResponse>, authService: MaAuthService);
+    protected cartSafeListSubject$: ReplaySubject<MaApiCartListResponse<any>>;
+    protected cartSafeList: MaApiCartListResponse<any>;
+    constructor(apiSafeService: MaApiSafeService<MaApiCartListResponse<any>, MaApiSetItemResponse<any>, MaApiSafeCreateResponse, MaApiResponse>, authService: MaAuthService);
     init(): Observable<MaApiSafeCreateResponse>;
     refreshCartSafeList(): void;
-    watchCartSafeList(): Observable<MaApiCartListResponse>;
-    getCartSafeData(): MaApiCartListData;
+    watchCartSafeList(): Observable<MaApiCartListResponse<any>>;
+    getCartSafeData(): MaApiCartListData<any, any, any, any, any, any, any>;
     isInSafeList(productId: number): boolean;
-    addElement(productId: number, quantity?: number): Observable<MaApiSetItemResponse>;
+    addElement(productId: number, quantity?: number): Observable<MaApiSetItemResponse<any>>;
     addAllToCart(removeAll?: boolean): Observable<MaApiResponse>;
-    removeElement(productId: number): Observable<MaApiSetItemResponse>;
-    changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse>;
-    changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse>;
+    removeElement(productId: number): Observable<MaApiSetItemResponse<any>>;
+    changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse<any>>;
+    changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse<any>>;
     clear(): void;
     reset(): void;
 }

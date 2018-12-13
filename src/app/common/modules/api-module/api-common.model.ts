@@ -1,4 +1,4 @@
-import { Dictionary } from 'lodash';
+import { Dictionary } from '../../models';
 
 export const MaApiModuleConfigKey = 'maApiModuleConfig';
 
@@ -21,20 +21,20 @@ export interface MaApiPriceCurrency {
   label: string;
 }
 
-export interface MaApiPriceDetails {
+export interface MaApiPriceDetails<T extends MaApiPriceCurrency> {
   net?: string;
   gross?: string;
   tax?: string;
   tax_percent?: string;
-  currency?: MaApiPriceCurrency;
+  currency?: T;
 }
 
-export interface MaApiPriceInfo {
+export interface MaApiPriceInfo<T extends MaApiPriceDetails<MaApiPriceCurrency>> {
   components?: {
-    delivery?: MaApiPriceDetails;
-    items?: MaApiPriceDetails;
+    delivery?: T;
+    items?: T;
   };
-  summary?: MaApiPriceDetails;
+  summary?: T;
 }
 
 export interface MaApiBreadcrumbs {
@@ -51,23 +51,23 @@ export interface MaApiFilterAttributesListValue {
   attribute_value_url?: string;
 }
 
-export interface MaApiFilterAttribute {
+export interface MaApiFilterAttribute<T extends MaApiFilterAttributesListValue> {
   attribute_display_name?: string;
   attribute_id?: number;
   attribute_name?: string;
   attribute_sort_order?: number;
   attribute_type?: number;
   attribute_use_in_template?: any[];
-  attribute_values?: MaApiFilterAttributesListValue[];
+  attribute_values?: T[];
 }
 
-export interface MaApiFilterAttributes {
+export interface MaApiFilterAttributes<T extends MaApiFilterAttribute<MaApiFilterAttributesListValue>> {
     checked_values_list: Dictionary<string[]>;
-    list: Dictionary<MaApiFilterAttribute>;
+    list: Dictionary<T>;
 }
 
-export interface MaApiFilters {
-  attributes: MaApiFilterAttributes;
+export interface MaApiFilters<T extends MaApiFilterAttributes<MaApiFilterAttribute<MaApiFilterAttributesListValue>>> {
+  attributes: T;
   brands: {
     checked_values_list: any[];
     list: any;

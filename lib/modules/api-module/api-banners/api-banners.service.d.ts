@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { MaApiHttpClient } from '../api-http-client.service';
-import { MaApiBannersListResponse, MaApiBannersEmissionsListResponse } from './api-banners.model';
-export declare class MaApiBannersService<BR extends MaApiBannersListResponse, ER extends MaApiBannersEmissionsListResponse> {
+import { MaApiBannersListResponse, MaApiBannersEmissionsListResponse, MaApiBannerData, MaApiBannerEmissionList, MaApiBannerEmission } from './api-banners.model';
+export declare class MaApiBannersService<BR extends MaApiBannersListResponse<MaApiBannerData>, ER extends MaApiBannersEmissionsListResponse<MaApiBannerEmissionList<MaApiBannerEmission<MaApiBannerData>>>> {
     protected apiHttpClient: MaApiHttpClient;
     constructor(apiHttpClient: MaApiHttpClient);
     getBannersList(): Observable<BR>;

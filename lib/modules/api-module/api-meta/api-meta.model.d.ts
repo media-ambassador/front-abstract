@@ -7,11 +7,11 @@ export interface MaApiMetaData {
     ss_value?: string;
     ss_lastmod_date?: string;
 }
-export interface MaApiMetaListResponse extends MaApiResponse {
-    data: MaApiMetaData[];
+export interface MaApiMetaListResponse<T extends MaApiMetaData> extends MaApiResponse {
+    data: T[];
 }
-export interface MaApiMetaTagResponse extends MaApiResponse {
-    data: MaApiMetaData;
+export interface MaApiMetaTagResponse<T extends MaApiMetaData> extends MaApiResponse {
+    data: T;
 }
 export interface MaApiSeo {
     description?: string;

@@ -10,17 +10,56 @@ import {
   MaApiSetPaymentData,
   MaApiMakeOrderData,
   MaApiMakeOrderResponse,
+  MaApiCartListData,
+  MaApiPayment,
+  MaApiPaymentOption,
+  MaApiDeliveryParcelData,
+  MaApiDelivery,
+  MaApiDeliveryOption,
+  MaApiParcelShopData,
+  MaApiCartProduct,
+  MaApiCartProductAttribute,
+  MaApiCartPrice,
+  MaApiCartPriceInfo,
+  MaApiMakeOrderAddressData,
 } from './api-cart.model';
-import { MaApiResponse } from '../api-common.model';
+
+import {
+  MaApiResponse,
+  MaApiPriceDetails,
+  MaApiPriceCurrency,
+  MaApiPriceInfo
+} from '../api-common.model';
+
+import {
+  MaApiProductPrice,
+  MaApiProductDiscount,
+  MaApiProductSize,
+  MaApiProductVariation,
+  MaApiProductAttribute,
+  MaApiProductImage
+} from '../api-product';
+
+import { MaApiShopData } from '../api-shop';
+import { MaApiAddressData, MaApiAddressType, MaApiInvoiceData } from '../api-address';
 
 @Injectable()
-export class MaApiCartService<CR extends MaApiCartListResponse,
+export class MaApiCartService<CR extends MaApiCartListResponse<MaApiCartListData<MaApiPayment<MaApiPaymentOption>,
+                                                               MaApiPriceDetails<MaApiPriceCurrency>,
+                                                               MaApiDeliveryParcelData,
+                                                               MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
+                                                               MaApiProductDiscount< MaApiPriceDetails<MaApiPriceCurrency>>,
+                                                               MaApiDelivery<MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>>,
+                                                               MaApiCartProduct<MaApiCartProductAttribute,
+                                                               MaApiPriceDetails<MaApiPriceCurrency>,
+                                                               MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
+                                                               MaApiProductSize>>>,
                               ID extends MaApiSetItemData,
-                              IR extends MaApiSetItemResponse,
+                              IR extends MaApiSetItemResponse<MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>>,
                               DD extends MaApiSetDeliveryData,
                               R extends MaApiResponse,
                               PD extends MaApiSetPaymentData,
-                              OD extends MaApiMakeOrderData,
+                              OD extends MaApiMakeOrderData<MaApiMakeOrderAddressData<MaApiAddressData<MaApiAddressType>, MaApiInvoiceData>>,
                               OR extends MaApiMakeOrderResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }

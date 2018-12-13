@@ -1,10 +1,13 @@
 import { MaApiResponse } from '../api-common.model';
 
-export interface MaApiMenuCategories extends MaApiResponse {
-  data: MaApiMenuCategoryData[];
+export interface MaApiMenuCategoryChild {
+  category_child_id?: string;
+  category_child_name?: string;
+  category_child_slug_name?: string;
+  category_child_url?: string;
 }
 
-export interface MaApiMenuCategoryData {
+export interface MaApiMenuCategoryData<T extends MaApiMenuCategoryChild> {
   category_id?: number;
   category_parent_id?: number;
   category_is_root?: number | boolean;
@@ -18,7 +21,7 @@ export interface MaApiMenuCategoryData {
   category_status?: boolean;
   category_special?: boolean;
   category_sort?: number;
-  category_children?: MaApiMenuCategoryChild[];
+  category_children?: T[];
   category_description?: string;
   category_longdescription?: string;
   category_photo?: string;
@@ -26,17 +29,15 @@ export interface MaApiMenuCategoryData {
   category_banner2?: string;
   category_url?: string;
 }
-
-export interface MaApiMenuCategoryChild {
-  category_child_id?: string;
-  category_child_name?: string;
-  category_child_slug_name?: string;
-  category_child_url?: string;
+export interface MaApiMenuCategories<T extends MaApiMenuCategoryData<MaApiMenuCategoryChild>> extends MaApiResponse {
+  data: T[];
 }
 
-export interface MaMenuItem {
+export interface MaMenuItemChildren extends MaMenuItem<MaMenuItemChildren> {}
+
+export interface MaMenuItem<T extends MaMenuItemChildren> {
   active?: boolean;
-  children?: MaMenuItem[];
+  children?: T[];
   displayName?: string;
   icon?: string;
   id?: string;

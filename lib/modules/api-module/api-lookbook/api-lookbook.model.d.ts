@@ -5,22 +5,22 @@ export interface MaApiLookBookItemProduct {
     displayName?: string;
     product_code?: string;
 }
-export interface MaApiLookBookItem {
+export interface MaApiLookBookItem<T extends MaApiLookBookItemProduct> {
     ll_id?: string;
     lb_id?: string;
     ll_name?: string;
     ll_file?: string;
     ll_imagetype?: string;
-    products: MaApiLookBookItemProduct[];
+    products: T[];
 }
-export interface MaApiLookBookData {
+export interface MaApiLookBookData<T extends MaApiLookBookItem<MaApiLookBookItemProduct>> {
     id?: string;
     identifier?: string;
     url?: string;
     slug_name?: string;
     title?: string;
-    Items?: MaApiLookBookItem[];
+    Items?: T[];
 }
-export interface MaApiLookBookResponse extends MaApiResponse {
-    data: MaApiLookBookData[];
+export interface MaApiLookBookResponse<T extends MaApiLookBookData<MaApiLookBookItem<MaApiLookBookItemProduct>>> extends MaApiResponse {
+    data: T[];
 }

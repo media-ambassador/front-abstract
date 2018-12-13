@@ -3,5 +3,4 @@ export interface MaApiNewsletterAddData {
     email: string;
 }
 export interface MaApiNewsletterAddResponse extends MaApiResponse {
-    data: any;
 }

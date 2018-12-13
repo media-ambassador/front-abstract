@@ -1,6 +1,6 @@
-import { Dictionary } from 'lodash';
 import { MaApiResponse } from '../api-common.model';
 import { MaApiSeo } from '../api-meta';
+import { Dictionary } from '../../../models';
 
 export interface MaApiArticleCategoryData<S extends MaApiSeo> {
   content?: string;

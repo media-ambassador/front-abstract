@@ -1,7 +1,10 @@
-import { Dictionary } from 'lodash';
-import { MaApiResponse } from '../api-common.model';
+import { MaApiResponse, MaApiPriceCurrency, MaApiPriceDetails, MaApiPriceInfo } from '../api-common.model';
 import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
-import { MaApiOrderListData } from '../api-order/api-order.model';
+import { MaApiOrderListData, MaApiOrderListItem, MaApiOrderStatus } from '../api-order/api-order.model';
+import { MaApiCartPrice, MaApiCartPriceInfo, MaApiCartProductAttribute, MaApiDeliveryOption } from '../api-cart';
+import { MaApiProductDiscount, MaApiProductPrice } from '../api-product';
+import { MaApiParcelShopData, MaApiDeliveryParcelData, MaApiPaymentOption } from '../api-cart/api-cart.model';
+import { Dictionary } from '../../../models';
 export interface MaApiUserAuthorizeData {
     login?: string;
     password?: string;
@@ -22,8 +25,8 @@ export interface MaApiUserAuthorizeResponseData {
     discount_percentage?: any;
     x_jwt_token?: string;
 }
-export interface MaApiUserAuthorizeResponse extends MaApiResponse {
-    data: MaApiUserAuthorizeResponseData;
+export interface MaApiUserAuthorizeResponse<T extends MaApiUserAuthorizeResponseData> extends MaApiResponse {
+    data: T;
 }
 export interface MaApiFbAuthorizeData {
     fbAccessToken?: string;
@@ -62,18 +65,18 @@ export interface MaApiUserRegisterResponse extends MaApiResponse {
         validationErrors?: Dictionary<string>;
     };
 }
-export interface MaApiUserTokenResponse extends MaApiResponse {
+export interface MaApiUserTokenResponse<T extends MaApiUserAuthorizeResponseData> extends MaApiResponse {
     data: {
         x_jwt_token?: string;
         is_logged?: boolean;
-        user_data: MaApiUserAuthorizeResponseData;
+        user_data: T;
     };
 }
-export interface MaApiUserAddressResponse extends MaApiResponse {
+export interface MaApiUserAddressResponse<AD extends MaApiAddressData<MaApiAddressType>, ID extends MaApiInvoiceData> extends MaApiResponse {
     data: {
-        billing?: MaApiAddressData<MaApiAddressType>[];
-        shipping?: MaApiAddressData<MaApiAddressType>[];
-        invoice?: MaApiInvoiceData[];
+        billing?: AD[];
+        shipping?: AD[];
+        invoice?: ID[];
     };
 }
 export interface MaApiUserChangePasswordData {
@@ -81,6 +84,6 @@ export interface MaApiUserChangePasswordData {
     password?: string;
     password_confirm?: string;
 }
-export interface MaApiUserOrderListResponse extends MaApiResponse {
-    data: MaApiOrderListData[];
+export interface MaApiUserOrderListResponse<OL extends MaApiOrderListData<MaApiPriceCurrency, MaApiPriceDetails<MaApiPriceCurrency>, MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>, MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>, MaApiCartProductAttribute>, MaApiAddressData<MaApiAddressType>, MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>, MaApiPaymentOption, MaApiOrderStatus, MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>>> extends MaApiResponse {
+    data: OL[];
 }

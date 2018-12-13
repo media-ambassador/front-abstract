@@ -2,10 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { MaApiHttpClient } from '../api-http-client.service';
-import { MaApiMenuCategories } from './api-menu.model';
+import {
+  MaApiMenuCategories,
+  MaApiMenuCategoryData,
+  MaApiMenuCategoryChild
+} from './api-menu.model';
 
 @Injectable()
-export class MaApiMenuService<MR extends MaApiMenuCategories> {
+export class MaApiMenuService<MR extends MaApiMenuCategories<MaApiMenuCategoryData<MaApiMenuCategoryChild>>> {
   protected baseUrl = `/menu`;
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }

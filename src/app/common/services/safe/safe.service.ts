@@ -17,13 +17,13 @@ import { MaApiResponse } from '../../modules/api-module';
 
 @Injectable()
 export class MaSafeService {
-  protected cartSafeListSubject$: ReplaySubject<MaApiCartListResponse>;
-  protected cartSafeList: MaApiCartListResponse;
+  protected cartSafeListSubject$: ReplaySubject<MaApiCartListResponse<any>>;
+  protected cartSafeList: MaApiCartListResponse<any>;
 
-  constructor(protected apiSafeService: MaApiSafeService<MaApiCartListResponse, MaApiSetItemResponse, MaApiSafeCreateResponse, MaApiResponse>,
+  constructor(protected apiSafeService: MaApiSafeService<MaApiCartListResponse<any>, MaApiSetItemResponse<any>, MaApiSafeCreateResponse, MaApiResponse>,
               protected authService: MaAuthService) {
 
-    this.cartSafeListSubject$ = new ReplaySubject<MaApiCartListResponse>(1);
+    this.cartSafeListSubject$ = new ReplaySubject<MaApiCartListResponse<any>>(1);
     this.authService.watchAuthorized().subscribe(() => this.refreshCartSafeList());
   }
 
@@ -48,11 +48,11 @@ export class MaSafeService {
     });
   }
 
-  watchCartSafeList(): Observable<MaApiCartListResponse> {
+  watchCartSafeList(): Observable<MaApiCartListResponse<any>> {
     return this.cartSafeListSubject$.asObservable();
   }
 
-  getCartSafeData(): MaApiCartListData {
+  getCartSafeData(): MaApiCartListData<any, any, any, any, any, any, any> {
     return this.cartSafeList ? this.cartSafeList.data : null;
   }
 
@@ -73,7 +73,7 @@ export class MaSafeService {
     return isFavorite;
   }
 
-  addElement(productId: number, quantity = 1): Observable<MaApiSetItemResponse> {
+  addElement(productId: number, quantity = 1): Observable<MaApiSetItemResponse<any>> {
     const itemData: MaApiSetItemData = {
       product_id: productId,
       quantity: quantity
@@ -98,11 +98,11 @@ export class MaSafeService {
     );
   }
 
-  removeElement(productId: number): Observable<MaApiSetItemResponse> {
+  removeElement(productId: number): Observable<MaApiSetItemResponse<any>> {
     return this.addElement(productId, 0);
   }
 
-  changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse> {
+  changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse<any>> {
     const itemData: MaApiSetItemData = {
       product_id: productId,
       quantity: quantity
@@ -112,7 +112,7 @@ export class MaSafeService {
       tap(() =>  this.refreshCartSafeList()));
   }
 
-  changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse> {
+  changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse<any>> {
     const itemData: MaApiSetItemData = {
       product_id: newProductId,
       quantity: quantity

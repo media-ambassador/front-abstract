@@ -17,7 +17,7 @@ import * as _ from 'lodash';
   styles: []
 })
 export class MaProductListFiltersComponent extends MaProductListComponent implements OnInit {
-  @Input() filters: MaApiFilters;
+  @Input() filters: MaApiFilters<any>;
 
   public activeAttributes: MaProductListOptionsAttribute[];
   public price: MaProductListPriceOptions;
@@ -35,11 +35,11 @@ export class MaProductListFiltersComponent extends MaProductListComponent implem
     });
   }
 
-  getAttributeId(attribute: MaApiFilterAttribute, attributeValue: MaApiFilterAttributesListValue) {
+  getAttributeId(attribute: MaApiFilterAttribute<any>, attributeValue: MaApiFilterAttributesListValue) {
     return 'attr-' + attribute.attribute_id + '-' + attributeValue.attribute_value_id;
   }
 
-  hasFilters(attribute: MaApiFilterAttribute) {
+  hasFilters(attribute: MaApiFilterAttribute<any>) {
     return !!this.filters.attributes.checked_values_list[attribute.attribute_id];
   }
 
@@ -52,13 +52,13 @@ export class MaProductListFiltersComponent extends MaProductListComponent implem
     return totalCount;
   }
 
-  countFilters(attribute: MaApiFilterAttribute) {
+  countFilters(attribute: MaApiFilterAttribute<any>) {
     const filters: string[] = this.filters.attributes.checked_values_list[attribute.attribute_id];
 
     return filters ? filters.length : 0;
   }
 
-  isAttributeActive(attribute: MaApiFilterAttribute, attrItem: MaApiFilterAttributesListValue): boolean {
+  isAttributeActive(attribute: MaApiFilterAttribute<any>, attrItem: MaApiFilterAttributesListValue): boolean {
     const filters: string[] = this.filters.attributes.checked_values_list[attribute.attribute_id];
 
     if (!filters) {
@@ -68,7 +68,7 @@ export class MaProductListFiltersComponent extends MaProductListComponent implem
     return filters.indexOf(attrItem.attribute_value_id) >= 0;
   }
 
-  onAttributeChange(attribute: MaApiFilterAttribute, attrItem: MaApiFilterAttributesListValue) {
+  onAttributeChange(attribute: MaApiFilterAttribute<any>, attrItem: MaApiFilterAttributesListValue) {
     const isActive = this.isAttributeActive(attribute, attrItem);
 
     if (isActive) {
@@ -94,7 +94,7 @@ export class MaProductListFiltersComponent extends MaProductListComponent implem
     this.updateAttributes();
   }
 
-  clearAttributeFilters(attribute: MaApiFilterAttribute) {
+  clearAttributeFilters(attribute: MaApiFilterAttribute<any>) {
     _.remove(this.activeAttributes, item => {
       return item.filterGroupId === attribute.attribute_id.toString();
     });

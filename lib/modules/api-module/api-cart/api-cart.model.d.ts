@@ -1,33 +1,17 @@
-import { Dictionary } from 'lodash';
-import { MaApiPriceDetails, MaApiResponse } from '../api-common.model';
-import { MaApiProductPrice, MaApiProductDiscount, MaApiProductVariation, MaApiProductSize } from '../api-product/api-product.model';
+import { MaApiPriceDetails, MaApiResponse, MaApiPriceCurrency, MaApiPriceInfo } from '../api-common.model';
+import { MaApiProductPrice, MaApiProductDiscount, MaApiProductVariation, MaApiProductSize, MaApiProductAttribute, MaApiProductImage } from '../api-product/api-product.model';
 import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
+import { MaApiShopData } from '../api-shop';
+import { Dictionary } from '../../../models';
 export interface MaApiPaymentOption {
     active: boolean;
     code: string;
     name: string;
     image?: string;
 }
-export interface MaApiPayment {
-    options: Dictionary<MaApiPaymentOption>;
+export interface MaApiPayment<T extends MaApiPaymentOption> {
+    options: Dictionary<T>;
     selected: string;
-}
-export interface MaApiDeliveryOption {
-    active: boolean;
-    delivery_id: number;
-    code: string;
-    abbrev?: string;
-    cost?: MaApiPriceDetails;
-    method?: string;
-    method_name?: string;
-    name?: string;
-    company_name?: string;
-    image?: string;
-    parcel_shop?: MaApiParcelShopData;
-}
-export interface MaApiParcelShopData {
-    code: string;
-    details: MaApiDeliveryParcelData;
 }
 export interface MaApiDeliveryParcelData {
     lang: string;
@@ -56,8 +40,25 @@ export interface MaApiDeliveryParcelData {
     sl_updatedate: string;
     sl_zip: string;
 }
-export interface MaApiDelivery {
-    options: Dictionary<MaApiDeliveryOption>;
+export interface MaApiParcelShopData<T extends MaApiDeliveryParcelData> {
+    code: string;
+    details: T;
+}
+export interface MaApiDeliveryOption<C extends MaApiPriceDetails<MaApiPriceCurrency>, P extends MaApiParcelShopData<MaApiDeliveryParcelData>> {
+    active: boolean;
+    delivery_id: number;
+    code: string;
+    abbrev?: string;
+    cost?: C;
+    method?: string;
+    method_name?: string;
+    name?: string;
+    company_name?: string;
+    image?: string;
+    parcel_shop?: P;
+}
+export interface MaApiDelivery<T extends MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>> {
+    options: Dictionary<T>;
     selected: string;
 }
 export interface MaApiCartProductAttribute {
@@ -65,15 +66,15 @@ export interface MaApiCartProductAttribute {
     attribute_name: string;
     attribute_value: string;
 }
-export interface MaApiCartPrice {
-    regular: MaApiCartPriceInfo;
-    final: MaApiCartPriceInfo;
+export interface MaApiCartPriceInfo<T extends MaApiPriceDetails<MaApiPriceCurrency>> {
+    unit: T;
+    total: T;
 }
-export interface MaApiCartPriceInfo {
-    unit: MaApiPriceDetails;
-    total: MaApiPriceDetails;
+export interface MaApiCartPrice<T extends MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>> {
+    regular: T;
+    final: T;
 }
-export interface MaApiCartProduct {
+export interface MaApiCartProduct<T extends MaApiCartProductAttribute, D extends MaApiPriceDetails<MaApiPriceCurrency>, P extends MaApiCartPrice<MaApiCartPriceInfo<D>>, S extends MaApiProductSize> {
     product_id: string;
     quantity: number;
     product_code: string;
@@ -83,16 +84,16 @@ export interface MaApiCartProduct {
     brand_id: string | number;
     brand_name: string;
     sku: string;
-    sizes?: Dictionary<MaApiProductSize>;
+    sizes?: Dictionary<S>;
     image_file: string;
-    attribute_value_list: MaApiCartProductAttribute[];
-    price: MaApiCartPrice;
+    attribute_value_list: T[];
+    price: P;
     discount: {
         components: any;
         summary: {
             value: {
-                unit: MaApiPriceDetails;
-                total: MaApiPriceDetails;
+                unit: D;
+                total: D;
             };
         };
     };
@@ -101,24 +102,24 @@ export interface MaApiCartProduct {
     flag_announcement: boolean;
     available_from: string;
 }
-export interface MaApiCartListData {
+export interface MaApiCartListData<P extends MaApiPayment<MaApiPaymentOption>, PD extends MaApiPriceDetails<MaApiPriceCurrency>, DPD extends MaApiDeliveryParcelData, PP extends MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>, DI extends MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>, D extends MaApiDelivery<MaApiDeliveryOption<PD, MaApiParcelShopData<DPD>>>, C extends MaApiCartProduct<MaApiCartProductAttribute, PD, MaApiCartPrice<MaApiCartPriceInfo<PD>>, MaApiProductSize>> {
     id: number | string;
     user_id: number | string;
     currency: {
         code: string;
         label: string;
     };
-    price: MaApiProductPrice;
-    discount: MaApiProductDiscount;
-    payment: MaApiPayment;
-    delivery: MaApiDelivery;
+    price: PP;
+    discount: DI;
+    payment: P;
+    delivery: D;
     spedition_cost: string;
-    logistics_minimum: MaApiPriceDetails;
-    items: Dictionary<MaApiCartProduct>;
-    salons: MaApiDeliveryParcelData[];
+    logistics_minimum: PD;
+    items: Dictionary<C>;
+    salons: DPD[];
 }
-export interface MaApiCartListResponse extends MaApiResponse {
-    data: MaApiCartListData;
+export interface MaApiCartListResponse<T extends MaApiCartListData<MaApiPayment<MaApiPaymentOption>, MaApiPriceDetails<MaApiPriceCurrency>, MaApiDeliveryParcelData, MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>, MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>, MaApiDelivery<MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>>, MaApiCartProduct<MaApiCartProductAttribute, MaApiPriceDetails<MaApiPriceCurrency>, MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>, MaApiProductSize>>> extends MaApiResponse {
+    data: T;
     cart_updated: boolean;
 }
 export interface MaApiSetItemData {
@@ -126,9 +127,9 @@ export interface MaApiSetItemData {
     quantity: number;
     user_id?: number;
 }
-export interface MaApiSetItemResponse extends MaApiResponse {
+export interface MaApiSetItemResponse<V extends MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>> extends MaApiResponse {
     data: {
-        related_products?: MaApiProductVariation[];
+        related_products?: V[];
     };
     currentQuantity?: number;
     units?: number;
@@ -140,13 +141,13 @@ export interface MaApiSetDeliveryData {
 export interface MaApiSetPaymentData {
     payment_type: string;
 }
-export interface MaApiMakeOrderAddressData {
-    billing: MaApiAddressData<MaApiAddressType>;
-    shipping: MaApiAddressData<MaApiAddressType>;
-    invoice: MaApiInvoiceData;
+export interface MaApiMakeOrderAddressData<A extends MaApiAddressData<MaApiAddressType>, I extends MaApiInvoiceData> {
+    billing: A;
+    shipping: A;
+    invoice: I;
 }
-export interface MaApiMakeOrderData {
-    addressesData?: MaApiMakeOrderAddressData;
+export interface MaApiMakeOrderData<T extends MaApiMakeOrderAddressData<MaApiAddressData<MaApiAddressType>, MaApiInvoiceData>> {
+    addressesData?: T;
     special_instruction: string;
 }
 export interface MaApiMakeOrderResponse extends MaApiResponse {

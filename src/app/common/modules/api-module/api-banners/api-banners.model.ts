@@ -17,26 +17,26 @@ export interface MaApiBannerData {
   slogan?: string;
 }
 
-export interface MaApiBannersListResponse extends MaApiResponse {
-  data: MaApiBannerData[];
+export interface MaApiBannersListResponse<T extends MaApiBannerData> extends MaApiResponse {
+  data: T[];
 }
 
-export interface MaApiBannerEmission {
+export interface MaApiBannerEmission<T extends MaApiBannerData> {
   id: string;
   date_from: string;
   date_to: string;
   probability: number;
   active: string;
-  banner: MaApiBannerData;
+  banner: T;
 }
 
-export interface MaApiBannerEmissionList {
+export interface MaApiBannerEmissionList<T extends MaApiBannerEmission<MaApiBannerData>> {
   id: string;
   identifier: string;
   name: string;
-  emissions: MaApiBannerEmission[];
+  emissions: T[];
 }
 
-export interface MaApiBannersEmissionsListResponse extends MaApiResponse {
-  data: MaApiBannerEmissionList[];
+export interface MaApiBannersEmissionsListResponse<T extends MaApiBannerEmissionList<MaApiBannerEmission<MaApiBannerData>>> extends MaApiResponse {
+  data: T[];
 }

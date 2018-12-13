@@ -10,8 +10,8 @@ export interface MaApiBrandData {
   brand_name?: string;
 }
 
-export interface MaApiBrandsResponse extends MaApiResponse {
-  data: MaApiBrandData[];
+export interface MaApiBrandsResponse<T extends MaApiBrandData> extends MaApiResponse {
+  data: T[];
 }
 
 export interface MaApiBrandImage {
@@ -19,10 +19,10 @@ export interface MaApiBrandImage {
   image_2: string;
 }
 
-export interface MaApiBrandImages {
-  full?: MaApiBrandImage;
-  normal?: MaApiBrandImage;
-  medium?: MaApiBrandImage;
-  thumb?: MaApiBrandImage;
-  mini?: MaApiBrandImage;
+export interface MaApiBrandImages<T extends MaApiBrandImage> {
+  full?: T;
+  normal?: T;
+  medium?: T;
+  thumb?: T;
+  mini?: T;
 }
