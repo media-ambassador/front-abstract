@@ -11,8 +11,8 @@ import { MaImageTextComponentDeclaration } from './imageText/imageText';
 import { MaImageComponentDeclaration } from './image/image';
 import { MaQuoteComponentDeclaration } from './quote/quote';
 import { MaYouTubeComponentDeclaration } from './youTube/youTube';
+import { Dictionary } from '../../../models';
 
-import { Dictionary } from 'lodash';
 import * as _ from 'lodash';
 
 export interface MaComponentDeclarations extends Dictionary<MaDynamicArticleFactoryGeneratorParams<any, any>> { }

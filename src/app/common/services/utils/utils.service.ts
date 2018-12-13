@@ -8,7 +8,7 @@ import { MaApiOrderStatus } from '../../modules/api-module/api-order';
 import { MaStreetAddressData } from '.';
 
 @Injectable()
-export class MaUtilsService {
+export class MaUtilsService<OS extends MaApiOrderStatus, AD extends MaStreetAddressData> {
 
   constructor(protected router: Router) { }
 
@@ -46,7 +46,7 @@ export class MaUtilsService {
     return date.toLocaleDateString('pl-PL');
   }
 
-  returnColorClass(status: MaApiOrderStatus): string {
+  returnColorClass(status: OS): string {
     if (!status) {
       return null;
     }
@@ -73,7 +73,7 @@ export class MaUtilsService {
       : this.router.navigate([url]);
   }
 
-  getFullStreetAddress(data: MaStreetAddressData): string {
+  getFullStreetAddress(data: AD): string {
     if (!data) {
       return '';
     }
@@ -105,7 +105,7 @@ export class MaUtilsService {
     return subject.asObservable();
   }
 
-  isSupportActive(hourFrom: number, hourTo: number, minuteFrom = 0, minuteTo = 0) {
+  isSupportActive(hourFrom: number, hourTo: number) {
     const date = new Date(),
           day = date.getDay(),
           hour = date.getHours();

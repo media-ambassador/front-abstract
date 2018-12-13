@@ -1,10 +1,10 @@
-import { Dictionary } from 'lodash';
 import { MaApiResponse, MaApiPriceCurrency, MaApiPriceDetails, MaApiPriceInfo } from '../api-common.model';
 import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
 import { MaApiOrderListData, MaApiOrderListItem, MaApiOrderStatus } from '../api-order/api-order.model';
 import { MaApiCartPrice, MaApiCartPriceInfo, MaApiCartProductAttribute, MaApiDeliveryOption } from '../api-cart';
 import { MaApiProductDiscount, MaApiProductPrice } from '../api-product';
 import { MaApiParcelShopData, MaApiDeliveryParcelData, MaApiPaymentOption } from '../api-cart/api-cart.model';
+import { Dictionary } from '../../../models';
 
 export interface MaApiUserAuthorizeData {
   login?: string;

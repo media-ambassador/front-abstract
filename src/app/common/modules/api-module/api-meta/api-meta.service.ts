@@ -2,10 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { MaApiHttpClient } from '../api-http-client.service';
-import { MaApiMetaListResponse, MaApiMetaTagResponse } from './api-meta.model';
+import {
+  MaApiMetaListResponse,
+  MaApiMetaTagResponse,
+  MaApiMetaData
+} from './api-meta.model';
 
 @Injectable()
-export class MaApiMetaService<LR extends MaApiMetaListResponse<any>, TR extends MaApiMetaTagResponse<any>> {
+export class MaApiMetaService<LR extends MaApiMetaListResponse<MaApiMetaData>, TR extends MaApiMetaTagResponse<MaApiMetaData>> {
 
   constructor(protected apiHttp: MaApiHttpClient) { }
 

@@ -2,7 +2,8 @@ import { MaApiPriceInfo, MaApiPriceDetails, MaApiBreadcrumbs, MaApiPriceCurrency
 import { MaApiShopData } from '../api-shop/api-shop.model';
 import { Dictionary } from '../../../models';
 
-export interface MaApiProductResponse<B extends MaApiBreadcrumbs, P extends MaApiProductData<MaApiProductAttribute,
+export interface MaApiProductResponse<B extends MaApiBreadcrumbs,
+                                      P extends MaApiProductData<MaApiProductAttribute,
                                                                                              MaApiProductCustomFlag,
                                                                                              MaApiProductImage,
                                                                                              MaApiProductTemplate,

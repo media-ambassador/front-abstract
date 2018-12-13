@@ -2,10 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { MaApiHttpClient } from '../api-http-client.service';
-import { MaApiBannersListResponse, MaApiBannersEmissionsListResponse } from './api-banners.model';
+import {
+  MaApiBannersListResponse,
+  MaApiBannersEmissionsListResponse,
+  MaApiBannerData,
+  MaApiBannerEmissionList,
+  MaApiBannerEmission
+} from './api-banners.model';
 
 @Injectable()
-export class MaApiBannersService<BR extends MaApiBannersListResponse<any>, ER extends MaApiBannersEmissionsListResponse<any>> {
+export class MaApiBannersService<BR extends MaApiBannersListResponse<MaApiBannerData>,
+                                 ER extends MaApiBannersEmissionsListResponse<MaApiBannerEmissionList<MaApiBannerEmission<MaApiBannerData>>>> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 

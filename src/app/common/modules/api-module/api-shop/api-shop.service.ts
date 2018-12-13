@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { MaApiHttpClient } from '../api-http-client.service';
-import { MaApiShopListResponse } from './api-shop.model';
+import { MaApiShopListResponse, MaApiShopData } from './api-shop.model';
 
 @Injectable()
-export class MaApiShopService<SR extends MaApiShopListResponse<any>> {
+export class MaApiShopService<SR extends MaApiShopListResponse<MaApiShopData>> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 

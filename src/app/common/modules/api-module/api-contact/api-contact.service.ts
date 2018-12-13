@@ -5,11 +5,11 @@ import { MaApiResponse } from '../api-common.model';
 import { MaApiContactForm } from './api-contact.model';
 
 @Injectable()
-export class ApiContactService {
+export class MaApiContactService<R extends MaApiResponse> {
 
   constructor(private apiHttpClient: MaApiHttpClient) {}
 
-  sendContactForm(contactData: MaApiContactForm): Observable<MaApiResponse> {
+  sendContactForm(contactData: MaApiContactForm): Observable<R> {
     return this.apiHttpClient.post('/contact/createmsg', contactData);
   }
 }

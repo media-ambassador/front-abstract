@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { MaApiHttpClient } from '../api-http-client.service';
-import { MaApiResponse } from '../api-common.model';
+import { MaApiResponse, MaApiPriceCurrency, MaApiPriceDetails, MaApiPriceInfo } from '../api-common.model';
 import {
   MaApiUserAuthorizeData,
   MaApiUserAuthorizeResponse,
@@ -14,20 +14,35 @@ import {
   MaApiUserRemindData,
   MaApiFbAuthorizeData,
   MaApiFbAuthorizeResponse,
-  MaApiUserAddressResponse
+  MaApiUserAddressResponse,
+  MaApiUserAuthorizeResponseData
 } from './api-user.model';
+import { MaApiOrderListData, MaApiOrderListItem, MaApiOrderStatus } from '../api-order';
+import { MaApiCartPrice, MaApiCartPriceInfo, MaApiCartProductAttribute, MaApiDeliveryOption, MaApiPaymentOption } from '../api-cart';
+import { MaApiProductDiscount, MaApiProductPrice } from '../api-product';
+import { MaApiAddressData, MaApiAddressType, MaApiInvoiceData } from '../api-address';
+import { MaApiParcelShopData, MaApiDeliveryParcelData } from '../api-cart/api-cart.model';
 
 @Injectable()
 export class MaApiUserService<UAD extends MaApiUserAuthorizeData,
-                              UAR extends MaApiUserAuthorizeResponse<any>,
+                              UAR extends MaApiUserAuthorizeResponse<MaApiUserAuthorizeResponseData>,
                               FAD extends MaApiFbAuthorizeData,
                               FAR extends MaApiFbAuthorizeResponse,
                               URD extends MaApiUserRegisterData,
                               URR extends MaApiUserRegisterResponse,
-                              UOR extends MaApiUserOrderListResponse<any>,
-                              UADR extends MaApiUserAddressResponse<any, any>,
+                              UOR extends MaApiUserOrderListResponse<MaApiOrderListData<MaApiPriceCurrency,
+                                                                     MaApiPriceDetails<MaApiPriceCurrency>,
+                                                                     MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
+                                                                                      MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>,
+                                                                                      MaApiCartProductAttribute>,
+                                                                     MaApiAddressData<MaApiAddressType>,
+                                                                     MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>,
+                                                                     MaApiPaymentOption,
+                                                                     MaApiOrderStatus,
+                                                                     MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>>>,
+                              UADR extends MaApiUserAddressResponse<MaApiAddressData<MaApiAddressType>, MaApiInvoiceData>,
                               UPD extends MaApiUserChangePasswordData,
-                              UTR extends MaApiUserTokenResponse<any>,
+                              UTR extends MaApiUserTokenResponse<MaApiUserAuthorizeResponseData>,
                               URED extends MaApiUserRemindData,
                               R extends MaApiResponse> {
 

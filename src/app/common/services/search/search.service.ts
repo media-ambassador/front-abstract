@@ -7,17 +7,17 @@ import 'rxjs/add/observable/of';
 import { MaApiSearchService, MaApiSearchResponse } from '../../modules/api-module/api-search';
 
 @Injectable()
-export class MaSearchService {
+export class MaSearchService<SR extends MaApiSearchResponse<any, any, any>> {
   protected isProcessing = false;
   protected searchingProcessing$ = new ReplaySubject<boolean>(1);
 
-  constructor(protected apiSearchService: MaApiSearchService<MaApiSearchResponse<any, any, any>>) { }
+  constructor(protected apiSearchService: MaApiSearchService<SR>) { }
 
   watchSearchProcessing(): Observable<boolean> {
     return this.searchingProcessing$.asObservable();
   }
 
-  search(query: string, filters: string ): Observable<MaApiSearchResponse<any, any, any>> {
+  search(query: string, filters: string ): Observable<SR> {
     if (this.isProcessing) {
       return Observable.of(null);
     }

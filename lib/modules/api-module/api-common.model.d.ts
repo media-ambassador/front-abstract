@@ -1,4 +1,4 @@
-import { Dictionary } from 'lodash';
+import { Dictionary } from '../../models';
 export declare const MaApiModuleConfigKey = "maApiModuleConfig";
 export interface MaApiModuleConfig {
     api: string;

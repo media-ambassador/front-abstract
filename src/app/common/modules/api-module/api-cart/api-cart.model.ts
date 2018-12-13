@@ -1,8 +1,8 @@
-import { Dictionary } from 'lodash';
 import { MaApiPriceDetails, MaApiResponse, MaApiPriceCurrency, MaApiPriceInfo } from '../api-common.model';
 import { MaApiProductPrice, MaApiProductDiscount, MaApiProductVariation, MaApiProductSize, MaApiProductAttribute, MaApiProductImage } from '../api-product/api-product.model';
 import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
 import { MaApiShopData } from '../api-shop';
+import { Dictionary } from '../../../models';
 
 export interface MaApiPaymentOption {
   active: boolean;
