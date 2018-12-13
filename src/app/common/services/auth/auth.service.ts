@@ -33,15 +33,15 @@ export class MaAuthService {
   protected token: string;
 
   constructor(protected apiUserService: MaApiUserService<MaApiUserAuthorizeData,
-                                                         MaApiUserAuthorizeResponse,
+                                                         MaApiUserAuthorizeResponse<any>,
                                                          MaApiFbAuthorizeData,
                                                          MaApiFbAuthorizeResponse,
                                                          MaApiUserRegisterData,
                                                          MaApiUserRegisterResponse,
-                                                         MaApiUserOrderListResponse,
-                                                         MaApiUserAddressResponse,
+                                                         MaApiUserOrderListResponse<any>,
+                                                         MaApiUserAddressResponse<any, any>,
                                                          MaApiUserChangePasswordData,
-                                                         MaApiUserTokenResponse,
+                                                         MaApiUserTokenResponse<any>,
                                                          MaApiUserRemindData,
                                                          MaApiResponse>,
               protected cookieService: CookieService) { }
@@ -75,7 +75,7 @@ export class MaAuthService {
     };
   }
 
-  authorize(auth: MaApiUserAuthorizeData): Observable<MaApiUserAuthorizeResponse> {
+  authorize(auth: MaApiUserAuthorizeData): Observable<MaApiUserAuthorizeResponse<any>> {
     return this.apiUserService.authorize(auth).pipe(
       tap(response => {
         if (response.action_status) {

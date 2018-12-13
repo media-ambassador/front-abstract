@@ -5,7 +5,7 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiOrderResponse } from './api-order.model';
 
 @Injectable()
-export class MaApiOrderService<OR extends MaApiOrderResponse> {
+export class MaApiOrderService<OR extends MaApiOrderResponse<any>> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 

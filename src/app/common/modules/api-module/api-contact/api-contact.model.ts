@@ -1,5 +1,5 @@
 
-export interface ApiContactForm {
+export interface MaApiContactForm {
   firstname: string;
   lastname: string;
   email: string;

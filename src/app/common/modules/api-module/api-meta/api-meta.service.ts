@@ -5,7 +5,7 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiMetaListResponse, MaApiMetaTagResponse } from './api-meta.model';
 
 @Injectable()
-export class MaApiMetaService<LR extends MaApiMetaListResponse, TR extends MaApiMetaTagResponse> {
+export class MaApiMetaService<LR extends MaApiMetaListResponse<any>, TR extends MaApiMetaTagResponse<any>> {
 
   constructor(protected apiHttp: MaApiHttpClient) { }
 

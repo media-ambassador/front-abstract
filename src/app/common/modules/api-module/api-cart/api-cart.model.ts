@@ -1,7 +1,8 @@
 import { Dictionary } from 'lodash';
 import { MaApiPriceDetails, MaApiResponse, MaApiPriceCurrency, MaApiPriceInfo } from '../api-common.model';
-import { MaApiProductPrice, MaApiProductDiscount, MaApiProductVariation, MaApiProductSize } from '../api-product/api-product.model';
+import { MaApiProductPrice, MaApiProductDiscount, MaApiProductVariation, MaApiProductSize, MaApiProductAttribute, MaApiProductImage } from '../api-product/api-product.model';
 import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
+import { MaApiShopData } from '../api-shop';
 
 export interface MaApiPaymentOption {
   active: boolean;
@@ -158,7 +159,7 @@ export interface MaApiSetItemData {
   user_id?: number;
 }
 
-export interface MaApiSetItemResponse<V extends MaApiProductVariation> extends MaApiResponse {
+export interface MaApiSetItemResponse<V extends MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>> extends MaApiResponse {
   data: {
     related_products?: V[];
   };

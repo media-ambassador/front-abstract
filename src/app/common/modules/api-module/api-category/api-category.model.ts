@@ -1,5 +1,6 @@
-import { MaApiProductData } from '../api-product/api-product.model';
+import { MaApiProductData, MaApiProductAttribute, MaApiProductCustomFlag, MaApiProductImage, MaApiProductTemplate, MaApiProductSize, MaApiProductVariation } from '../api-product/api-product.model';
 import { MaApiBreadcrumbs, MaApiFilters, MaApiFilterAttributes, MaApiFilterAttribute, MaApiFilterAttributesListValue } from '../api-common.model';
+import { MaApiShopData } from '../api-shop';
 
 export interface MaApiCategoryData {
   category_banner_title?: string;
@@ -28,13 +29,26 @@ export interface MaApiCategoryData {
   category_url?: string;
 }
 
-export interface MaApiCategoryResponse<T extends MaApiFilters<MaApiFilterAttributes<MaApiFilterAttribute<MaApiFilterAttributesListValue>>>> {
+export interface MaApiCategoryResponse<T extends MaApiFilters<MaApiFilterAttributes<MaApiFilterAttribute<MaApiFilterAttributesListValue>>>,
+                                       B extends MaApiBreadcrumbs,
+                                       C extends MaApiCategoryData,
+                                       P extends MaApiProductData<MaApiProductAttribute,
+                                                                  MaApiProductCustomFlag,
+                                                                  MaApiProductImage,
+                                                                  MaApiProductTemplate,
+                                                                  MaApiShopData,
+                                                                  MaApiProductSize,
+                                                                  MaApiProductVariation<MaApiProductAttribute,
+                                                                                        MaApiProductImage,
+                                                                                        MaApiShopData>
+                                                                  >
+                                      > {
   brand_data?: any;
   brand_id?: number;
   brand_name?: string;
-  breadcrumbs?: MaApiBreadcrumbs[];
+  breadcrumbs?: B[];
   category_name?: string;
-  category_data?: MaApiCategoryData;
+  category_data?: C;
   contentTitle?: string;
   currency?: string;
   current_category_level?: number;
@@ -45,7 +59,7 @@ export interface MaApiCategoryResponse<T extends MaApiFilters<MaApiFilterAttribu
   filters?: T;
   isCategoryBanner?: any;
   keywords?: string;
-  list: MaApiProductData[];
+  list: P[];
   order?: string;
   page?: string | number;
   pagination_tab?: Object;

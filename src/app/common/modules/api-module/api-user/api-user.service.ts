@@ -19,15 +19,15 @@ import {
 
 @Injectable()
 export class MaApiUserService<UAD extends MaApiUserAuthorizeData,
-                              UAR extends MaApiUserAuthorizeResponse,
+                              UAR extends MaApiUserAuthorizeResponse<any>,
                               FAD extends MaApiFbAuthorizeData,
                               FAR extends MaApiFbAuthorizeResponse,
                               URD extends MaApiUserRegisterData,
                               URR extends MaApiUserRegisterResponse,
-                              UOR extends MaApiUserOrderListResponse,
-                              UADR extends MaApiUserAddressResponse,
+                              UOR extends MaApiUserOrderListResponse<any>,
+                              UADR extends MaApiUserAddressResponse<any, any>,
                               UPD extends MaApiUserChangePasswordData,
-                              UTR extends MaApiUserTokenResponse,
+                              UTR extends MaApiUserTokenResponse<any>,
                               URED extends MaApiUserRemindData,
                               R extends MaApiResponse> {
 

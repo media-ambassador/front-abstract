@@ -8,10 +8,10 @@ import { MaApiResponse } from '../api-common.model';
 import { MaApiShopListResponse } from '../api-shop';
 
 @Injectable()
-export class MaApiProductService<PR extends MaApiProductResponse,
-                                 CR extends MaApiCategoryResponse,
-                                 SL extends MaApiShopListResponse,
-                                 AR extends MaApiProductAttributeList,
+export class MaApiProductService<PR extends MaApiProductResponse<any, any>,
+                                 CR extends MaApiCategoryResponse<any, any, any, any>,
+                                 SL extends MaApiShopListResponse<any>,
+                                 AR extends MaApiProductAttributeList<any>,
                                  R extends MaApiResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }

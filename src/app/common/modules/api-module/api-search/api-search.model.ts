@@ -1,15 +1,26 @@
-import { MaApiProductData } from '../api-product';
-import { MaApiBreadcrumbs, MaApiFilters } from '../api-common.model';
+import { MaApiProductData, MaApiProductAttribute, MaApiProductCustomFlag, MaApiProductImage, MaApiProductTemplate, MaApiProductSize, MaApiProductVariation } from '../api-product';
+import { MaApiBreadcrumbs, MaApiFilters, MaApiFilterAttributes, MaApiFilterAttribute, MaApiFilterAttributesListValue } from '../api-common.model';
+import { MaApiShopData } from '../api-shop';
 
 // tslint:disable-next-line:no-empty-interface
-export interface MaApiSearchItemData extends MaApiProductData { }
+export interface MaApiSearchItemData extends MaApiProductData<MaApiProductAttribute,
+                                                              MaApiProductCustomFlag,
+                                                              MaApiProductImage,
+                                                              MaApiProductTemplate,
+                                                              MaApiShopData,
+                                                              MaApiProductSize,
+                                                              MaApiProductVariation<MaApiProductAttribute,
+                                                                                    MaApiProductImage,
+                                                                                    MaApiShopData>
+                                                             > { }
 
-export interface MaApiSearchResponse {
-
+export interface MaApiSearchResponse<B extends MaApiBreadcrumbs,
+                                     F extends MaApiFilters<MaApiFilterAttributes<MaApiFilterAttribute<MaApiFilterAttributesListValue>>>,
+                                     S extends MaApiSearchItemData> {
   brand_data?: any;
   brand_id?: number;
   brand_name?: string;
-  breadcrumbs?: MaApiBreadcrumbs[];
+  breadcrumbs?: B[];
   category_data?: any;
   category_name?: string;
   contentTitle?: string;
@@ -19,10 +30,10 @@ export interface MaApiSearchResponse {
   debug?: boolean;
   description?: string;
   filter_type?: string;
-  filters?: MaApiFilters;
+  filters?: F;
   isCategoryBanner?: any;
   keywords?: string;
-  list?: MaApiSearchItemData[];
+  list?: S[];
   order?: string;
   page?: string | number;
   pagination_tab?: Object;

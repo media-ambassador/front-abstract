@@ -5,7 +5,7 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiMenuCategories } from './api-menu.model';
 
 @Injectable()
-export class MaApiMenuService<MR extends MaApiMenuCategories> {
+export class MaApiMenuService<MR extends MaApiMenuCategories<any>> {
   protected baseUrl = `/menu`;
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }

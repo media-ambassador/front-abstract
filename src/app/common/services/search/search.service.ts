@@ -11,13 +11,13 @@ export class MaSearchService {
   protected isProcessing = false;
   protected searchingProcessing$ = new ReplaySubject<boolean>(1);
 
-  constructor(protected apiSearchService: MaApiSearchService<MaApiSearchResponse>) { }
+  constructor(protected apiSearchService: MaApiSearchService<MaApiSearchResponse<any, any, any>>) { }
 
   watchSearchProcessing(): Observable<boolean> {
     return this.searchingProcessing$.asObservable();
   }
 
-  search(query: string, filters: string ): Observable<MaApiSearchResponse> {
+  search(query: string, filters: string ): Observable<MaApiSearchResponse<any, any, any>> {
     if (this.isProcessing) {
       return Observable.of(null);
     }

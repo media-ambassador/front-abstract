@@ -5,7 +5,7 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiSearchResponse } from './api-search.model';
 
 @Injectable()
-export class MaApiSearchService<SR extends MaApiSearchResponse> {
+export class MaApiSearchService<SR extends MaApiSearchResponse<any, any, any>> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 

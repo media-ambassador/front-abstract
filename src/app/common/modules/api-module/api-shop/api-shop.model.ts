@@ -27,6 +27,6 @@ export interface MaApiShopData {
   icon?: string;
 }
 
-export interface MaApiShopListResponse extends MaApiResponse {
-  data: MaApiShopData[];
+export interface MaApiShopListResponse<T extends MaApiShopData> extends MaApiResponse {
+  data: T[];
 }

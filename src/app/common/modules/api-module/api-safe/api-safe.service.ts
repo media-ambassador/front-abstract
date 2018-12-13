@@ -6,7 +6,7 @@ import { MaApiResponse } from '../api-common.model';
 import { MaApiSetItemResponse, MaApiSetItemData, MaApiCartListResponse } from '../api-cart/api-cart.model';
 
 @Injectable()
-export class MaApiSafeService<CR extends MaApiCartListResponse, IR extends MaApiSetItemResponse, SR extends MaApiSafeCreateResponse, R extends MaApiResponse> {
+export class MaApiSafeService<CR extends MaApiCartListResponse<any>, IR extends MaApiSetItemResponse<any>, SR extends MaApiSafeCreateResponse, R extends MaApiResponse> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 

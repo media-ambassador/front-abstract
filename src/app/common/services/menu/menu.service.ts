@@ -14,10 +14,10 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class MaMenuService {
-  protected menuData$ = new ReplaySubject<MaMenuItem[]>(1);
-  protected menuData: MaMenuItem[];
+  protected menuData$ = new ReplaySubject<MaMenuItem<any>[]>(1);
+  protected menuData: MaMenuItem<any>[];
 
-  constructor(protected apiMenuService: MaApiMenuService<MaApiMenuCategories>) { }
+  constructor(protected apiMenuService: MaApiMenuService<MaApiMenuCategories<any>>) { }
 
   loadMenu(rootLevel = 1, deepLevel = 3) {
     this.apiMenuService.getMenuCategories().subscribe(response => {
@@ -30,18 +30,18 @@ export class MaMenuService {
     });
   }
 
-  protected parseMenuModel(menuData: MaApiMenuCategoryData[], rootLevel = 1, deepLevel = 3): MaMenuItem[] {
+  protected parseMenuModel(menuData: MaApiMenuCategoryData<any>[], rootLevel = 1, deepLevel = 3): MaMenuItem<any>[] {
     if (!menuData) {
       return;
     }
 
-    const items: MaMenuItem[] = [];
+    const items: MaMenuItem<any>[] = [];
     this.buildMenuTree(menuData, items, rootLevel, deepLevel);
 
     return items;
   }
 
-  protected buildMenuTree(menuData: MaApiMenuCategoryData[], items: MaMenuItem[], parentId = 1, level = 3) {
+  protected buildMenuTree(menuData: MaApiMenuCategoryData<any>[], items: MaMenuItem<any>[], parentId = 1, level = 3) {
     menuData.forEach(menuItem => {
       if (menuItem.category_parent_id === parentId && menuItem.category_level <= level) {
         items.push(this.mapMenuItemModel(menuItem));
@@ -54,7 +54,7 @@ export class MaMenuService {
     });
   }
 
-  protected mapMenuItemModel(item: MaApiMenuCategoryData): MaMenuItem {
+  protected mapMenuItemModel(item: MaApiMenuCategoryData<any>): MaMenuItem<any> {
     return {
       active: false,
       children: [],
@@ -66,11 +66,11 @@ export class MaMenuService {
     };
   }
 
-  getMenuData(): MaMenuItem[] {
+  getMenuData(): MaMenuItem<any>[] {
     return this.menuData;
   }
 
-  watchMenuData(): Observable<MaMenuItem[]> {
+  watchMenuData(): Observable<MaMenuItem<any>[]> {
     return this.menuData$.asObservable();
   }
 }

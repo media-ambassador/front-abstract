@@ -4,7 +4,7 @@ import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiLookBookResponse } from './api-lookbook.model';
 
 @Injectable()
-export class MaApiLookBookService<LR extends MaApiLookBookResponse> {
+export class MaApiLookBookService<LR extends MaApiLookBookResponse<any>> {
 
   constructor(protected apiHttpClient: MaApiHttpClient) { }
 

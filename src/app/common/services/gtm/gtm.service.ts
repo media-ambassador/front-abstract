@@ -33,11 +33,11 @@ export class MaGtmService {
     this.referrer = document.referrer;
   }
 
-  gtmEcommercePush(orderData: MaApiCartListData, orderId: string) {
+  gtmEcommercePush(orderData: MaApiCartListData<any, any, any, any, any, any , any>, orderId: string) {
     if (_.isObject(orderData)) {
       let gtmProducts: any[] = [];
       if (_.isObject(orderData.items)) {
-        gtmProducts = _.map(orderData.items, (orderItem: MaApiCartProduct) => {
+        gtmProducts = _.map(orderData.items, (orderItem: MaApiCartProduct<any, any, any, any>) => {
           return {
             'sku': orderItem.sku,
             'name': orderItem.display_name,

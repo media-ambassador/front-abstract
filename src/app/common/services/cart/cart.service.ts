@@ -25,30 +25,30 @@ import { MaApiResponse } from '../../modules/api-module';
 @Injectable()
 export class MaCartService {
   protected sidebarCartOpenSubject$: ReplaySubject<boolean>;
-  protected cartListSubject$: ReplaySubject<MaApiCartListResponse>;
-  protected relatedProductsData$: ReplaySubject<MaApiProductVariation[]>;
+  protected cartListSubject$: ReplaySubject<MaApiCartListResponse<any>>;
+  protected relatedProductsData$: ReplaySubject<MaApiProductVariation<any, any, any>[]>;
 
-  protected cartList: MaApiCartListResponse;
+  protected cartList: MaApiCartListResponse<any>;
   protected cartId: number;
 
-  constructor(protected apiCartService: MaApiCartService<MaApiCartListResponse,
+  constructor(protected apiCartService: MaApiCartService<MaApiCartListResponse<any>,
                                                          MaApiSetItemData,
-                                                         MaApiSetItemResponse,
+                                                         MaApiSetItemResponse<any>,
                                                          MaApiSetDeliveryData,
                                                          MaApiResponse,
                                                          MaApiSetPaymentData,
-                                                         MaApiMakeOrderData,
+                                                         MaApiMakeOrderData<any>,
                                                          MaApiMakeOrderResponse>,
               protected authService: MaAuthService) {
 
     this.sidebarCartOpenSubject$ = new ReplaySubject<boolean>(1);
-    this.cartListSubject$ = new ReplaySubject<MaApiCartListResponse>(1);
-    this.relatedProductsData$ = new ReplaySubject<MaApiProductVariation[]>(1);
+    this.cartListSubject$ = new ReplaySubject<MaApiCartListResponse<any>>(1);
+    this.relatedProductsData$ = new ReplaySubject<MaApiProductVariation<any, any, any>[]>(1);
 
     this.authService.watchAuthorized().subscribe(() => this.refreshCartList());
   }
 
-  getCartList(): Observable<MaApiCartListResponse> {
+  getCartList(): Observable<MaApiCartListResponse<any>> {
     return this.apiCartService.getList().pipe(
       tap(data => this.updateCartList(data))
     );
@@ -61,7 +61,7 @@ export class MaCartService {
     });
   }
 
-  protected updateCartList(data: MaApiCartListResponse) {
+  protected updateCartList(data: MaApiCartListResponse<any>) {
     if (!data.action_status) {
       this.cartId = null;
       this.cartList = null;
@@ -74,17 +74,17 @@ export class MaCartService {
     this.cartListSubject$.next(data);
   }
 
-  watchCartList(): Observable<MaApiCartListResponse> {
+  watchCartList(): Observable<MaApiCartListResponse<any>> {
     return this.cartListSubject$.asObservable();
   }
 
-  getProduct(id: string): MaApiCartProduct {
+  getProduct(id: string): MaApiCartProduct<any, any, any, any> {
     return _.find(this.cartList.data.items, item => {
       return item.product_id === id;
     });
   }
 
-  getCartData(): MaApiCartListData {
+  getCartData(): MaApiCartListData<any, any, any, any, any, any, any> {
     return this.cartList ? this.cartList.data : null;
   }
 
@@ -105,24 +105,24 @@ export class MaCartService {
     return this.sidebarCartOpenSubject$.asObservable();
   }
 
-  watchRelatedProducts(): Observable<MaApiProductVariation[]> {
+  watchRelatedProducts(): Observable<MaApiProductVariation<any, any, any>[]> {
     return this.relatedProductsData$.asObservable();
   }
 
-  protected updateRelatedProducts(response: MaApiSetItemResponse) {
+  protected updateRelatedProducts(response: MaApiSetItemResponse<any>) {
     !!response.data && response.data.related_products
       ? this.relatedProductsData$.next(response.data.related_products)
       : this.relatedProductsData$.next(null);
   }
 
-  addElement(productId: number): Observable<MaApiSetItemResponse> {
+  addElement(productId: number): Observable<MaApiSetItemResponse<any>> {
     const cartProduct = this.getProduct(productId.toString());
     const quantity = !!cartProduct ? cartProduct.quantity + 1 : 1;
 
     return this.changeQuantity(productId, quantity);
   }
 
-  removeElement(productId: number): Observable<MaApiSetItemResponse> {
+  removeElement(productId: number): Observable<MaApiSetItemResponse<any>> {
     return this.changeQuantity(productId, 0);
   }
 
@@ -133,7 +133,7 @@ export class MaCartService {
     });
   }
 
-  changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse> {
+  changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse<any>> {
     const itemData: MaApiSetItemData = {
       product_id: productId,
       quantity: quantity
@@ -146,7 +146,7 @@ export class MaCartService {
       }));
   }
 
-  changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse> {
+  changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse<any>> {
     const itemData: MaApiSetItemData = {
       product_id: newProductId,
       quantity: quantity
@@ -174,7 +174,7 @@ export class MaCartService {
     });
   }
 
-  getSelectedDeliveryOption(): MaApiDeliveryOption {
+  getSelectedDeliveryOption(): MaApiDeliveryOption<any, any> {
     const selected = this.cartList.data.delivery.selected;
 
     if (!selected) {
