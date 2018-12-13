@@ -1,26 +1,6 @@
 import { MaApiPriceInfo, MaApiPriceDetails, MaApiBreadcrumbs, MaApiPriceCurrency } from '../api-common.model';
 import { MaApiShopData } from '../api-shop/api-shop.model';
 import { Dictionary } from '../../../models';
-export interface MaApiProductResponse<B extends MaApiBreadcrumbs, P extends MaApiProductData<MaApiProductAttribute, MaApiProductCustomFlag, MaApiProductImage, MaApiProductTemplate, MaApiShopData, MaApiProductSize, MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>>> {
-    breadcrumbs?: B[];
-    description?: string;
-    filter_type?: any;
-    image?: any;
-    keywords?: string[];
-    list?: any[];
-    productData?: P;
-    stats?: any;
-    title?: string;
-}
-export interface MaApiProductImage {
-    image_id?: string;
-    image_is_primary?: boolean;
-    image_full?: string;
-    image_middle?: string;
-    image_thumb?: string;
-    image_micro?: string;
-    image_normal?: string;
-}
 export interface MaApiProductAttribute {
     code?: string;
     attribute_id?: string;
@@ -29,30 +9,6 @@ export interface MaApiProductAttribute {
     attribute_value_id?: string;
     display_name?: string;
     variation_id?: string;
-}
-export interface MaApiProductVariation<PA extends MaApiProductAttribute, PI extends MaApiProductImage, S extends MaApiShopData> {
-    attributes?: PA[];
-    color?: PA;
-    display_name?: string;
-    images?: PI[];
-    is_def_variation?: string;
-    price_current?: string;
-    price_regular?: string;
-    size?: PA;
-    slug_name?: string;
-    variation_id?: number | string;
-    salons?: S[];
-}
-export interface MaApiProductTemplate {
-    id?: string;
-    name?: string;
-    group_type?: string;
-    groupby_item_id?: string;
-    timestamp?: string;
-    image1?: string;
-    mimetype1?: string;
-    group_select_id?: string;
-    slug?: string;
 }
 export interface MaApiProductSize {
     attribute_id?: string;
@@ -68,6 +24,64 @@ export interface MaApiProductCustomFlag {
     background?: string;
     font?: string;
     text?: string;
+}
+export interface MaApiProductImage {
+    image_id?: string;
+    image_is_primary?: boolean;
+    image_full?: string;
+    image_middle?: string;
+    image_thumb?: string;
+    image_micro?: string;
+    image_normal?: string;
+}
+export interface MaApiProductTemplate {
+    id?: string;
+    name?: string;
+    group_type?: string;
+    groupby_item_id?: string;
+    timestamp?: string;
+    image1?: string;
+    mimetype1?: string;
+    group_select_id?: string;
+    slug?: string;
+}
+export interface MaApiProductVariation<PA extends MaApiProductAttribute, PI extends MaApiProductImage, S extends MaApiShopData> {
+    attributes?: PA[];
+    color?: PA;
+    display_name?: string;
+    images?: PI[];
+    is_def_variation?: string;
+    price_current?: string;
+    price_regular?: string;
+    size?: PA;
+    slug_name?: string;
+    variation_id?: number | string;
+    salons?: S[];
+}
+export interface MaApiProductPrice<T extends MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>> {
+    regular?: T;
+    final?: T;
+}
+export interface MaApiProductDiscount<T extends MaApiPriceDetails<MaApiPriceCurrency>> {
+    components?: [{
+        name?: string;
+        type?: string;
+        value?: {
+            unit?: T;
+            total?: T;
+        };
+    }];
+    summary?: {
+        value?: T;
+    };
+    value?: {
+        total?: T;
+        unit?: T;
+    };
+}
+export interface MaApiProductAttributeList<PA extends MaApiProductAttribute> {
+    attributes?: PA[];
+    sizes?: Dictionary<PA>;
 }
 export interface MaApiProductData<PA extends MaApiProductAttribute, PF extends MaApiProductCustomFlag, PI extends MaApiProductImage, PT extends MaApiProductTemplate, PS extends MaApiShopData, PSI extends MaApiProductSize, PV extends MaApiProductVariation<PA, PI, PS>> {
     active?: boolean;
@@ -110,28 +124,14 @@ export interface MaApiProductData<PA extends MaApiProductAttribute, PF extends M
     v_flag_sale?: boolean;
     variation_id?: number | string;
 }
-export interface MaApiProductPrice<T extends MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>> {
-    regular?: T;
-    final?: T;
-}
-export interface MaApiProductDiscount<T extends MaApiPriceDetails<MaApiPriceCurrency>> {
-    components?: [{
-        name?: string;
-        type?: string;
-        value?: {
-            unit?: T;
-            total?: T;
-        };
-    }];
-    summary?: {
-        value?: T;
-    };
-    value?: {
-        total?: T;
-        unit?: T;
-    };
-}
-export interface MaApiProductAttributeList<PA extends MaApiProductAttribute> {
-    attributes?: PA[];
-    sizes?: Dictionary<PA>;
+export interface MaApiProductResponse<B extends MaApiBreadcrumbs, P extends MaApiProductData<MaApiProductAttribute, MaApiProductCustomFlag, MaApiProductImage, MaApiProductTemplate, MaApiShopData, MaApiProductSize, MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>>> {
+    breadcrumbs?: B[];
+    description?: string;
+    filter_type?: any;
+    image?: any;
+    keywords?: string[];
+    list?: any[];
+    productData?: P;
+    stats?: any;
+    title?: string;
 }

@@ -97,4 +97,3 @@ export interface MaApiFbLoginResponse {
       userID: string;
   };
 }
-

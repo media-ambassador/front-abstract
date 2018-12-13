@@ -7,7 +7,7 @@ import { MaApiContactForm } from './api-contact.model';
 @Injectable()
 export class MaApiContactService<R extends MaApiResponse> {
 
-  constructor(private apiHttpClient: MaApiHttpClient) {}
+  constructor(protected apiHttpClient: MaApiHttpClient) {}
 
   sendContactForm(contactData: MaApiContactForm): Observable<R> {
     return this.apiHttpClient.post('/contact/createmsg', contactData);

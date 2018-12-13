@@ -1,2 +1,2 @@
 export { MaApiMenuService } from './api-menu.service';
-export { MaApiMenuCategories, MaApiMenuCategoryData, MaApiMenuCategoryChild, MaMenuItem } from './api-menu.model';
+export { MaApiMenuCategories, MaApiMenuCategoryData, MaApiMenuCategoryChild, MaMenuItemChildren, MaMenuItem } from './api-menu.model';

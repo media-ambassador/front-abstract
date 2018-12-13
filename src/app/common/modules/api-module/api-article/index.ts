@@ -10,5 +10,6 @@ export {
   MaApiDynamicArticleCategoriesResponse,
   MaApiDynamicArticleTagContent,
   MaApiDynamicArticleTagData,
-  MaApiDynamicArticleTagsResponse
+  MaApiDynamicArticleTagsResponse,
+  MaApiDynamicArticleCategoryInfo
 } from './api-article.model';
