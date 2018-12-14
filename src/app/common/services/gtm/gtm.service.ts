@@ -5,7 +5,8 @@ import * as _ from 'lodash';
 import { MaApiCartListData, MaApiCartProduct } from '../../modules/api-module/api-cart';
 
 @Injectable()
-export class MaGtmService {
+export class MaGtmService<CL extends MaApiCartListData<any, any, any, any, any, any , any>,
+                          CP extends MaApiCartProduct<any, any, any, any>> {
 
   protected dataLayer: any;
   protected referrer: any;
@@ -33,11 +34,11 @@ export class MaGtmService {
     this.referrer = document.referrer;
   }
 
-  gtmEcommercePush(orderData: MaApiCartListData<any, any, any, any, any, any , any>, orderId: string) {
+  gtmEcommercePush(orderData: CL, orderId: string) {
     if (_.isObject(orderData)) {
       let gtmProducts: any[] = [];
       if (_.isObject(orderData.items)) {
-        gtmProducts = _.map(orderData.items, (orderItem: MaApiCartProduct<any, any, any, any>) => {
+        gtmProducts = _.map(orderData.items, (orderItem: CP) => {
           return {
             'sku': orderItem.sku,
             'name': orderItem.display_name,

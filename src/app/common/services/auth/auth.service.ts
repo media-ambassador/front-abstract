@@ -25,25 +25,35 @@ import { MaApiResponse } from '../../modules/api-module';
 export const MaTokenKeyName = 'session-token';
 
 @Injectable()
-export class MaAuthService {
+export class MaAuthService<UD extends MaApiUserData,
+                           ARD extends MaApiUserAuthorizeResponseData,
+                           AD extends MaApiUserAuthorizeData,
+                           AR extends MaApiUserAuthorizeResponse<any>,
+                           FAD extends MaApiFbAuthorizeData,
+                           FAR extends MaApiFbAuthorizeResponse,
+                           RD extends MaApiUserRegisterData,
+                           RR extends MaApiUserRegisterResponse,
+                           URD extends MaApiUserRemindData,
+                           R extends MaApiResponse> {
+
   protected authorized = false;
   protected authorizeSubject$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
-  protected userData: MaApiUserData = null;
-  protected userDataSubject$: ReplaySubject<MaApiUserData> = new ReplaySubject<MaApiUserData>(1);
+  protected userData: UD = null;
+  protected userDataSubject$: ReplaySubject<UD> = new ReplaySubject<UD>(1);
   protected token: string;
 
-  constructor(protected apiUserService: MaApiUserService<MaApiUserAuthorizeData,
-                                                         MaApiUserAuthorizeResponse<any>,
-                                                         MaApiFbAuthorizeData,
-                                                         MaApiFbAuthorizeResponse,
-                                                         MaApiUserRegisterData,
-                                                         MaApiUserRegisterResponse,
+  constructor(protected apiUserService: MaApiUserService<AD,
+                                                         AR,
+                                                         FAD,
+                                                         FAR,
+                                                         RD,
+                                                         RR,
                                                          MaApiUserOrderListResponse<any>,
                                                          MaApiUserAddressResponse<any, any>,
                                                          MaApiUserChangePasswordData,
                                                          MaApiUserTokenResponse<any>,
-                                                         MaApiUserRemindData,
-                                                         MaApiResponse>,
+                                                         URD,
+                                                         R>,
               protected cookieService: CookieService) { }
 
   populate(clear = false): Promise<boolean> {
@@ -63,7 +73,7 @@ export class MaAuthService {
     });
   }
 
-  protected setUserData(data: MaApiUserAuthorizeResponseData): void {
+  protected setUserData(data: ARD): void {
     this.userData = {
       id: !!data.user_id ? data.user_id : null,
       login: !!data.user_login ? data.user_login : null,
@@ -72,10 +82,10 @@ export class MaAuthService {
       firstname: !!data.firstname ? data.firstname : null,
       lastname: !!data.lastname ? data.lastname : null,
       email: !!data.email ? data.email : null,
-    };
+    } as UD;
   }
 
-  authorize(auth: MaApiUserAuthorizeData): Observable<MaApiUserAuthorizeResponse<any>> {
+  authorize(auth: AD): Observable<AR> {
     return this.apiUserService.authorize(auth).pipe(
       tap(response => {
         if (response.action_status) {
@@ -94,7 +104,7 @@ export class MaAuthService {
     );
   }
 
-  fbAuthorize(auth: MaApiFbAuthorizeData): Observable<MaApiFbAuthorizeResponse> {
+  fbAuthorize(auth: FAD): Observable<FAR> {
     return this.apiUserService.fbAuthorize(auth).pipe(
       tap(response => {
         if (response.action_status) {
@@ -112,12 +122,12 @@ export class MaAuthService {
     );
   }
 
-  register(register: MaApiUserRegisterData): Observable<MaApiUserRegisterResponse> {
+  register(register: RD): Observable<RR> {
     return this.apiUserService.register(register).pipe(
       tap(response => {
         if (response.action_status) {
 
-          this.setUserData(response.data as MaApiUserAuthorizeResponseData);
+          this.setUserData(response.data as ARD);
           this.userDataSubject$.next(this.userData);
 
           this.setAuthorized(true);
@@ -126,7 +136,7 @@ export class MaAuthService {
     );
   }
 
-  remind(remind: MaApiUserRemindData): Observable<MaApiResponse> {
+  remind(remind: URD): Observable<R> {
     return this.apiUserService.remind(remind);
   }
 
@@ -143,11 +153,11 @@ export class MaAuthService {
     return this.authorized;
   }
 
-  watchUserData(): Observable<MaApiUserData> {
+  watchUserData(): Observable<UD> {
     return this.userDataSubject$.asObservable();
   }
 
-  getUserData(): MaApiUserData {
+  getUserData(): UD {
     return this.userData;
   }
 

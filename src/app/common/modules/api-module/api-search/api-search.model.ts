@@ -41,7 +41,7 @@ export interface MaApiSearchResponse<B extends MaApiBreadcrumbs,
   productData?: any;
   promo?: number;
   pseudo_category?: number;
-  require_redirect?: boolean;
+  require_redirect?: boolean | string;
   require_refresh?: boolean;
   results?: string | number;
   results_on_page?: number;

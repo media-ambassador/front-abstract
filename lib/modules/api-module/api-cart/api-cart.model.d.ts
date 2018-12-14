@@ -101,6 +101,7 @@ export interface MaApiCartProduct<T extends MaApiCartProductAttribute, D extends
     price_regular: string;
     flag_announcement: boolean;
     available_from: string;
+    variation_id: string;
 }
 export interface MaApiCartListData<P extends MaApiPayment<MaApiPaymentOption>, PD extends MaApiPriceDetails<MaApiPriceCurrency>, DPD extends MaApiDeliveryParcelData, PP extends MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>, DI extends MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>, D extends MaApiDelivery<MaApiDeliveryOption<PD, MaApiParcelShopData<DPD>>>, C extends MaApiCartProduct<MaApiCartProductAttribute, PD, MaApiCartPrice<MaApiCartPriceInfo<PD>>, MaApiProductSize>> {
     id: number | string;
@@ -123,8 +124,8 @@ export interface MaApiCartListResponse<T extends MaApiCartListData<MaApiPayment<
     cart_updated: boolean;
 }
 export interface MaApiSetItemData {
-    product_id: number;
-    quantity: number;
+    product_id?: number;
+    quantity?: number;
     user_id?: number;
 }
 export interface MaApiSetItemResponse<V extends MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>> extends MaApiResponse {

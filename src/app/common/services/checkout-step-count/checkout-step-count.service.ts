@@ -9,30 +9,30 @@ export interface MaCheckoutStep {
 }
 
 @Injectable()
-export class MaCheckoutStepCountService {
-  steps: MaCheckoutStep[] = [];
+export class MaCheckoutStepCountService<CS extends MaCheckoutStep> {
+  steps: CS[] = [];
 
-  protected stepSubject$: ReplaySubject<MaCheckoutStep[]>;
+  protected stepSubject$: ReplaySubject<CS[]>;
 
   constructor() {
-    this.stepSubject$ = new ReplaySubject<MaCheckoutStep[]>(1);
+    this.stepSubject$ = new ReplaySubject<CS[]>(1);
 
     for (let i = 0; i < 3; i++) {
       this.steps.push({
         active: false,
         disabled: false,
         label: `checkoutStep.label.step${i}`
-      });
+      } as CS);
     }
 
     this.stepSubject$.next(this.steps);
   }
 
-  watchSteps(): Observable<MaCheckoutStep[]> {
+  watchSteps(): Observable<CS[]> {
     return this.stepSubject$.asObservable();
   }
 
-  updateOptions(steps: MaCheckoutStep[]): void {
+  updateOptions(steps: CS[]): void {
     this.steps = steps;
     this.stepSubject$.next(this.steps);
   }

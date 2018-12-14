@@ -114,6 +114,7 @@ export interface MaApiCartProduct<T extends MaApiCartProductAttribute,
   price_regular: string;
   flag_announcement: boolean;
   available_from: string;
+  variation_id: string;
 }
 
 export interface MaApiCartListData<P extends MaApiPayment<MaApiPaymentOption>,
@@ -154,8 +155,8 @@ export interface MaApiCartListResponse<T extends MaApiCartListData<MaApiPayment<
 }
 
 export interface MaApiSetItemData {
-  product_id: number;
-  quantity: number;
+  product_id?: number;
+  quantity?: number;
   user_id?: number;
 }
 

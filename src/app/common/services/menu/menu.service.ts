@@ -13,9 +13,9 @@ import {
 import * as _ from 'lodash';
 
 @Injectable()
-export class MaMenuService {
-  protected menuData$ = new ReplaySubject<MaMenuItem<any>[]>(1);
-  protected menuData: MaMenuItem<any>[];
+export class MaMenuService<MI extends MaMenuItem<any>, MC extends MaApiMenuCategoryData<any>> {
+  protected menuData$ = new ReplaySubject<MI[]>(1);
+  protected menuData: MI[];
 
   constructor(protected apiMenuService: MaApiMenuService<MaApiMenuCategories<any>>) { }
 
@@ -30,18 +30,18 @@ export class MaMenuService {
     });
   }
 
-  protected parseMenuModel(menuData: MaApiMenuCategoryData<any>[], rootLevel = 1, deepLevel = 3): MaMenuItem<any>[] {
+  protected parseMenuModel(menuData: MC[], rootLevel = 1, deepLevel = 3): MI[] {
     if (!menuData) {
       return;
     }
 
-    const items: MaMenuItem<any>[] = [];
+    const items: MI[] = [];
     this.buildMenuTree(menuData, items, rootLevel, deepLevel);
 
     return items;
   }
 
-  protected buildMenuTree(menuData: MaApiMenuCategoryData<any>[], items: MaMenuItem<any>[], parentId = 1, level = 3) {
+  protected buildMenuTree(menuData: MC[], items: MI[], parentId = 1, level = 3) {
     menuData.forEach(menuItem => {
       if (menuItem.category_parent_id === parentId && menuItem.category_level <= level) {
         items.push(this.mapMenuItemModel(menuItem));
@@ -54,7 +54,7 @@ export class MaMenuService {
     });
   }
 
-  protected mapMenuItemModel(item: MaApiMenuCategoryData<any>): MaMenuItem<any> {
+  protected mapMenuItemModel(item: MC): MI {
     return {
       active: false,
       children: [],
@@ -63,14 +63,14 @@ export class MaMenuService {
       id: item.category_slug_name,
       name: item.category_name,
       category_id: item.category_id
-    };
+    } as MI;
   }
 
-  getMenuData(): MaMenuItem<any>[] {
+  getMenuData(): MI[] {
     return this.menuData;
   }
 
-  watchMenuData(): Observable<MaMenuItem<any>[]> {
+  watchMenuData(): Observable<MI[]> {
     return this.menuData$.asObservable();
   }
 }

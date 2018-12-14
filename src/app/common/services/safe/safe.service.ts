@@ -14,20 +14,27 @@ import {
 import * as _ from 'lodash';
 import { MaAuthService } from '../auth/auth.service';
 import { MaApiResponse } from '../../modules/api-module';
+import { MaApiProductVariation, MaApiProductAttribute, MaApiProductImage } from '../../modules/api-module/api-product/api-product.model';
+import { MaApiShopData } from '../../modules/api-module/api-shop';
 
 @Injectable()
-export class MaSafeService {
-  protected cartSafeListSubject$: ReplaySubject<MaApiCartListResponse<any>>;
-  protected cartSafeList: MaApiCartListResponse<any>;
+export class MaSafeService<CR extends MaApiCartListResponse<any>,
+                           IR extends MaApiSetItemResponse<MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>>,
+                           ID extends MaApiSetItemData,
+                           SCR extends MaApiSafeCreateResponse,
+                           CL extends MaApiCartListData<any, any, any, any, any, any, any>,
+                           R extends MaApiResponse> {
+  protected cartSafeListSubject$: ReplaySubject<CR>;
+  protected cartSafeList: CR;
 
-  constructor(protected apiSafeService: MaApiSafeService<MaApiCartListResponse<any>, MaApiSetItemResponse<any>, MaApiSafeCreateResponse, MaApiResponse>,
-              protected authService: MaAuthService) {
+  constructor(protected apiSafeService: MaApiSafeService<CR, IR, SCR, R>,
+              protected authService: MaAuthService<any, any, any, any, any, any, any, any, any, any>) {
 
-    this.cartSafeListSubject$ = new ReplaySubject<MaApiCartListResponse<any>>(1);
+    this.cartSafeListSubject$ = new ReplaySubject<CR>(1);
     this.authService.watchAuthorized().subscribe(() => this.refreshCartSafeList());
   }
 
-  init(): Observable<MaApiSafeCreateResponse> {
+  init(): Observable<SCR> {
     return this.apiSafeService.create().pipe(
       tap(() => {
         this.refreshCartSafeList();
@@ -48,11 +55,11 @@ export class MaSafeService {
     });
   }
 
-  watchCartSafeList(): Observable<MaApiCartListResponse<any>> {
+  watchCartSafeList(): Observable<CR> {
     return this.cartSafeListSubject$.asObservable();
   }
 
-  getCartSafeData(): MaApiCartListData<any, any, any, any, any, any, any> {
+  getCartSafeData(): CL {
     return this.cartSafeList ? this.cartSafeList.data : null;
   }
 
@@ -73,11 +80,11 @@ export class MaSafeService {
     return isFavorite;
   }
 
-  addElement(productId: number, quantity = 1): Observable<MaApiSetItemResponse<any>> {
-    const itemData: MaApiSetItemData = {
+  addElement(productId: number, quantity = 1): Observable<IR> {
+    const itemData = {
       product_id: productId,
       quantity: quantity
-    };
+    } as ID;
 
     return this.apiSafeService.setItem(itemData).pipe(
       tap(response => {
@@ -88,7 +95,7 @@ export class MaSafeService {
     );
   }
 
-  addAllToCart(removeAll = false): Observable<MaApiResponse> {
+  addAllToCart(removeAll = false): Observable<R> {
     return this.apiSafeService.addAllToCart(removeAll).pipe(
       tap(response => {
         if (response.action_status && removeAll) {
@@ -98,25 +105,25 @@ export class MaSafeService {
     );
   }
 
-  removeElement(productId: number): Observable<MaApiSetItemResponse<any>> {
+  removeElement(productId: number): Observable<IR> {
     return this.addElement(productId, 0);
   }
 
-  changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse<any>> {
-    const itemData: MaApiSetItemData = {
+  changeQuantity(productId: number, quantity: number): Observable<IR> {
+    const itemData = {
       product_id: productId,
       quantity: quantity
-    };
+    } as ID;
 
     return this.apiSafeService.setItem(itemData).pipe(
       tap(() =>  this.refreshCartSafeList()));
   }
 
-  changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse<any>> {
-    const itemData: MaApiSetItemData = {
+  changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<IR> {
+    const itemData = {
       product_id: newProductId,
       quantity: quantity
-    };
+    } as ID;
 
     this.removeElement(oldProductId).subscribe();
 

@@ -4,10 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators/tap';
 import 'rxjs/add/observable/of';
 
-import { MaApiSearchService, MaApiSearchResponse } from '../../modules/api-module/api-search';
+import { MaApiSearchService, MaApiSearchResponse, MaApiSearchItemData } from '../../modules/api-module/api-search';
+import { MaApiBreadcrumbs, MaApiFilters, MaApiFilterAttributes, MaApiFilterAttribute, MaApiFilterAttributesListValue } from '../../modules/api-module';
 
 @Injectable()
-export class MaSearchService<SR extends MaApiSearchResponse<any, any, any>> {
+export class MaSearchService<SR extends MaApiSearchResponse<MaApiBreadcrumbs,
+                                                            MaApiFilters<MaApiFilterAttributes<MaApiFilterAttribute<MaApiFilterAttributesListValue>>>,
+                                                            MaApiSearchItemData>> {
   protected isProcessing = false;
   protected searchingProcessing$ = new ReplaySubject<boolean>(1);
 

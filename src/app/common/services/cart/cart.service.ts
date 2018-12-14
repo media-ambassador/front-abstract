@@ -23,32 +23,42 @@ import * as _ from 'lodash';
 import { MaApiResponse } from '../../modules/api-module';
 
 @Injectable()
-export class MaCartService {
-  protected sidebarCartOpenSubject$: ReplaySubject<boolean>;
-  protected cartListSubject$: ReplaySubject<MaApiCartListResponse<any>>;
-  protected relatedProductsData$: ReplaySubject<MaApiProductVariation<any, any, any>[]>;
+export class MaCartService<CLR extends MaApiCartListResponse<any>,
+                           PV extends MaApiProductVariation<any, any, any>,
+                           CP extends MaApiCartProduct<any, any, any, any>,
+                           CLD extends MaApiCartListData<any, any, any, any, any, any, any>,
+                           IR extends MaApiSetItemResponse<any>,
+                           MO extends MaApiMakeOrderResponse,
+                           SPD extends MaApiSetPaymentData,
+                           DO extends MaApiDeliveryOption<any, any>,
+                           DD extends MaApiSetDeliveryData,
+                           SID extends MaApiSetItemData> {
 
-  protected cartList: MaApiCartListResponse<any>;
+  protected sidebarCartOpenSubject$: ReplaySubject<boolean>;
+  protected cartListSubject$: ReplaySubject<CLR>;
+  protected relatedProductsData$: ReplaySubject<PV[]>;
+
+  protected cartList: CLR;
   protected cartId: number;
 
-  constructor(protected apiCartService: MaApiCartService<MaApiCartListResponse<any>,
-                                                         MaApiSetItemData,
-                                                         MaApiSetItemResponse<any>,
-                                                         MaApiSetDeliveryData,
+  constructor(protected apiCartService: MaApiCartService<CLR,
+                                                         SID,
+                                                         IR,
+                                                         DD,
                                                          MaApiResponse,
-                                                         MaApiSetPaymentData,
+                                                         SPD,
                                                          MaApiMakeOrderData<any>,
-                                                         MaApiMakeOrderResponse>,
-              protected authService: MaAuthService) {
+                                                         MO>,
+              protected authService: MaAuthService<any, any, any, any, any, any, any, any, any, any>) {
 
     this.sidebarCartOpenSubject$ = new ReplaySubject<boolean>(1);
-    this.cartListSubject$ = new ReplaySubject<MaApiCartListResponse<any>>(1);
-    this.relatedProductsData$ = new ReplaySubject<MaApiProductVariation<any, any, any>[]>(1);
+    this.cartListSubject$ = new ReplaySubject<CLR>(1);
+    this.relatedProductsData$ = new ReplaySubject<PV[]>(1);
 
     this.authService.watchAuthorized().subscribe(() => this.refreshCartList());
   }
 
-  getCartList(): Observable<MaApiCartListResponse<any>> {
+  getCartList(): Observable<CLR> {
     return this.apiCartService.getList().pipe(
       tap(data => this.updateCartList(data))
     );
@@ -61,7 +71,7 @@ export class MaCartService {
     });
   }
 
-  protected updateCartList(data: MaApiCartListResponse<any>) {
+  protected updateCartList(data: CLR) {
     if (!data.action_status) {
       this.cartId = null;
       this.cartList = null;
@@ -74,17 +84,17 @@ export class MaCartService {
     this.cartListSubject$.next(data);
   }
 
-  watchCartList(): Observable<MaApiCartListResponse<any>> {
+  watchCartList(): Observable<CLR> {
     return this.cartListSubject$.asObservable();
   }
 
-  getProduct(id: string): MaApiCartProduct<any, any, any, any> {
+  getProduct(id: string): CP {
     return _.find(this.cartList.data.items, item => {
       return item.product_id === id;
     });
   }
 
-  getCartData(): MaApiCartListData<any, any, any, any, any, any, any> {
+  getCartData(): CLD {
     return this.cartList ? this.cartList.data : null;
   }
 
@@ -105,24 +115,24 @@ export class MaCartService {
     return this.sidebarCartOpenSubject$.asObservable();
   }
 
-  watchRelatedProducts(): Observable<MaApiProductVariation<any, any, any>[]> {
+  watchRelatedProducts(): Observable<PV[]> {
     return this.relatedProductsData$.asObservable();
   }
 
-  protected updateRelatedProducts(response: MaApiSetItemResponse<any>) {
+  protected updateRelatedProducts(response: IR) {
     !!response.data && response.data.related_products
       ? this.relatedProductsData$.next(response.data.related_products)
       : this.relatedProductsData$.next(null);
   }
 
-  addElement(productId: number): Observable<MaApiSetItemResponse<any>> {
+  addElement(productId: number): Observable<IR> {
     const cartProduct = this.getProduct(productId.toString());
     const quantity = !!cartProduct ? cartProduct.quantity + 1 : 1;
 
     return this.changeQuantity(productId, quantity);
   }
 
-  removeElement(productId: number): Observable<MaApiSetItemResponse<any>> {
+  removeElement(productId: number): Observable<IR> {
     return this.changeQuantity(productId, 0);
   }
 
@@ -133,11 +143,11 @@ export class MaCartService {
     });
   }
 
-  changeQuantity(productId: number, quantity: number): Observable<MaApiSetItemResponse<any>> {
-    const itemData: MaApiSetItemData = {
+  changeQuantity(productId: number, quantity: number): Observable<IR> {
+    const itemData = {
       product_id: productId,
       quantity: quantity
-    };
+    } as SID;
 
     return this.apiCartService.setItem(itemData).pipe(
       tap(response =>  {
@@ -146,11 +156,11 @@ export class MaCartService {
       }));
   }
 
-  changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<MaApiSetItemResponse<any>> {
-    const itemData: MaApiSetItemData = {
+  changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<IR> {
+    const itemData = {
       product_id: newProductId,
       quantity: quantity
-    };
+    } as SID;
 
     this.removeElement(oldProductId).subscribe();
 
@@ -162,10 +172,10 @@ export class MaCartService {
   }
 
   setDelivery(id: number, parcel: string = null): void {
-    const data: MaApiSetDeliveryData = {
+    const data = {
       delivery_id: id,
       delivery_parcel_code_preferred: parcel
-    };
+    } as DD;
 
     this.apiCartService.setDelivery(data).subscribe(response => {
       if (response.action_status) {
@@ -174,7 +184,7 @@ export class MaCartService {
     });
   }
 
-  getSelectedDeliveryOption(): MaApiDeliveryOption<any, any> {
+  getSelectedDeliveryOption(): DO {
     const selected = this.cartList.data.delivery.selected;
 
     if (!selected) {
@@ -203,9 +213,9 @@ export class MaCartService {
   }
 
   setPayment(type: string) {
-    const data: MaApiSetPaymentData = {
+    const data = {
       payment_type: type
-    };
+    } as SPD;
 
     this.apiCartService.setPayment(data).subscribe(response => {
       if (response.action_status) {
@@ -214,7 +224,7 @@ export class MaCartService {
     });
   }
 
-  makeOrder(makeOrderData: any): Observable<MaApiMakeOrderResponse> {
+  makeOrder(makeOrderData: any): Observable<MO> {
     return this.apiCartService.makeOrder(makeOrderData).pipe(
       tap(response => {
         if (response.action_status) {

@@ -5,26 +5,26 @@ import { MaApiUserService } from '../../modules/api-module/api-user/api-user.ser
 import { MaApiUserAuthorizeData, MaApiUserAuthorizeResponse, MaApiUserData, MaApiUserRegisterData, MaApiUserRegisterResponse, MaApiUserAuthorizeResponseData, MaApiUserRemindData, MaApiFbAuthorizeData, MaApiFbAuthorizeResponse, MaApiUserTokenResponse, MaApiUserChangePasswordData, MaApiUserAddressResponse, MaApiUserOrderListResponse } from '../../modules/api-module/api-user/api-user.model';
 import { MaApiResponse } from '../../modules/api-module';
 export declare const MaTokenKeyName = "session-token";
-export declare class MaAuthService {
-    protected apiUserService: MaApiUserService<MaApiUserAuthorizeData, MaApiUserAuthorizeResponse<any>, MaApiFbAuthorizeData, MaApiFbAuthorizeResponse, MaApiUserRegisterData, MaApiUserRegisterResponse, MaApiUserOrderListResponse<any>, MaApiUserAddressResponse<any, any>, MaApiUserChangePasswordData, MaApiUserTokenResponse<any>, MaApiUserRemindData, MaApiResponse>;
+export declare class MaAuthService<UD extends MaApiUserData, ARD extends MaApiUserAuthorizeResponseData, AD extends MaApiUserAuthorizeData, AR extends MaApiUserAuthorizeResponse<any>, FAD extends MaApiFbAuthorizeData, FAR extends MaApiFbAuthorizeResponse, RD extends MaApiUserRegisterData, RR extends MaApiUserRegisterResponse, URD extends MaApiUserRemindData, R extends MaApiResponse> {
+    protected apiUserService: MaApiUserService<AD, AR, FAD, FAR, RD, RR, MaApiUserOrderListResponse<any>, MaApiUserAddressResponse<any, any>, MaApiUserChangePasswordData, MaApiUserTokenResponse<any>, URD, R>;
     protected cookieService: CookieService;
     protected authorized: boolean;
     protected authorizeSubject$: ReplaySubject<boolean>;
-    protected userData: MaApiUserData;
-    protected userDataSubject$: ReplaySubject<MaApiUserData>;
+    protected userData: UD;
+    protected userDataSubject$: ReplaySubject<UD>;
     protected token: string;
-    constructor(apiUserService: MaApiUserService<MaApiUserAuthorizeData, MaApiUserAuthorizeResponse<any>, MaApiFbAuthorizeData, MaApiFbAuthorizeResponse, MaApiUserRegisterData, MaApiUserRegisterResponse, MaApiUserOrderListResponse<any>, MaApiUserAddressResponse<any, any>, MaApiUserChangePasswordData, MaApiUserTokenResponse<any>, MaApiUserRemindData, MaApiResponse>, cookieService: CookieService);
+    constructor(apiUserService: MaApiUserService<AD, AR, FAD, FAR, RD, RR, MaApiUserOrderListResponse<any>, MaApiUserAddressResponse<any, any>, MaApiUserChangePasswordData, MaApiUserTokenResponse<any>, URD, R>, cookieService: CookieService);
     populate(clear?: boolean): Promise<boolean>;
-    protected setUserData(data: MaApiUserAuthorizeResponseData): void;
-    authorize(auth: MaApiUserAuthorizeData): Observable<MaApiUserAuthorizeResponse<any>>;
-    fbAuthorize(auth: MaApiFbAuthorizeData): Observable<MaApiFbAuthorizeResponse>;
-    register(register: MaApiUserRegisterData): Observable<MaApiUserRegisterResponse>;
-    remind(remind: MaApiUserRemindData): Observable<MaApiResponse>;
+    protected setUserData(data: ARD): void;
+    authorize(auth: AD): Observable<AR>;
+    fbAuthorize(auth: FAD): Observable<FAR>;
+    register(register: RD): Observable<RR>;
+    remind(remind: URD): Observable<R>;
     protected setAuthorized(auth: boolean): void;
     watchAuthorized(): Observable<boolean>;
     isAuthorized(): boolean;
-    watchUserData(): Observable<MaApiUserData>;
-    getUserData(): MaApiUserData;
+    watchUserData(): Observable<UD>;
+    getUserData(): UD;
     clearData(): void;
     logout(): void;
 }

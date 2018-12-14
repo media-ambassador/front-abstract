@@ -1,15 +1,15 @@
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { MaMenuItem, MaApiMenuCategoryData, MaApiMenuService, MaApiMenuCategories } from '../../modules/api-module/api-menu';
-export declare class MaMenuService {
+export declare class MaMenuService<MI extends MaMenuItem<any>, MC extends MaApiMenuCategoryData<any>> {
     protected apiMenuService: MaApiMenuService<MaApiMenuCategories<any>>;
-    protected menuData$: ReplaySubject<MaMenuItem<any>[]>;
-    protected menuData: MaMenuItem<any>[];
+    protected menuData$: ReplaySubject<MI[]>;
+    protected menuData: MI[];
     constructor(apiMenuService: MaApiMenuService<MaApiMenuCategories<any>>);
     loadMenu(rootLevel?: number, deepLevel?: number): void;
-    protected parseMenuModel(menuData: MaApiMenuCategoryData<any>[], rootLevel?: number, deepLevel?: number): MaMenuItem<any>[];
-    protected buildMenuTree(menuData: MaApiMenuCategoryData<any>[], items: MaMenuItem<any>[], parentId?: number, level?: number): void;
-    protected mapMenuItemModel(item: MaApiMenuCategoryData<any>): MaMenuItem<any>;
-    getMenuData(): MaMenuItem<any>[];
-    watchMenuData(): Observable<MaMenuItem<any>[]>;
+    protected parseMenuModel(menuData: MC[], rootLevel?: number, deepLevel?: number): MI[];
+    protected buildMenuTree(menuData: MC[], items: MI[], parentId?: number, level?: number): void;
+    protected mapMenuItemModel(item: MC): MI;
+    getMenuData(): MI[];
+    watchMenuData(): Observable<MI[]>;
 }

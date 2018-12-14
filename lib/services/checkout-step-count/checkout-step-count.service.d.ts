@@ -5,12 +5,12 @@ export interface MaCheckoutStep {
     disabled: boolean;
     label?: string;
 }
-export declare class MaCheckoutStepCountService {
-    steps: MaCheckoutStep[];
-    protected stepSubject$: ReplaySubject<MaCheckoutStep[]>;
+export declare class MaCheckoutStepCountService<CS extends MaCheckoutStep> {
+    steps: CS[];
+    protected stepSubject$: ReplaySubject<CS[]>;
     constructor();
-    watchSteps(): Observable<MaCheckoutStep[]>;
-    updateOptions(steps: MaCheckoutStep[]): void;
+    watchSteps(): Observable<CS[]>;
+    updateOptions(steps: CS[]): void;
     activateStep(index: number): void;
     disableStep(index: number): void;
     enableStep(index: number): void;
