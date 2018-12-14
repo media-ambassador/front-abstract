@@ -2,9 +2,10 @@ import { MaApiResponse, MaApiPriceCurrency, MaApiPriceDetails, MaApiPriceInfo } 
 import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
 import { MaApiOrderListData, MaApiOrderListItem, MaApiOrderStatus } from '../api-order/api-order.model';
 import { MaApiCartPrice, MaApiCartPriceInfo, MaApiCartProductAttribute, MaApiDeliveryOption } from '../api-cart';
-import { MaApiProductDiscount, MaApiProductPrice } from '../api-product';
+import { MaApiProductDiscount, MaApiProductPrice, MaApiProductVariation, MaApiProductAttribute, MaApiProductImage } from '../api-product';
 import { MaApiParcelShopData, MaApiDeliveryParcelData, MaApiPaymentOption } from '../api-cart/api-cart.model';
 import { Dictionary } from '../../../models';
+import { MaApiShopData } from '../api-shop';
 export interface MaApiUserAuthorizeData {
     login?: string;
     password?: string;
@@ -84,6 +85,6 @@ export interface MaApiUserChangePasswordData {
     password?: string;
     password_confirm?: string;
 }
-export interface MaApiUserOrderListResponse<OL extends MaApiOrderListData<MaApiPriceCurrency, MaApiPriceDetails<MaApiPriceCurrency>, MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>, MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>, MaApiCartProductAttribute>, MaApiAddressData<MaApiAddressType>, MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>, MaApiPaymentOption, MaApiOrderStatus, MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>>> extends MaApiResponse {
+export interface MaApiUserOrderListResponse<OL extends MaApiOrderListData<MaApiPriceCurrency, MaApiPriceDetails<MaApiPriceCurrency>, MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>, MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>, MaApiCartProductAttribute, MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>>, MaApiAddressData<MaApiAddressType>, MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>, MaApiPaymentOption, MaApiOrderStatus, MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>>> extends MaApiResponse {
     data: OL[];
 }

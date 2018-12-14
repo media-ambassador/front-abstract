@@ -1,12 +1,14 @@
 import { MaApiResponse, MaApiPriceCurrency, MaApiPriceDetails, MaApiPriceInfo } from '../api-common.model';
 import { MaApiCartProductAttribute, MaApiCartPrice, MaApiPaymentOption, MaApiDeliveryOption, MaApiCartPriceInfo, MaApiParcelShopData, MaApiDeliveryParcelData } from '../api-cart/api-cart.model';
-import { MaApiProductDiscount, MaApiProductPrice } from '../api-product/api-product.model';
+import { MaApiProductDiscount, MaApiProductPrice, MaApiProductVariation, MaApiProductAttribute, MaApiProductImage } from '../api-product/api-product.model';
 import { MaApiAddressData, MaApiAddressType } from '../api-address/api-address.model';
 import { Dictionary } from '../../../models';
+import { MaApiShopData } from '../api-shop';
 
 export interface MaApiOrderListItem<P extends MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                     D extends MaApiProductDiscount< MaApiPriceDetails<MaApiPriceCurrency>>,
-                                    A extends MaApiCartProductAttribute> {
+                                    A extends MaApiCartProductAttribute,
+                                    PV extends MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>> {
   product_id?: string;
   quantity?: string;
   product_code?: any;
@@ -19,6 +21,9 @@ export interface MaApiOrderListItem<P extends MaApiCartPrice<MaApiCartPriceInfo<
   attribute_value_list?: A;
   price?: P;
   discount?: D;
+  in_return?: boolean;
+  order_id?: string;
+  product_data?: PV;
 }
 
 export interface MaApiOrderStatus {
@@ -31,7 +36,8 @@ export interface MaApiOrderListData<PC extends MaApiPriceCurrency,
                                     PD extends MaApiPriceDetails<PC>,
                                     O extends MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<PD>>,
                                                                  MaApiProductDiscount<PD>,
-                                                                 MaApiCartProductAttribute>,
+                                                                 MaApiCartProductAttribute,
+                                                                 MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>>,
                                     A extends MaApiAddressData<MaApiAddressType>,
                                     D extends MaApiDeliveryOption<PD, MaApiParcelShopData<MaApiDeliveryParcelData>>,
                                     PO extends MaApiPaymentOption,
@@ -62,7 +68,8 @@ export interface MaApiOrderResponse<T extends MaApiOrderListData<MaApiPriceCurre
                                                                  MaApiPriceDetails<MaApiPriceCurrency>,
                                                                  MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                                                                     MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>,
-                                                                                    MaApiCartProductAttribute>,
+                                                                                    MaApiCartProductAttribute,
+                                                                                    MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>>,
                                                                  MaApiAddressData<MaApiAddressType>,
                                                                  MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>,
                                                                  MaApiPaymentOption,

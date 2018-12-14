@@ -19,9 +19,10 @@ import {
 } from './api-user.model';
 import { MaApiOrderListData, MaApiOrderListItem, MaApiOrderStatus } from '../api-order';
 import { MaApiCartPrice, MaApiCartPriceInfo, MaApiCartProductAttribute, MaApiDeliveryOption, MaApiPaymentOption } from '../api-cart';
-import { MaApiProductDiscount, MaApiProductPrice } from '../api-product';
+import { MaApiProductDiscount, MaApiProductPrice, MaApiProductVariation, MaApiProductAttribute, MaApiProductImage } from '../api-product';
 import { MaApiAddressData, MaApiAddressType, MaApiInvoiceData } from '../api-address';
 import { MaApiParcelShopData, MaApiDeliveryParcelData } from '../api-cart/api-cart.model';
+import { MaApiShopData } from '../api-shop';
 
 @Injectable()
 export class MaApiUserService<UAD extends MaApiUserAuthorizeData,
@@ -34,7 +35,8 @@ export class MaApiUserService<UAD extends MaApiUserAuthorizeData,
                                                                      MaApiPriceDetails<MaApiPriceCurrency>,
                                                                      MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                                                                       MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>,
-                                                                                      MaApiCartProductAttribute>,
+                                                                                      MaApiCartProductAttribute,
+                                                                                      MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>>,
                                                                      MaApiAddressData<MaApiAddressType>,
                                                                      MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>,
                                                                      MaApiPaymentOption,

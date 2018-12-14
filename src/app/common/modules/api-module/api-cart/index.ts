@@ -15,6 +15,7 @@ export {
   MaApiCartListResponse,
   MaApiSetItemData,
   MaApiSetItemResponse,
+  MaSelectedDeliveryOption,
   MaApiSetDeliveryData,
   MaApiSetPaymentData,
   MaApiMakeOrderAddressData,

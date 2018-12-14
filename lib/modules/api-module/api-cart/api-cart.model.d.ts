@@ -101,7 +101,7 @@ export interface MaApiCartProduct<T extends MaApiCartProductAttribute, D extends
     price_regular: string;
     flag_announcement: boolean;
     available_from: string;
-    variation_id: string;
+    variation_id: string | number;
 }
 export interface MaApiCartListData<P extends MaApiPayment<MaApiPaymentOption>, PD extends MaApiPriceDetails<MaApiPriceCurrency>, DPD extends MaApiDeliveryParcelData, PP extends MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>, DI extends MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>, D extends MaApiDelivery<MaApiDeliveryOption<PD, MaApiParcelShopData<DPD>>>, C extends MaApiCartProduct<MaApiCartProductAttribute, PD, MaApiCartPrice<MaApiCartPriceInfo<PD>>, MaApiProductSize>> {
     id: number | string;
@@ -134,6 +134,10 @@ export interface MaApiSetItemResponse<V extends MaApiProductVariation<MaApiProdu
     };
     currentQuantity?: number;
     units?: number;
+}
+export interface MaSelectedDeliveryOption {
+    id: string;
+    delivery_parcel_code_preferred?: string;
 }
 export interface MaApiSetDeliveryData {
     delivery_id: number;

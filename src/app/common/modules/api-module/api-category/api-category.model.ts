@@ -1,6 +1,7 @@
 import { MaApiProductData, MaApiProductAttribute, MaApiProductCustomFlag, MaApiProductImage, MaApiProductTemplate, MaApiProductSize, MaApiProductVariation } from '../api-product/api-product.model';
 import { MaApiBreadcrumbs, MaApiFilters, MaApiFilterAttributes, MaApiFilterAttribute, MaApiFilterAttributesListValue } from '../api-common.model';
 import { MaApiShopData } from '../api-shop';
+import { MaApiSeo } from '../api-meta';
 
 export interface MaApiCategoryData {
   category_banner_title?: string;
@@ -41,7 +42,8 @@ export interface MaApiCategoryResponse<T extends MaApiFilters<MaApiFilterAttribu
                                                                   MaApiProductVariation<MaApiProductAttribute,
                                                                                         MaApiProductImage,
                                                                                         MaApiShopData>
-                                                                  >
+                                                                  >,
+                                      S extends MaApiSeo
                                       > {
   brand_data?: any;
   brand_id?: number;
@@ -78,4 +80,5 @@ export interface MaApiCategoryResponse<T extends MaApiFilters<MaApiFilterAttribu
   title?: string;
   total_pages?: number;
   total_results?: number;
+  seo: S;
 }

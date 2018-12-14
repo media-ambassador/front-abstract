@@ -16,6 +16,7 @@ import {
 import { MaApiCategoryResponse, MaApiCategoryData } from '../api-category/api-category.model';
 import { MaApiResponse, MaApiBreadcrumbs, MaApiFilters, MaApiFilterAttributes, MaApiFilterAttribute, MaApiFilterAttributesListValue } from '../api-common.model';
 import { MaApiShopListResponse, MaApiShopData } from '../api-shop';
+import { MaApiSeo } from '../api-meta';
 
 @Injectable()
 export class MaApiProductService<PR extends MaApiProductResponse<MaApiBreadcrumbs,
@@ -42,7 +43,8 @@ export class MaApiProductService<PR extends MaApiProductResponse<MaApiBreadcrumb
                                                                                               MaApiProductVariation<MaApiProductAttribute,
                                                                                                                     MaApiProductImage,
                                                                                                                     MaApiShopData>
-                                                                                              >
+                                                                                              >,
+                                                                  MaApiSeo
                                                                   >,
                                  SL extends MaApiShopListResponse<MaApiShopData>,
                                  AR extends MaApiProductAttributeList<MaApiProductAttribute>,

@@ -114,7 +114,7 @@ export interface MaApiCartProduct<T extends MaApiCartProductAttribute,
   price_regular: string;
   flag_announcement: boolean;
   available_from: string;
-  variation_id: string;
+  variation_id: string | number;
 }
 
 export interface MaApiCartListData<P extends MaApiPayment<MaApiPaymentOption>,
@@ -167,6 +167,12 @@ export interface MaApiSetItemResponse<V extends MaApiProductVariation<MaApiProdu
   currentQuantity?: number;
   units?: number;
 }
+
+export interface MaSelectedDeliveryOption {
+  id: string;
+  delivery_parcel_code_preferred?: string;
+}
+
 
 export interface MaApiSetDeliveryData {
   delivery_id: number;

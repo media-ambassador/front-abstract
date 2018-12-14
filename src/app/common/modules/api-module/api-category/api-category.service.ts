@@ -26,6 +26,7 @@ import {
 } from '../api-product';
 
 import { MaApiShopData } from '../api-shop';
+import { MaApiSeo } from '../api-meta';
 
 @Injectable()
 export class MaApiCategoryService<CR extends MaApiCategoryResponse<MaApiFilters<MaApiFilterAttributes<MaApiFilterAttribute<MaApiFilterAttributesListValue>>>,
@@ -40,7 +41,8 @@ export class MaApiCategoryService<CR extends MaApiCategoryResponse<MaApiFilters<
                                                                                     MaApiProductVariation<MaApiProductAttribute,
                                                                                                           MaApiProductImage,
                                                                                                           MaApiShopData>
-                                                                                   >
+                                                                                   >,
+                                                                   MaApiSeo
                                                                    >
                                   > {
 

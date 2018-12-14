@@ -24,4 +24,5 @@ export interface MaApiSeo {
   noindex?: string;
   title?: string;
   url?: string;
+  canonical?: string;
 }
