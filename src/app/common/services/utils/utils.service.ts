@@ -111,7 +111,7 @@ export class MaUtilsService<OS extends MaApiOrderStatus, AD extends MaStreetAddr
           hour = date.getHours();
 
     const isWeekend = day === 0 || day === 6 ? true : false;
-    const isOpen = hour > hourFrom && hour < hourTo ? true : false;
+    const isOpen = hour >= hourFrom && hour < hourTo ? true : false;
 
     return  isOpen && !isWeekend ? true : false;
   }

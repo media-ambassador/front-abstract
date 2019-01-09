@@ -5,7 +5,7 @@ import { MaProductListOptions } from './product-list.model';
 import * as _ from 'lodash';
 
 export class MaProductListService {
-  readonly defaultOptions: MaProductListOptions = {
+  protected readonly defaultOptions: MaProductListOptions = {
     page: 1,
     pageSize: 48,
     sortType: 'nhl',
@@ -14,7 +14,7 @@ export class MaProductListService {
     price: null
   };
 
-  protected options: MaProductListOptions = Object.assign({}, this.defaultOptions);
+  protected options: MaProductListOptions = this.getDefaultOptions();
 
   optionsSubject$: ReplaySubject<MaProductListOptions>;
 
@@ -30,6 +30,10 @@ export class MaProductListService {
   updateOptions(opt: MaProductListOptions): void {
     this.options = _.extend(this.options, opt);
     this.optionsSubject$.next(this.options);
+  }
+
+  getDefaultOptions(): MaProductListOptions {
+    return Object.assign({}, this.defaultOptions);
   }
 
   setDefaultOptions(id: string): void {
