@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { MaApiHttpClient } from '../api-http-client.service';
 import { MaApiPriceCurrency, MaApiPriceDetails, MaApiPriceInfo } from '..';
-import { MaApiCartPrice, MaApiCartPriceInfo, MaApiCartProductAttribute, MaApiDeliveryOption, MaApiPaymentOption } from '../api-cart';
-import { MaApiProductDiscount, MaApiProductPrice, MaApiProductImage, MaApiProductSize } from '../api-product';
+import { MaApiCartPrice, MaApiCartPriceInfo, MaApiDeliveryOption, MaApiPaymentOption } from '../api-cart';
+import { MaApiProductDiscount, MaApiProductPrice, MaApiProductSize } from '../api-product';
 import { MaApiAddressData, MaApiAddressType } from '../api-address';
 import { MaApiParcelShopData, MaApiDeliveryParcelData } from '../api-cart/api-cart.model';
 import {
@@ -17,7 +17,8 @@ import {
   MaOrderProductAttribute,
   MaOrderProductModel,
   MaOrderProductModelBrand,
-  MaOrderProductModelCategory
+  MaOrderProductModelCategory,
+  MaOrderProductImage
 } from './api-order.model';
 
 @Injectable()
@@ -26,7 +27,7 @@ export class MaApiOrderService<OR extends MaApiOrderResponse<MaApiOrderListData<
                                                             MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                                                               MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>,
                                                                               MaOrderProductData<MaOrderProductAttribute,
-                                                                                                MaApiProductImage,
+                                                                                                MaOrderProductImage,
                                                                                                 MaOrderProductModel<
                                                                                                   MaOrderProductModelBrand,
                                                                                                   MaOrderProductModelCategory
