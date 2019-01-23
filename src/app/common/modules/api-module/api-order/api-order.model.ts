@@ -91,7 +91,8 @@ export interface MaApiOrderListItem<P extends MaApiCartPrice<MaApiCartPriceInfo<
                                                                     MaOrderProductModelBrand,
                                                                     MaOrderProductModelCategory
                                                                   >,
-                                    MaApiProductSize>
+                                                                  MaApiProductSize
+                                                                 >
                                   > {
   price?: P;
   discount?: D;

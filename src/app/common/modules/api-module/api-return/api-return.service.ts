@@ -7,7 +7,7 @@ import { MaApiResponse } from '../api-common.model';
 import { MaApiHttpClient } from '..';
 
 @Injectable()
-export class ApiReturnService<RD extends MaApiReturnData<
+export class MaApiReturnService<RD extends MaApiReturnData<
                                           MaApiReturnItem,
                                           MaApiAddressData<MaApiAddressType>
                                          >,
