@@ -1,11 +1,19 @@
 import { MaApiResponse, MaApiPriceCurrency, MaApiPriceDetails, MaApiPriceInfo } from '../api-common.model';
 import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
-import { MaApiOrderListData, MaApiOrderListItem, MaApiOrderStatus } from '../api-order/api-order.model';
-import { MaApiCartPrice, MaApiCartPriceInfo, MaApiCartProductAttribute, MaApiDeliveryOption } from '../api-cart';
-import { MaApiProductDiscount, MaApiProductPrice, MaApiProductVariation, MaApiProductAttribute, MaApiProductImage } from '../api-product';
+import { MaApiCartPrice, MaApiCartPriceInfo, MaApiDeliveryOption } from '../api-cart';
+import { MaApiProductDiscount, MaApiProductPrice, MaApiProductImage, MaApiProductSize } from '../api-product';
 import { MaApiParcelShopData, MaApiDeliveryParcelData, MaApiPaymentOption } from '../api-cart/api-cart.model';
+import {
+  MaApiOrderListData,
+  MaApiOrderListItem,
+  MaApiOrderStatus,
+  OrderProductData,
+  MaOrderProductAttribute,
+  MaOrderProductModel,
+  MaOrderProductModelBrand,
+  MaOrderProductModelCategory
+} from '../api-order/api-order.model';
 import { Dictionary } from '../../../models';
-import { MaApiShopData } from '../api-shop';
 
 export interface MaApiUserAuthorizeData {
   login?: string;
@@ -102,8 +110,14 @@ export interface MaApiUserOrderListResponse<OL extends MaApiOrderListData<MaApiP
                                                                           MaApiPriceDetails<MaApiPriceCurrency>,
                                                                           MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                                                                             MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>,
-                                                                                            MaApiCartProductAttribute,
-                                                                                            MaApiProductVariation<MaApiProductAttribute, MaApiProductImage, MaApiShopData>>,
+                                                                                            OrderProductData<MaOrderProductAttribute,
+                                                                                                            MaApiProductImage,
+                                                                                                            MaOrderProductModel<
+                                                                                                              MaOrderProductModelBrand,
+                                                                                                              MaOrderProductModelCategory
+                                                                                                            >,
+                                                                                                            MaApiProductSize>
+                                                                                            >,
                                                                           MaApiAddressData<MaApiAddressType>,
                                                                           MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>,
                                                                           MaApiPaymentOption,
