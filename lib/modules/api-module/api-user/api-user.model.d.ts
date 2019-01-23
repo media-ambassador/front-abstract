@@ -1,9 +1,9 @@
 import { MaApiResponse, MaApiPriceCurrency, MaApiPriceDetails, MaApiPriceInfo } from '../api-common.model';
 import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
 import { MaApiCartPrice, MaApiCartPriceInfo, MaApiDeliveryOption } from '../api-cart';
-import { MaApiProductDiscount, MaApiProductPrice, MaApiProductImage, MaApiProductSize } from '../api-product';
+import { MaApiProductDiscount, MaApiProductPrice, MaApiProductSize } from '../api-product';
 import { MaApiParcelShopData, MaApiDeliveryParcelData, MaApiPaymentOption } from '../api-cart/api-cart.model';
-import { MaApiOrderListData, MaApiOrderListItem, MaApiOrderStatus, MaOrderProductData, MaOrderProductAttribute, MaOrderProductModel, MaOrderProductModelBrand, MaOrderProductModelCategory } from '../api-order/api-order.model';
+import { MaApiOrderListData, MaApiOrderListItem, MaApiOrderStatus, MaOrderProductData, MaOrderProductAttribute, MaOrderProductModel, MaOrderProductModelBrand, MaOrderProductModelCategory, MaOrderProductImage } from '../api-order/api-order.model';
 import { Dictionary } from '../../../models';
 export interface MaApiUserAuthorizeData {
     login?: string;
@@ -84,6 +84,6 @@ export interface MaApiUserChangePasswordData {
     password?: string;
     password_confirm?: string;
 }
-export interface MaApiUserOrderListResponse<OL extends MaApiOrderListData<MaApiPriceCurrency, MaApiPriceDetails<MaApiPriceCurrency>, MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>, MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>, MaOrderProductData<MaOrderProductAttribute, MaApiProductImage, MaOrderProductModel<MaOrderProductModelBrand, MaOrderProductModelCategory>, MaApiProductSize>>, MaApiAddressData<MaApiAddressType>, MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>, MaApiPaymentOption, MaApiOrderStatus, MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>>> extends MaApiResponse {
+export interface MaApiUserOrderListResponse<OL extends MaApiOrderListData<MaApiPriceCurrency, MaApiPriceDetails<MaApiPriceCurrency>, MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>, MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>, MaOrderProductData<MaOrderProductAttribute, MaOrderProductImage, MaOrderProductModel<MaOrderProductModelBrand, MaOrderProductModelCategory>, MaApiProductSize>>, MaApiAddressData<MaApiAddressType>, MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>, MaApiPaymentOption, MaApiOrderStatus, MaApiProductPrice<MaApiPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>>> extends MaApiResponse {
     data: OL[];
 }

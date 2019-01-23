@@ -1,7 +1,7 @@
 import { MaApiResponse, MaApiPriceCurrency, MaApiPriceDetails, MaApiPriceInfo } from '../api-common.model';
 import { MaApiAddressData, MaApiInvoiceData, MaApiAddressType } from '../api-address/api-address.model';
 import { MaApiCartPrice, MaApiCartPriceInfo, MaApiDeliveryOption } from '../api-cart';
-import { MaApiProductDiscount, MaApiProductPrice, MaApiProductImage, MaApiProductSize } from '../api-product';
+import { MaApiProductDiscount, MaApiProductPrice, MaApiProductSize } from '../api-product';
 import { MaApiParcelShopData, MaApiDeliveryParcelData, MaApiPaymentOption } from '../api-cart/api-cart.model';
 import {
   MaApiOrderListData,
@@ -11,7 +11,8 @@ import {
   MaOrderProductAttribute,
   MaOrderProductModel,
   MaOrderProductModelBrand,
-  MaOrderProductModelCategory
+  MaOrderProductModelCategory,
+  MaOrderProductImage
 } from '../api-order/api-order.model';
 import { Dictionary } from '../../../models';
 
@@ -111,7 +112,7 @@ export interface MaApiUserOrderListResponse<OL extends MaApiOrderListData<MaApiP
                                                                           MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                                                                             MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>,
                                                                                             MaOrderProductData<MaOrderProductAttribute,
-                                                                                                            MaApiProductImage,
+                                                                                                            MaOrderProductImage,
                                                                                                             MaOrderProductModel<
                                                                                                               MaOrderProductModelBrand,
                                                                                                               MaOrderProductModelCategory

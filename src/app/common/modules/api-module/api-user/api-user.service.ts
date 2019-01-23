@@ -19,10 +19,10 @@ import {
 } from './api-user.model';
 import { MaApiOrderListData, MaApiOrderListItem, MaApiOrderStatus } from '../api-order';
 import { MaApiCartPrice, MaApiCartPriceInfo, MaApiDeliveryOption, MaApiPaymentOption } from '../api-cart';
-import { MaApiProductDiscount, MaApiProductPrice, MaApiProductImage, MaApiProductSize } from '../api-product';
+import { MaApiProductDiscount, MaApiProductPrice, MaApiProductSize } from '../api-product';
 import { MaApiAddressData, MaApiAddressType, MaApiInvoiceData } from '../api-address';
 import { MaApiParcelShopData, MaApiDeliveryParcelData } from '../api-cart/api-cart.model';
-import { MaOrderProductData, MaOrderProductAttribute, MaOrderProductModel, MaOrderProductModelBrand, MaOrderProductModelCategory } from '../api-order/api-order.model';
+import { MaOrderProductData, MaOrderProductAttribute, MaOrderProductModel, MaOrderProductModelBrand, MaOrderProductModelCategory, MaOrderProductImage } from '../api-order/api-order.model';
 
 @Injectable()
 export class MaApiUserService<UAD extends MaApiUserAuthorizeData,
@@ -36,7 +36,7 @@ export class MaApiUserService<UAD extends MaApiUserAuthorizeData,
                                                                      MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                                                      MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>,
                                                                                           MaOrderProductData<MaOrderProductAttribute,
-                                                                                                             MaApiProductImage,
+                                                                                                             MaOrderProductImage,
                                                                                                              MaOrderProductModel<
                                                                                                                MaOrderProductModelBrand,
                                                                                                                MaOrderProductModelCategory
