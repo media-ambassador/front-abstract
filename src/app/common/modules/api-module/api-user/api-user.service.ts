@@ -22,7 +22,7 @@ import { MaApiCartPrice, MaApiCartPriceInfo, MaApiDeliveryOption, MaApiPaymentOp
 import { MaApiProductDiscount, MaApiProductPrice, MaApiProductImage, MaApiProductSize } from '../api-product';
 import { MaApiAddressData, MaApiAddressType, MaApiInvoiceData } from '../api-address';
 import { MaApiParcelShopData, MaApiDeliveryParcelData } from '../api-cart/api-cart.model';
-import { OrderProductData, MaOrderProductAttribute, MaOrderProductModel, MaOrderProductModelBrand, MaOrderProductModelCategory } from '../api-order/api-order.model';
+import { MaOrderProductData, MaOrderProductAttribute, MaOrderProductModel, MaOrderProductModelBrand, MaOrderProductModelCategory } from '../api-order/api-order.model';
 
 @Injectable()
 export class MaApiUserService<UAD extends MaApiUserAuthorizeData,
@@ -35,14 +35,14 @@ export class MaApiUserService<UAD extends MaApiUserAuthorizeData,
                                                                      MaApiPriceDetails<MaApiPriceCurrency>,
                                                                      MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                                                      MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>,
-                                                                                          OrderProductData<MaOrderProductAttribute,
-                                                                                                          MaApiProductImage,
-                                                                                                          MaOrderProductModel<
-                                                                                                            MaOrderProductModelBrand,
-                                                                                                            MaOrderProductModelCategory
-                                                                                                          >,
-                                                                                                          MaApiProductSize>
-                                                                                          >,
+                                                                                          MaOrderProductData<MaOrderProductAttribute,
+                                                                                                             MaApiProductImage,
+                                                                                                             MaOrderProductModel<
+                                                                                                               MaOrderProductModelBrand,
+                                                                                                               MaOrderProductModelCategory
+                                                                                                             >,
+                                                                                           MaApiProductSize>
+                                                                                         >,
                                                                      MaApiAddressData<MaApiAddressType>,
                                                                      MaApiDeliveryOption<MaApiPriceDetails<MaApiPriceCurrency>, MaApiParcelShopData<MaApiDeliveryParcelData>>,
                                                                      MaApiPaymentOption,

@@ -1,9 +1,8 @@
 import { MaApiResponse, MaApiPriceCurrency, MaApiPriceDetails, MaApiPriceInfo } from '../api-common.model';
-import { MaApiCartProductAttribute, MaApiCartPrice, MaApiPaymentOption, MaApiDeliveryOption, MaApiCartPriceInfo, MaApiParcelShopData, MaApiDeliveryParcelData } from '../api-cart/api-cart.model';
-import { MaApiProductDiscount, MaApiProductPrice, MaApiProductVariation, MaApiProductAttribute, MaApiProductImage, MaApiProductSize } from '../api-product/api-product.model';
+import { MaApiCartPrice, MaApiPaymentOption, MaApiDeliveryOption, MaApiCartPriceInfo, MaApiParcelShopData, MaApiDeliveryParcelData } from '../api-cart/api-cart.model';
+import { MaApiProductDiscount, MaApiProductPrice, MaApiProductImage, MaApiProductSize } from '../api-product/api-product.model';
 import { MaApiAddressData, MaApiAddressType } from '../api-address/api-address.model';
 import { Dictionary } from '../../../models';
-import { MaApiShopData } from '../api-shop';
 
 export interface MaOrderProductAttribute {
   id?: string;
@@ -51,7 +50,7 @@ export interface MaOrderProductModel<OB extends MaOrderProductModelBrand, OC ext
   }[];
 }
 
-export interface OrderProductData<OA extends MaOrderProductAttribute, OI extends MaApiProductImage, OM extends MaOrderProductModel<
+export interface MaOrderProductData<OA extends MaOrderProductAttribute, OI extends MaApiProductImage, OM extends MaOrderProductModel<
                                                                                                                 MaOrderProductModelBrand,
                                                                                                                 MaOrderProductModelCategory
                                                                                                                >,
@@ -86,14 +85,14 @@ export interface OrderProductData<OA extends MaOrderProductAttribute, OI extends
 
 export interface MaApiOrderListItem<P extends MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                     D extends MaApiProductDiscount< MaApiPriceDetails<MaApiPriceCurrency>>,
-                                    PD extends OrderProductData<MaOrderProductAttribute,
-                                                                MaApiProductImage,
-                                                                MaOrderProductModel<
-                                                                  MaOrderProductModelBrand,
-                                                                  MaOrderProductModelCategory
-                                                                >,
-                                                                MaApiProductSize>
-                                    > {
+                                    PD extends MaOrderProductData<MaOrderProductAttribute,
+                                                                  MaApiProductImage,
+                                                                  MaOrderProductModel<
+                                                                    MaOrderProductModelBrand,
+                                                                    MaOrderProductModelCategory
+                                                                  >,
+                                    MaApiProductSize>
+                                  > {
   price?: P;
   discount?: D;
   in_return?: boolean;
@@ -113,7 +112,7 @@ export interface MaApiOrderListData<PC extends MaApiPriceCurrency,
                                     PD extends MaApiPriceDetails<PC>,
                                     O extends MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<PD>>,
                                                                  MaApiProductDiscount<PD>,
-                                                                 OrderProductData<MaOrderProductAttribute,
+                                                                 MaOrderProductData<MaOrderProductAttribute,
                                                                                   MaApiProductImage,
                                                                                   MaOrderProductModel<
                                                                                     MaOrderProductModelBrand,
@@ -151,7 +150,7 @@ export interface MaApiOrderResponse<T extends MaApiOrderListData<MaApiPriceCurre
                                                                  MaApiPriceDetails<MaApiPriceCurrency>,
                                                                  MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                                                                     MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>,
-                                                                                    OrderProductData<MaOrderProductAttribute,
+                                                                                    MaOrderProductData<MaOrderProductAttribute,
                                                                                                       MaApiProductImage,
                                                                                                       MaOrderProductModel<
                                                                                                         MaOrderProductModelBrand,

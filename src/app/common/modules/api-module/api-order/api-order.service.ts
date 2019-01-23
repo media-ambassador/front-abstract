@@ -13,7 +13,7 @@ import {
   MaApiOrderListData,
   MaApiOrderListItem,
   MaApiOrderStatus,
-  OrderProductData,
+  MaOrderProductData,
   MaOrderProductAttribute,
   MaOrderProductModel,
   MaOrderProductModelBrand,
@@ -25,7 +25,7 @@ export class MaApiOrderService<OR extends MaApiOrderResponse<MaApiOrderListData<
                                                             MaApiPriceDetails<MaApiPriceCurrency>,
                                                             MaApiOrderListItem<MaApiCartPrice<MaApiCartPriceInfo<MaApiPriceDetails<MaApiPriceCurrency>>>,
                                                                               MaApiProductDiscount<MaApiPriceDetails<MaApiPriceCurrency>>,
-                                                                              OrderProductData<MaOrderProductAttribute,
+                                                                              MaOrderProductData<MaOrderProductAttribute,
                                                                                                 MaApiProductImage,
                                                                                                 MaOrderProductModel<
                                                                                                   MaOrderProductModelBrand,

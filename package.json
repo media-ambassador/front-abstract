@@ -1,6 +1,6 @@
 {
   "name": "@ma_tkuchne/front-abstract",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "description": "Warstwa abstrakcyjna aplikacji FE",
   "main": "index.js",
   "scripts": {
