@@ -31,7 +31,7 @@ export declare class MaCartService<CLR extends MaApiCartListResponse<any>, PV ex
     changeQuantity(productId: number, quantity: number): Observable<IR>;
     changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<IR>;
     setDelivery(id: number, parcel?: string): void;
-    getSelectedDeliveryOption(): DO;
+    getSelectedDeliveryOption(): any;
     isDeliveryInpost(): boolean;
     isSalonDelivery(): boolean;
     setPayment(type: string): void;

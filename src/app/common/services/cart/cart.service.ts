@@ -184,14 +184,13 @@ export class MaCartService<CLR extends MaApiCartListResponse<any>,
     });
   }
 
-  getSelectedDeliveryOption(): DO {
+  getSelectedDeliveryOption() {
     const selected = this.cartList.data.delivery.selected;
 
-    if (!selected) {
-      return null;
-    }
-
-    return this.cartList.data.delivery.options[selected];
+    return _.find(this.cartList.data.delivery.options, item => {
+      // tslint:disable-next-line:triple-equals
+      return item.delivery_id == selected;
+    });
   }
 
   isDeliveryInpost(): boolean {
