@@ -88,6 +88,7 @@ export interface MaApiUserRegisterResponse extends MaApiResponse {
 export interface MaApiUserTokenResponse<T extends MaApiUserAuthorizeResponseData> extends MaApiResponse  {
   data: {
     x_jwt_token?: string;
+    version?: string;
     is_logged?: boolean;
     user_data: T;
   };

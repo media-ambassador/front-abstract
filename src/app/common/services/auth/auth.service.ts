@@ -37,9 +37,10 @@ export class MaAuthService<UD extends MaApiUserData,
                            R extends MaApiResponse> {
 
   protected authorized = false;
-  protected authorizeSubject$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
+  protected authorizeSubject$ = new ReplaySubject<boolean>(1);
   protected userData: UD = null;
-  protected userDataSubject$: ReplaySubject<UD> = new ReplaySubject<UD>(1);
+  protected userDataSubject$ = new ReplaySubject<UD>(1);
+  protected versionMismatchSubject$ = new ReplaySubject<boolean>(1);
   protected token: string;
 
   constructor(protected apiUserService: MaApiUserService<AD,
@@ -56,21 +57,35 @@ export class MaAuthService<UD extends MaApiUserData,
                                                          R>,
               protected cookieService: CookieService) { }
 
-  populate(clear = false): Promise<boolean> {
+  populate(clear = false, version: string = null): Promise<boolean> {
     if (clear) {
       this.clearData();
     }
 
     return new Promise<boolean>(resolve => {
       const subscription = this.apiUserService.token(clear).subscribe(response => {
-        this.cookieService.set(MaTokenKeyName, response.data.x_jwt_token, 30, '/');
-        this.setAuthorized(response.data.is_logged);
-        this.setUserData(response.data.user_data);
-
+        this.handleTokenResponse(response, version);
         subscription.unsubscribe();
         resolve(true);
       });
     });
+  }
+
+  protected handleTokenResponse(response: MaApiUserTokenResponse<any>, version: string = null) {
+    this.handleVersionError(response, version);
+    this.cookieService.set('session-token', response.data.x_jwt_token, 30, '/');
+    this.setAuthorized(response.data.is_logged);
+    this.setUserData(response.data.user_data);
+  }
+
+  protected handleVersionError(response: MaApiUserTokenResponse<any>, version: string = null) {
+    if (!!response.data.version && !!version && response.data.version !== version) {
+      this.versionMismatchSubject$.next(true);
+    }
+  }
+
+  watchVersionError() {
+    return this.versionMismatchSubject$.asObservable();
   }
 
   protected setUserData(data: ARD): void {
@@ -87,53 +102,59 @@ export class MaAuthService<UD extends MaApiUserData,
 
   authorize(auth: AD): Observable<AR> {
     return this.apiUserService.authorize(auth).pipe(
-      tap(response => {
-        if (response.action_status) {
-
-          this.setUserData(response.data);
-          this.userDataSubject$.next(this.userData);
-
-          if (!!response.data.x_jwt_token) {
-            this.token = response.data.x_jwt_token;
-            this.cookieService.set(MaTokenKeyName, this.token, 30, '/');
-          }
-
-          this.setAuthorized(true);
-        }
-      })
+      tap(response => this.handleAuthorizeResponse(response))
     );
+  }
+
+  protected handleAuthorizeResponse(response: AR) {
+    if (response.action_status) {
+
+      this.setUserData(response.data);
+      this.userDataSubject$.next(this.userData);
+
+      if (!!response.data.x_jwt_token) {
+        this.token = response.data.x_jwt_token;
+        this.cookieService.set(MaTokenKeyName, this.token, 30, '/');
+      }
+
+      this.setAuthorized(true);
+    }
   }
 
   fbAuthorize(auth: FAD): Observable<FAR> {
     return this.apiUserService.fbAuthorize(auth).pipe(
-      tap(response => {
-        if (response.action_status) {
-          this.setUserData(response.data);
-          this.userDataSubject$.next(this.userData);
-
-          if (!!response.data.x_jwt_token) {
-            this.token = response.data.x_jwt_token;
-            this.cookieService.set(MaTokenKeyName, this.token, 30, '/');
-          }
-
-          this.setAuthorized(true);
-        }
-      })
+      tap(response => this.handleFbAuthorizeResponse(response))
     );
+  }
+
+  protected handleFbAuthorizeResponse(response: FAR) {
+    if (response.action_status) {
+      this.setUserData(response.data);
+      this.userDataSubject$.next(this.userData);
+
+      if (!!response.data.x_jwt_token) {
+        this.token = response.data.x_jwt_token;
+        this.cookieService.set(MaTokenKeyName, this.token, 30, '/');
+      }
+
+      this.setAuthorized(true);
+    }
   }
 
   register(register: RD): Observable<RR> {
     return this.apiUserService.register(register).pipe(
-      tap(response => {
-        if (response.action_status) {
-
-          this.setUserData(response.data as ARD);
-          this.userDataSubject$.next(this.userData);
-
-          this.setAuthorized(true);
-        }
-      })
+      tap(response => this.handleRegisterResponse(response))
     );
+  }
+
+  protected handleRegisterResponse(response: RR) {
+    if (response.action_status) {
+
+      this.setUserData(response.data as ARD);
+      this.userDataSubject$.next(this.userData);
+
+      this.setAuthorized(true);
+    }
   }
 
   remind(remind: URD): Observable<R> {
