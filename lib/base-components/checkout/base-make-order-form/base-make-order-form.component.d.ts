@@ -33,7 +33,7 @@ export declare class MaBaseMakeOrderFormComponent<UD extends MaApiUserData, UAR 
     protected initOrderData(): void;
     protected readonly defaultAddressesForm: FormGroup;
     protected readonly defaultMakeOrderForm: FormGroup;
-    getFormGroup(name: string): FormGroup;
+    getAddressFormGroup(name: string): FormGroup;
     setShippingAddress(id: string): void;
     setInvoiceAddress(id: string): void;
     shipmentUpdate(isChecked: boolean): void;

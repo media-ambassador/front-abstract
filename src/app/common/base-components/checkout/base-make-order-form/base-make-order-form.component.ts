@@ -75,9 +75,9 @@ export class MaBaseMakeOrderFormComponent<UD extends MaApiUserData,
 
   protected get defaultAddressesForm() {
     return new FormGroup({
-      billing: MaBaseAddressFormGroup,
-      shipping: MaBaseAddressFormGroup,
-      invoice: MaBaseInvoiceFormGroup
+      billing: Object.assign({}, MaBaseAddressFormGroup),
+      shipping: Object.assign({}, MaBaseAddressFormGroup),
+      invoice: Object.assign({}, MaBaseInvoiceFormGroup)
     });
   }
 
@@ -91,7 +91,7 @@ export class MaBaseMakeOrderFormComponent<UD extends MaApiUserData,
     });
   }
 
-  getFormGroup(name: string): FormGroup {
+  getAddressFormGroup(name: string): FormGroup {
     const addressForm = this.makeOrderForm.controls['addresses'] as FormGroup;
     return !!addressForm && !!addressForm.controls[name] ? addressForm.controls[name] as FormGroup : null;
   }
@@ -150,9 +150,6 @@ export class MaBaseMakeOrderFormComponent<UD extends MaApiUserData,
     }
 
     if (this.makeOrderForm.valid) {
-      this.makeOrderProcessing = true;
-      this.utilsService.setFormGroupEditable(this.makeOrderForm, false);
-
       const formValue = Object.assign({}, this.makeOrderForm.value);
 
       if (!this.shipmentChecked && formValue['addresses']) {
@@ -163,14 +160,21 @@ export class MaBaseMakeOrderFormComponent<UD extends MaApiUserData,
         delete formValue['addresses']['invoice'];
       }
 
-      this.subscription.add(this.cartService.makeOrder(this.makeOrderForm.value).subscribe(response => {
-        this.makeOrderProcessing = false;
-        this.utilsService.setFormGroupEditable(this.makeOrderForm, true);
+      this.subscription.add(this.cartService.makeOrder(this.makeOrderForm.value).subscribe(
+        response => {
+          this.makeOrderProcessing = false;
+          this.utilsService.setFormGroupEditable(this.makeOrderForm, true);
 
-        response.action_status
-          ? this.handleMakeOrderSuccess(response)
-          : this.handleErrorResponse(response);
-      }));
+          response.action_status
+            ? this.handleMakeOrderSuccess(response)
+            : this.handleErrorResponse(response);
+        },
+        () => this.callOverallError(),
+        () => {
+          this.makeOrderProcessing = true;
+          this.utilsService.setFormGroupEditable(this.makeOrderForm, false);
+        }
+      ));
     } else {
       this.handleValidationError();
     }
