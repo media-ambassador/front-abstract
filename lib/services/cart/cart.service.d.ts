@@ -21,8 +21,8 @@ export declare class MaCartService<CLR extends MaApiCartListResponse<any>, PV ex
     getProduct(id: string): CP;
     getCartData(): CLD;
     getItemsCount(): number;
+    getSingleItemsCount(): number;
     getCartId(): number;
-    watchSidebarCartOpen(): Observable<boolean>;
     watchRelatedProducts(): Observable<PV[]>;
     protected updateRelatedProducts(response: IR): void;
     addElement(productId: number): Observable<IR>;
@@ -31,10 +31,13 @@ export declare class MaCartService<CLR extends MaApiCartListResponse<any>, PV ex
     changeQuantity(productId: number, quantity: number): Observable<IR>;
     changeSize(oldProductId: number, newProductId: number, quantity: number): Observable<IR>;
     setDelivery(id: number, parcel?: string): void;
+    getSelectedPaymentOption(): any;
     getSelectedDeliveryOption(): any;
     isDeliveryInpost(): boolean;
     isSalonDelivery(): boolean;
+    getParcelName(option: DO): string;
     setPayment(type: string): void;
     makeOrder(makeOrderData: any): Observable<MO>;
+    protected makeOrderResponse(response: any): void;
     validateCart(): boolean;
 }

@@ -51,7 +51,6 @@ export class MaCartService<CLR extends MaApiCartListResponse<any>,
                                                          MO>,
               protected authService: MaAuthService<any, any, any, any, any, any, any, any, any, any>) {
 
-    this.sidebarCartOpenSubject$ = new ReplaySubject<boolean>(1);
     this.cartListSubject$ = new ReplaySubject<CLR>(1);
     this.relatedProductsData$ = new ReplaySubject<PV[]>(1);
 
@@ -107,12 +106,12 @@ export class MaCartService<CLR extends MaApiCartListResponse<any>,
     return total;
   }
 
-  getCartId(): number {
-    return this.cartId;
+  getSingleItemsCount(): number {
+    return !!this.cartList ? Object.keys(this.cartList.data.items).length : 0;
   }
 
-  watchSidebarCartOpen(): Observable<boolean> {
-    return this.sidebarCartOpenSubject$.asObservable();
+  getCartId(): number {
+    return this.cartId;
   }
 
   watchRelatedProducts(): Observable<PV[]> {
@@ -184,6 +183,15 @@ export class MaCartService<CLR extends MaApiCartListResponse<any>,
     });
   }
 
+  getSelectedPaymentOption() {
+    const selected = this.cartList.data.payment.selected;
+
+    return _.find(this.cartList.data.payment.options, item => {
+      // tslint:disable-next-line:triple-equals
+      return item.code == selected;
+    });
+  }
+
   getSelectedDeliveryOption() {
     const selected = this.cartList.data.delivery.selected;
 
@@ -211,6 +219,17 @@ export class MaCartService<CLR extends MaApiCartListResponse<any>,
     return selectedOption ? selectedOption.code.indexOf('salon_') >= 0 : false;
   }
 
+  getParcelName(option: DO): string {
+    const hasParcel = this.isDeliveryInpost() || this.isSalonDelivery();
+
+    if (!hasParcel) {
+      return null;
+    }
+
+    const deliveryOption = !!option ? option : this.getSelectedDeliveryOption();
+    return !!deliveryOption.parcel_shop.details ? deliveryOption.parcel_shop.details.sl_name : deliveryOption.parcel_shop.code;
+  }
+
   setPayment(type: string) {
     const data = {
       payment_type: type
@@ -225,16 +244,18 @@ export class MaCartService<CLR extends MaApiCartListResponse<any>,
 
   makeOrder(makeOrderData: any): Observable<MO> {
     return this.apiCartService.makeOrder(makeOrderData).pipe(
-      tap(response => {
-        if (response.action_status) {
-          this.refreshCartList();
-        } else {
-          if (!!response.data.reload) {
-            this.refreshCartList();
-          }
-        }
-      })
+      tap(response => this.makeOrderResponse(response))
     );
+  }
+
+  protected makeOrderResponse(response: any) {
+    if (response.action_status) {
+      this.refreshCartList();
+    } else {
+      if (!!response.data.reload) {
+        this.refreshCartList();
+      }
+    }
   }
 
   validateCart(): boolean {
