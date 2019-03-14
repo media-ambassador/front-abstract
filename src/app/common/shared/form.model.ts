@@ -3,7 +3,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 export const MaTaxPattern = /^[\d]{10}$/;
 export const MaEmailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 export const MaZipPattern = /^[\d]{2}-[\d]{3}$/;
-export const MaPhonePattern = /^[\d]{9}$/;
+export const MaPhonePattern = /^[\d]{9,12}$/;
 export const MaPatePattern = /(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))/;
 
 export const MaBaseFormValidators = <any>{

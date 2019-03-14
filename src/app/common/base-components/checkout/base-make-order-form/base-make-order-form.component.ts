@@ -46,6 +46,7 @@ export class MaBaseMakeOrderFormComponent<UD extends MaApiUserData,
     this.isGuest = !this.auth.isAuthorized();
     this.userData = this.auth.getUserData();
     this.initOrderData();
+    this.cartData = this.cartService.getCartData();
   }
 
   ngOnDestroy() {
@@ -114,9 +115,9 @@ export class MaBaseMakeOrderFormComponent<UD extends MaApiUserData,
       this.shipmentChecked
         ? this.makeOrderForm.controls['shipping_id'].setValidators( [Validators.required ])
         : this.makeOrderForm.controls['shipping_id'].clearValidators();
-    }
 
-    this.makeOrderForm.controls['shipping_id'].setValue(null);
+      this.makeOrderForm.controls['shipping_id'].setValue(null);
+    }
   }
 
   invoiceUpdate(isChecked: boolean) {
@@ -126,9 +127,9 @@ export class MaBaseMakeOrderFormComponent<UD extends MaApiUserData,
       this.invoiceChecked
         ? this.makeOrderForm.controls['invoice_id'].setValidators([Validators.required])
         : this.makeOrderForm.controls['invoice_id'].clearValidators();
-    }
 
-    this.makeOrderForm.controls['invoice_id'].setValue(null);
+      this.makeOrderForm.controls['invoice_id'].setValue(null);
+    }
   }
 
   setRegisterPossibility(isPossible: boolean) {
