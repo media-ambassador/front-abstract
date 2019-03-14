@@ -26,6 +26,7 @@ export declare class MaBaseMakeOrderFormComponent<UD extends MaApiUserData, UAR 
     isUserExit: boolean;
     cartData: CD;
     baseClass: boolean;
+    protected thankYouPagePath: string;
     protected subscription: Subscription;
     constructor(apiUserService: MaApiUserService<any, any, any, any, any, any, any, any, any, any, any, any>, auth: MaAuthService<any, any, any, any, any, any, any, any, any, any>, cartService: MaCartService<any, any, any, any, any, any, any, any, any, any>, utilsService: MaUtilsService<any, any>, gtmService: MaGtmService<any, any>, router: Router);
     ngOnInit(): void;

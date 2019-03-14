@@ -9,7 +9,6 @@ import { MaUtilsService } from '../../../services/utils';
 import { MaGtmService } from '../../../services/gtm/gtm.service';
 import { MaApiCartListData } from '../../../modules/api-module/api-cart';
 import { MaApiUserService, MaApiUserData, MaApiUserAddressResponse } from '../../../modules/api-module/api-user';
-import { MaBaseAddressFormGroup, MaBaseInvoiceFormGroup } from '../../../shared/form.model';
 
 @Component({
   selector: 'ma-base-make-order-form',
@@ -33,6 +32,7 @@ export class MaBaseMakeOrderFormComponent<UD extends MaApiUserData,
 
   @HostBinding('class.base-make-order-form') baseClass = true;
 
+  protected thankYouPagePath = 'dziekujemy';
   protected subscription = new Subscription();
 
   constructor(protected apiUserService: MaApiUserService<any, any, any, any, any, any, any, any, any, any, any, any>,
@@ -75,9 +75,9 @@ export class MaBaseMakeOrderFormComponent<UD extends MaApiUserData,
 
   protected get defaultAddressesForm() {
     return new FormGroup({
-      billing: Object.assign({}, MaBaseAddressFormGroup),
-      shipping: Object.assign({}, MaBaseAddressFormGroup),
-      invoice: Object.assign({}, MaBaseInvoiceFormGroup)
+      billing: this.utilsService.getDefaultAddressFormGroup(),
+      shipping: this.utilsService.getDefaultAddressFormGroup(false),
+      invoice: this.utilsService.getDefaultInvoiceFormGroup(false)
     });
   }
 
@@ -208,7 +208,7 @@ export class MaBaseMakeOrderFormComponent<UD extends MaApiUserData,
   protected redirectAfterOrder(response: any) {
     !!response.data.redirectUrl && response.data.redirectUrl.length > 0
     ? window.location.replace(response.data.redirectUrl)
-    : this.router.navigate([`/dziekujemy/${response.data.order_id}`]);
+    : this.router.navigate([`/${this.thankYouPagePath}/${response.data.order_id}`]);
   }
 
   protected handleEmptyShippingId() {

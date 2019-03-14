@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { MaApiOrderStatus } from '../../modules/api-module/api-order';
 import { MaStreetAddressData } from '.';
+import { MaBaseFormValidators } from '../../shared/form.model';
+import { MaInvoiceFormType } from './utils.model';
 
 @Injectable()
 export class MaUtilsService<OS extends MaApiOrderStatus, AD extends MaStreetAddressData> {
@@ -37,6 +39,35 @@ export class MaUtilsService<OS extends MaApiOrderStatus, AD extends MaStreetAddr
       if (!!control.controls) {
         (<any>Object).values(control.controls).forEach((c: FormGroup) => this.markFormGroupTouched(c));
       }
+    });
+  }
+
+  getDefaultAddressFormGroup(withValidator = true) {
+    return new FormGroup({
+      email: new FormControl('', { validators: withValidator ? MaBaseFormValidators.email : [] }),
+      firstname: new FormControl('', { validators: withValidator ? MaBaseFormValidators.firstName : [] }),
+      lastname: new FormControl('', { validators: withValidator ? MaBaseFormValidators.lastname : [] }),
+      company: new FormControl('', { validators: withValidator ? MaBaseFormValidators.company : [] }),
+      street: new FormControl('', { validators: withValidator ? MaBaseFormValidators.street : [] }),
+      number: new FormControl('', { validators: withValidator ? MaBaseFormValidators.number : [] }),
+      apartment: new FormControl('', { validators: withValidator ? MaBaseFormValidators.apartment : [] }),
+      zip: new FormControl('', { validators: withValidator ? MaBaseFormValidators.zip : [] }),
+      city: new FormControl('', { validators: withValidator ? MaBaseFormValidators.city : [] }),
+      telephone: new FormControl('', { validators: withValidator ? MaBaseFormValidators.telephone : [] })
+    });
+  }
+
+  getDefaultInvoiceFormGroup(withValidator = true, type: MaInvoiceFormType = 'company') {
+    return new FormGroup({
+      company: new FormControl('', { validators: withValidator && type === 'company' ? MaBaseFormValidators.company : [] }),
+      tax_no: new FormControl('', { validators: withValidator && type === 'company' ? MaBaseFormValidators.tax_no : [] }),
+      firstname: new FormControl('', { validators: withValidator && type === 'person' ? MaBaseFormValidators.firstName : [] }),
+      lastname: new FormControl('', { validators: withValidator && type === 'person' ? MaBaseFormValidators.lastname : [] }),
+      street: new FormControl('', { validators: withValidator ? MaBaseFormValidators.street : [] }),
+      number: new FormControl('', { validators: withValidator ? MaBaseFormValidators.number : [] }),
+      apartment: new FormControl('', { validators: withValidator ? MaBaseFormValidators.apartment : [] }),
+      zip: new FormControl('', { validators: withValidator ? MaBaseFormValidators.zip : [] }),
+      city: new FormControl('', { validators: withValidator ? MaBaseFormValidators.city : [] })
     });
   }
 

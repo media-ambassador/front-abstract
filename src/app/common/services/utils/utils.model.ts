@@ -3,3 +3,5 @@ export interface MaStreetAddressData {
   number: string;
   apartment: string;
 }
+
+export type MaInvoiceFormType = 'company' | 'person';

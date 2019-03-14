@@ -3,11 +3,14 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { MaApiOrderStatus } from '../../modules/api-module/api-order';
 import { MaStreetAddressData } from '.';
+import { MaInvoiceFormType } from './utils.model';
 export declare class MaUtilsService<OS extends MaApiOrderStatus, AD extends MaStreetAddressData> {
     protected router: Router;
     constructor(router: Router);
     markFormGroupTouched(formGroup: FormGroup): void;
     setFormGroupEditable(formGroup: FormGroup, isEditable: boolean): void;
+    getDefaultAddressFormGroup(withValidator?: boolean): FormGroup;
+    getDefaultInvoiceFormGroup(withValidator?: boolean, type?: MaInvoiceFormType): FormGroup;
     getDateFromTimeStamp(timeStamp: number, format?: string): string;
     returnColorClass(status: OS): string;
     startsWith(start: string, code: string): boolean;

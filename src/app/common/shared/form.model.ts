@@ -12,7 +12,7 @@ export const MaBaseFormValidators = <any>{
   company: [Validators.minLength(3), Validators.maxLength(128)],
   street: [Validators.required, Validators.minLength(3), Validators.maxLength(64)],
   number: [Validators.required, Validators.minLength(1), Validators.maxLength(10)],
-  apartment: [Validators.minLength(1), Validators.maxLength(10)],
+  apartment: [] as any[],
   zip: [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(MaZipPattern)],
   city: [Validators.required, Validators.minLength(2), Validators.maxLength(32)],
   telephone: [Validators.required, Validators.minLength(9), Validators.maxLength(12), Validators.pattern(MaPhonePattern)],
@@ -21,28 +21,3 @@ export const MaBaseFormValidators = <any>{
   address_id: [] as any[],
   type: [Validators.required]
 };
-
-export const MaBaseAddressFormGroup = new FormGroup({
-  email: new FormControl('', { validators: MaBaseFormValidators.email}),
-  firstname: new FormControl('', { validators: MaBaseFormValidators.firstName }),
-  lastname: new FormControl('', { validators: MaBaseFormValidators.lastname }),
-  company: new FormControl('', { validators: MaBaseFormValidators.company }),
-  street: new FormControl('', { validators: MaBaseFormValidators.street }),
-  number: new FormControl('', { validators: MaBaseFormValidators.number }),
-  apartment: new FormControl('', { validators: MaBaseFormValidators.apartment }),
-  zip: new FormControl('', { validators: MaBaseFormValidators.zip }),
-  city: new FormControl('', { validators: MaBaseFormValidators.city }),
-  telephone: new FormControl('', { validators: MaBaseFormValidators.telephone })
-});
-
-export const MaBaseInvoiceFormGroup = new FormGroup({
-  company: new FormControl('', { validators: [] }),
-  firstname: new FormControl('', { validators: [] }),
-  lastname: new FormControl('', { validators: [] }),
-  street: new FormControl('', { validators: [] }),
-  number: new FormControl('', { validators: [] }),
-  apartment: new FormControl('', { validators: [] }),
-  zip: new FormControl('', { validators: [] }),
-  city: new FormControl('', { validators: [] }),
-  tax_no: new FormControl('', { validators: [] })
-});
