@@ -4,6 +4,7 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "module": "es6",
     "mapRoot": "./",
     "outDir": "./dist/out-tsc",

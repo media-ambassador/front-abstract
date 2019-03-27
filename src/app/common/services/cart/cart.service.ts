@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
+import find from 'lodash/find';
 
 import { MaAuthService } from '../auth/auth.service';
 import { MaApiCartService } from '../../modules/api-module/api-cart/api-cart.service';
@@ -19,7 +20,6 @@ import {
   MaApiMakeOrderData
 } from '../../modules/api-module/api-cart/api-cart.model';
 
-import * as _ from 'lodash';
 import { MaApiResponse } from '../../modules/api-module';
 
 @Injectable()
@@ -88,7 +88,7 @@ export class MaCartService<CLR extends MaApiCartListResponse<any>,
   }
 
   getProduct(id: string): CP {
-    return _.find(this.cartList.data.items, item => {
+    return find(this.cartList.data.items, item => {
       return item.product_id === id;
     });
   }
@@ -186,7 +186,7 @@ export class MaCartService<CLR extends MaApiCartListResponse<any>,
   getSelectedPaymentOption() {
     const selected = this.cartList.data.payment.selected;
 
-    return _.find(this.cartList.data.payment.options, item => {
+    return find(this.cartList.data.payment.options, item => {
       // tslint:disable-next-line:triple-equals
       return item.code == selected;
     });
@@ -195,7 +195,7 @@ export class MaCartService<CLR extends MaApiCartListResponse<any>,
   getSelectedDeliveryOption() {
     const selected = this.cartList.data.delivery.selected;
 
-    return _.find(this.cartList.data.delivery.options, item => {
+    return find(this.cartList.data.delivery.options, item => {
       // tslint:disable-next-line:triple-equals
       return item.delivery_id == selected;
     });
@@ -219,7 +219,7 @@ export class MaCartService<CLR extends MaApiCartListResponse<any>,
     return selectedOption ? selectedOption.code.indexOf('salon_') >= 0 : false;
   }
 
-  getParcelName(option: DO): string {
+  getParcelName(option: DO = null): string {
     const hasParcel = this.isDeliveryInpost() || this.isSalonDelivery();
 
     if (!hasParcel) {

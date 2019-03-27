@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { MaProductListOptions } from './product-list.model';
+import extend from 'lodash/extend';
 
-import * as _ from 'lodash';
+import { MaProductListOptions } from './product-list.model';
 
 export class MaProductListService {
   protected readonly defaultOptions: MaProductListOptions = {
@@ -28,7 +28,7 @@ export class MaProductListService {
   }
 
   updateOptions(opt: MaProductListOptions): void {
-    this.options = _.extend(this.options, opt);
+    this.options = extend(this.options, opt);
     this.optionsSubject$.next(this.options);
   }
 

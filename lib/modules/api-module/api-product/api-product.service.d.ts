@@ -9,7 +9,7 @@ export declare class MaApiProductService<PR extends MaApiProductResponse<MaApiBr
     protected apiHttpClient: MaApiHttpClient;
     constructor(apiHttpClient: MaApiHttpClient);
     getProduct(name: string): Observable<PR>;
-    getProductsWithFlag(flag: string, category?: string, filters?: string): Observable<PR>;
+    getProductsWithFlag(flag: string, category?: string, filters?: string): Observable<CR>;
     getProductsById(ids: string[]): Observable<CR>;
     getProductAttributes(variantId: number): Observable<AR>;
     setProductAvailabilityNotification(variation_id: string, email: string): Observable<R>;

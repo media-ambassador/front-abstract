@@ -1,7 +1,8 @@
-import { Injectable, HostListener } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import * as _ from 'lodash';
+import forOwn from 'lodash/forOwn';
+
 import { MaRwdBreakpoints } from '.';
 
 @Injectable()
@@ -27,7 +28,7 @@ export class MaRwdBreakpointsService {
   }
 
   protected handleWindowSize(size: number) {
-    _.forOwn(this.rwdBreakpoints, (breakpoint, key: keyof MaRwdBreakpoints) => {
+    forOwn(this.rwdBreakpoints, (breakpoint, key: keyof MaRwdBreakpoints) => {
       size > breakpoint.minSize
         ? this.emitRwdBreakpoints(key, false)
         : this.emitRwdBreakpoints(key, true);

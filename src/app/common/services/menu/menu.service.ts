@@ -10,8 +10,6 @@ import {
   MaApiMenuCategories
 } from '../../modules/api-module/api-menu';
 
-import * as _ from 'lodash';
-
 @Injectable()
 export class MaMenuService<MI extends MaMenuItem<any>, MC extends MaApiMenuCategoryData<any>> {
   protected menuData$ = new ReplaySubject<MI[]>(1);

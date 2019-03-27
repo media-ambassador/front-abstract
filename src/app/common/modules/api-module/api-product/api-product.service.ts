@@ -56,7 +56,7 @@ export class MaApiProductService<PR extends MaApiProductResponse<MaApiBreadcrumb
     return this.apiHttpClient.get(`/product/${name}`);
   }
 
-  getProductsWithFlag(flag: string, category: string = '', filters: string = ''): Observable<PR> {
+  getProductsWithFlag(flag: string, category: string = '', filters: string = ''): Observable<CR> {
     const url = category.length > 0
                 ? `/p/${flag}/c-${category}/${filters}`
                 : `/p/${flag}/${filters}`;

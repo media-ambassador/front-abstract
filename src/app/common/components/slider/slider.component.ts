@@ -1,11 +1,8 @@
 import { MaSliderItemDirective } from './slider-item.directive';
 import {
   Component,
-  OnInit,
   Input,
   Output,
-  EventEmitter,
-  ViewChild,
   ElementRef,
   ContentChildren,
   QueryList,
@@ -14,11 +11,10 @@ import {
   OnDestroy,
   AfterContentInit,
 } from '@angular/core';
+import range from 'lodash/range';
 
 import { MaSliderOptions, MaSliderState, maSliderOptionsDefaults, MaSliderPagination } from './slider.model';
-import { Element } from '@angular/compiler';
 import { Observable } from 'rxjs/Observable';
-import { ConnectableObservable } from 'rxjs/observable/ConnectableObservable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/merge';
@@ -32,7 +28,6 @@ import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/merge';
 import { async } from 'rxjs/scheduler/async';
-import * as _ from 'lodash';
 
 export * from './slider.model';
 
@@ -119,7 +114,7 @@ export class MaSliderComponent implements OnDestroy, AfterViewInit, AfterContent
       .distinctUntilChanged((s1, s2) => s1.currentSlide === s2.currentSlide
         && s1.slidesPerView === s2.slidesPerView
         && s1.slides === s2.slides)
-      .map(sliderState => _.range(sliderState.loop ? sliderState.slides : sliderState.slides - (sliderState.slidesPerView - 1))
+      .map(sliderState => range(sliderState.loop ? sliderState.slides : sliderState.slides - (sliderState.slidesPerView - 1))
           .map(count => ({slideIndex: count, active: count === sliderState.currentSlide}))
       ).observeOn(async)
       ;

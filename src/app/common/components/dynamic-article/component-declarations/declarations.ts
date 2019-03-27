@@ -1,3 +1,7 @@
+
+import extend from 'lodash/extend';
+import forEach from 'lodash/forEach';
+
 import { MaDynamicArticleFactoryService } from '../dynamic-article-factory-resolver/dynamic-article-factory.service';
 import { MaDynamicArticleFactoryGenerator } from '../dynamic-article-factory-generator/dynamic-article-factory-generator';
 import { MaDynamicArticleType } from '../dynamic-article-factory-resolver/dynamic-article-factory-resolver.model';
@@ -12,8 +16,6 @@ import { MaImageComponentDeclaration } from './image/image';
 import { MaQuoteComponentDeclaration } from './quote/quote';
 import { MaYouTubeComponentDeclaration } from './youTube/youTube';
 import { Dictionary } from '../../../models';
-
-import * as _ from 'lodash';
 
 export interface MaComponentDeclarations extends Dictionary<MaDynamicArticleFactoryGeneratorParams<any, any>> { }
 
@@ -34,9 +36,9 @@ export const MaDynamicArticleDeclarationFactory = function MaDynamicArticleDecla
   customDeclaration: MaComponentDeclarations = { }
 ) {
 
-  const declarations = _.extend(DefaultComponentDeclarations, customDeclaration);
+  const declarations = extend(DefaultComponentDeclarations, customDeclaration);
 
-  _.forEach(declarations, (declaration, key) => {
+  forEach(declarations, (declaration, key) => {
     componentFactoryResolver.registerFactory(key as MaDynamicArticleType, componentFactoryGenerator.generateFactory(declaration));
   });
 

@@ -35,7 +35,7 @@ export declare class MaCartService<CLR extends MaApiCartListResponse<any>, PV ex
     getSelectedDeliveryOption(): any;
     isDeliveryInpost(): boolean;
     isSalonDelivery(): boolean;
-    getParcelName(option: DO): string;
+    getParcelName(option?: DO): string;
     setPayment(type: string): void;
     makeOrder(makeOrderData: any): Observable<MO>;
     protected makeOrderResponse(response: any): void;

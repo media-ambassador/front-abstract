@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import forEach from 'lodash/forEach';
+import remove from 'lodash/remove';
+import sortBy from 'lodash/sortBy';
 
 import { MaProductListComponent } from '../product-list.component';
 import { MaProductListOptionsAttribute, MaProductListPriceOptions } from '../product-list.model';
@@ -7,8 +10,6 @@ import {
   MaApiFilterAttribute,
   MaApiFilterAttributesListValue
 } from '../../api-module';
-
-import * as _ from 'lodash';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -45,7 +46,7 @@ export class MaProductListFiltersComponent extends MaProductListComponent implem
 
   filtersTotalCount(): number {
     let totalCount = 0;
-    _.forEach(this.filters.attributes.checked_values_list, filtersList => {
+    forEach(this.filters.attributes.checked_values_list, filtersList => {
       totalCount += filtersList.length;
     });
 
@@ -72,7 +73,7 @@ export class MaProductListFiltersComponent extends MaProductListComponent implem
     const isActive = this.isAttributeActive(attribute, attrItem);
 
     if (isActive) {
-      _.remove(this.activeAttributes, item => {
+      remove(this.activeAttributes, item => {
 
         return item.filterGroupId === attribute.attribute_id.toString()
                && item.filterId === attrItem.attribute_value_id;
@@ -95,7 +96,7 @@ export class MaProductListFiltersComponent extends MaProductListComponent implem
   }
 
   clearAttributeFilters(attribute: MaApiFilterAttribute<any>) {
-    _.remove(this.activeAttributes, item => {
+    remove(this.activeAttributes, item => {
       return item.filterGroupId === attribute.attribute_id.toString();
     });
 
@@ -106,7 +107,7 @@ export class MaProductListFiltersComponent extends MaProductListComponent implem
     let attributes = null;
 
     if (!!this.filters.attributes) {
-      attributes = _.sortBy(this.activeAttributes, attribute => {
+      attributes = sortBy(this.activeAttributes, attribute => {
         return attribute.filterGroupId;
       });
     }

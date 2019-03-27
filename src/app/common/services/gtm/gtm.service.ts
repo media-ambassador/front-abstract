@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import isObject from 'lodash/isObject';
+import map from 'lodash/map';
 
-
-import * as _ from 'lodash';
 import { MaApiCartListData, MaApiCartProduct } from '../../modules/api-module/api-cart';
 
 @Injectable()
@@ -35,10 +35,10 @@ export class MaGtmService<CL extends MaApiCartListData<any, any, any, any, any, 
   }
 
   gtmEcommercePush(orderData: CL, orderId: string) {
-    if (_.isObject(orderData)) {
+    if (isObject(orderData)) {
       let gtmProducts: any[] = [];
-      if (_.isObject(orderData.items)) {
-        gtmProducts = _.map(orderData.items, (orderItem: CP) => {
+      if (isObject(orderData.items)) {
+        gtmProducts = map(orderData.items, (orderItem: CP) => {
           return {
             'sku': orderItem.sku,
             'name': orderItem.display_name,

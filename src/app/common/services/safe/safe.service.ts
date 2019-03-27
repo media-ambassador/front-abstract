@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
+import forEach from 'lodash/forEach';
+
 import { MaApiSafeService } from '../../modules/api-module/api-safe/api-safe.service';
 import { MaApiSafeCreateResponse } from '../../modules/api-module/api-safe/api-safe.model';
 import {
@@ -11,7 +13,6 @@ import {
   MaApiCartListData
 } from '../../modules/api-module/api-cart/api-cart.model';
 
-import * as _ from 'lodash';
 import { MaAuthService } from '../auth/auth.service';
 import { MaApiResponse } from '../../modules/api-module';
 import { MaApiProductVariation, MaApiProductAttribute, MaApiProductImage } from '../../modules/api-module/api-product/api-product.model';
@@ -70,7 +71,7 @@ export class MaSafeService<CR extends MaApiCartListResponse<any>,
 
     let isFavorite = false;
 
-    _.forEach(this.cartSafeList.data.items, item => {
+    forEach(this.cartSafeList.data.items, item => {
       if (!isFavorite) {
         // tslint:disable-next-line:triple-equals
         isFavorite = parseInt(item.product_id, 10) == productId;
